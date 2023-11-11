@@ -1,0 +1,38 @@
+.background{
+-fx-background-color: white;
+-fx-background-radius: 30 30 0 0;
+}
+
+.title-text{
+-fx-font-family: Poppins;
+-fx-font-weight: bold;
+-fx-font-size: 20;
+}
+
+.button-styled{
+-fx-font-family: Poppins;
+-fx-font-size: 16;
+-fx-font-weight: bold;
+-fx-text-fill:  #5A0B0C;
+-fx-background-color: #FFDA4B;
+-fx-background-radius: 8;
+}
+
+.hyperlink{
+-fx-text-fill:  #5A0B0C;
+-fx-font-weight: bold;
+}
+
+.start-button{
+-fx-background-color: transparent;
+-fx-background-image: url("@../../../images/Logo.png");
+-fx-background-size: contain;
+}
+
+.text-field{
+-fx-pref-height: 39;
+-fx-pref-width: 330;
+-fx-background-color: #EAEAEA;
+-fx-padding: 10;
+-fx-background-radius: 8;
+}

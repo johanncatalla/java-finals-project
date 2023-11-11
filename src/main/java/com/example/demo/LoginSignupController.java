@@ -3,12 +3,10 @@ package com.example.demo;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-public class HelloController {
+public class LoginSignupController {
 
     @FXML
     private Button startButton;
@@ -36,12 +34,14 @@ public class HelloController {
 
     @FXML
     protected void onToSignUpClicked(){
+        // Switch visibility to signup pane
         signupPane.setVisible(true);
         loginPane.setVisible(false);
     }
 
     @FXML
     protected void onToLoginClicked(){
+        // Switch visibility to login pane
         signupPane.setVisible(false);
         loginPane.setVisible(true);
     }

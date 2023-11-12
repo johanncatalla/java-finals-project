@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.canteam.Byte.Controllers;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;

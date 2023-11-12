@@ -3,6 +3,8 @@ module com.example.demo {
     requires javafx.fxml;
 
 
-    opens com.example.demo to javafx.fxml;
-    exports com.example.demo;
+    exports com.canteam.Byte;
+    opens com.canteam.Byte to javafx.fxml;
+    exports com.canteam.Byte.Controllers;
+    opens com.canteam.Byte.Controllers to javafx.fxml;
 }

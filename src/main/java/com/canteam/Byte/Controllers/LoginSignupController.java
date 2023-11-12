@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.canteam.Byte.Controllers;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -55,7 +55,7 @@ public class LoginSignupController {
 
     @FXML
     protected void onLoginButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml"));
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);

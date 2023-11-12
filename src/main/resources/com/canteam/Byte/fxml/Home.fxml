@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" stylesheets="@../../../styles/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.HomeController">
    <children>
       <AnchorPane layoutX="62.0" layoutY="180.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,7 +24,7 @@
                            <children>
                               <ImageView fitHeight="16.25" fitWidth="16.25" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../images/Find.png" />
+                                    <Image url="@../images/Find.png" />
                                  </image>
                               </ImageView>
                               <TextField fx:id="searchField" prefHeight="26.0" prefWidth="285.0" promptText="Search for shops and restaurants" style="-fx-background-color: transparent;" />
@@ -35,7 +35,7 @@
                         </HBox>
                         <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../images/Cart.png" />
+                              <Image url="@../images/Cart.png" />
                            </image>
                         </ImageView>
                         <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />

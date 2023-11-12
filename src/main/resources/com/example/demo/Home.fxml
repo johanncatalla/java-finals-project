@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" stylesheets="@../../../styles/Home.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HomeController">
+   <children>
+      <AnchorPane layoutX="62.0" layoutY="180.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox layoutX="145.0" layoutY="97.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane prefHeight="161.0" prefWidth="200.0" style="-fx-background-color: #5A0B0C;">
+                     <children>
+                        <Label layoutX="61.0" layoutY="32.0" styleClass="topbar-title" text="CCMS Department" />
+                        <Label layoutX="61.0" layoutY="56.0" styleClass="topbar-text" text="Manuel S. Enverga University Foundation" />
+                        <HBox alignment="CENTER" layoutX="29.0" layoutY="90.0" prefHeight="34.0" prefWidth="331.0" styleClass="topbar-searchfield">
+                           <children>
+                              <ImageView fitHeight="16.25" fitWidth="16.25" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/Find.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="searchField" prefHeight="26.0" prefWidth="285.0" promptText="Search for shops and restaurants" style="-fx-background-color: transparent;" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../images/Cart.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="burgerMenuPane" layoutX="-390.0" prefHeight="200.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="323.0" prefWidth="276.0" styleClass="burgerPaneStyle" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox layoutY="22.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane prefHeight="221.0" prefWidth="200.0" style="-fx-background-color: #5A0B0C;">
+                           <children>
+                              <Button fx:id="burgerCloseIcon" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#onBurgerCloseIconClicked" styleClass="burgerMenu-Icon" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

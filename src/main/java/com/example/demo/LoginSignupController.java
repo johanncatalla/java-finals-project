@@ -2,16 +2,21 @@ package com.example.demo;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-public class HelloController {
+import java.io.IOException;
+
+public class LoginSignupController {
 
     @FXML
-    private Button startButton;
+    private Button startButton, loginButton, signUpButton;
 
     @FXML
     private AnchorPane loginSignupPane, loginPane, signupPane;
@@ -36,13 +41,29 @@ public class HelloController {
 
     @FXML
     protected void onToSignUpClicked(){
+        // Switch visibility to signup pane
         signupPane.setVisible(true);
         loginPane.setVisible(false);
     }
 
     @FXML
     protected void onToLoginClicked(){
+        // Switch visibility to login pane
         signupPane.setVisible(false);
         loginPane.setVisible(true);
+    }
+
+    @FXML
+    protected void onLoginButtonClicked() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        stage.setScene(scene);
+        stage.show();
+        loginButton.getScene().getWindow().hide();
     }
 }

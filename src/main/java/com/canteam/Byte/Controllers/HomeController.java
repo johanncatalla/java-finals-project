@@ -8,11 +8,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javafx.scene.image.Image;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomeController{
+public class HomeController {
 
     @FXML
     private Button burgerCloseIcon, burgerOpenIcon;
@@ -25,6 +27,9 @@ public class HomeController{
 
     @FXML
     private TextField searchField;
+
+    @FXML
+    protected ImageView testImageView;
 
     @FXML
     protected void onBurgerOpenIconClicked(){
@@ -42,7 +47,11 @@ public class HomeController{
         burgerMenuTransition.setToX(0);
         burgerMenuTransition.setDuration(Duration.seconds(.5));
         burgerMenuTransition.play();
+        File file = new File("src/main/java/com/canteam/Byte/Controllers/kat.jpg");
+        Image image = new Image(file.toURI().toString());
+        testImageView.setImage(image);
     }
+
 
 }
 

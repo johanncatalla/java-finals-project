@@ -6,14 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
-public class LoginSignupController {
+public class LoginSignupController extends HomeController {
 
     @FXML
     private Button startButton, loginButton, signUpButton;
@@ -55,7 +58,7 @@ public class LoginSignupController {
 
     @FXML
     protected void onLoginButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml")));
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -63,6 +66,7 @@ public class LoginSignupController {
         stage.initStyle(StageStyle.UNDECORATED);
 
         stage.setScene(scene);
+
         stage.show();
         loginButton.getScene().getWindow().hide();
     }

@@ -41,6 +41,7 @@
                         <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
                      </children>
                   </AnchorPane>
+                  <ImageView fx:id="testImageView" fitHeight="286.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>

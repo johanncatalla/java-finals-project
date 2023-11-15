@@ -2,6 +2,7 @@ module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires mongo.java.driver;
+    requires org.json;
 
     exports com.canteam.Byte;
     opens com.canteam.Byte to javafx.fxml;

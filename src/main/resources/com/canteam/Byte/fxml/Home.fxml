@@ -42,7 +42,7 @@
                            </image>
                         </ImageView>
                         <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="57.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
-                        <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ImageView fx:id="statusBar" fitHeight="150.0" fitWidth="390.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
                               <Image url="@../assets/StatusBar.png" />
                            </image>

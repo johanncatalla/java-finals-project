@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/Restaurants.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/Restaurants.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RestaurantsController">
    <children>
       <AnchorPane layoutX="62.0" layoutY="180.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,13 +30,13 @@
             </AnchorPane>
             <AnchorPane prefHeight="161.0" prefWidth="390.0" style="-fx-background-color: #5A0B0C;">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="390.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true" styleClass="status-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="statusBar" fitHeight="150.0" fitWidth="390.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true" styleClass="status-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <image>
                         <Image url="@../assets/StatusBar.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="61.0" layoutY="48.0" styleClass="topbar-title" text="Restaurants" />
-                  <Label layoutX="61.0" layoutY="70.0" styleClass="topbar-text" text="CCMS Department, MSEUF" />
+                  <Label layoutX="64.0" layoutY="52.0" styleClass="topbar-title" text="Restaurants" />
+                  <Label layoutX="64.0" layoutY="74.0" styleClass="topbar-text" text="CCMS Department, MSEUF" />
                   <HBox alignment="CENTER" layoutX="29.0" layoutY="105.0" prefHeight="34.0" prefWidth="331.0" styleClass="topbar-searchfield">
                      <children>
                         <ImageView fitHeight="16.25" fitWidth="16.25" pickOnBounds="true" preserveRatio="true">
@@ -50,12 +50,12 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="336.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="336.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/Cart.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="30.0" layoutY="57.0" maxHeight="14.0" maxWidth="26.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="26.0" styleClass="backMenu-Icon" />
+                  <Button fx:id="backButton" layoutX="30.0" layoutY="61.0" maxHeight="14.0" maxWidth="26.0" mnemonicParsing="false" prefHeight="13.0" prefWidth="26.0" styleClass="backMenu-Icon" />
                </children>
             </AnchorPane>
          </children>

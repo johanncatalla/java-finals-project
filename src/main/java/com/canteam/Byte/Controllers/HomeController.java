@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
     private TextField searchField;
 
     @FXML
-    protected ImageView testImageView;
+    protected ImageView toRestaurantButton;
 
     @FXML
     private GridPane cuisinesGridPane;
@@ -50,6 +50,7 @@ public class HomeController implements Initializable {
     private List<CuisineModel> cuisineList = new ArrayList<>();
 
     private Draggable draggable = new Draggable();
+    private PageNavigator pageNavigator = new PageNavigator();
 
     private List<CuisineModel> getData(){
       List<CuisineModel> cuisineList = new ArrayList<>();
@@ -84,7 +85,6 @@ public class HomeController implements Initializable {
       }
       return cuisineList;
     }
-
 
     @FXML
     protected void onBurgerOpenIconClicked() throws IOException {
@@ -135,6 +135,9 @@ public class HomeController implements Initializable {
 
             // Make cuisine pane draggable
             draggable.makeDraggable(cuisinesGridPane);
+
+            // Make navigators
+            pageNavigator.makeNavigator(toRestaurantButton, "Restaurants");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,21 +6,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
-import com.canteam.Byte.MongoDB.DatabaseConnection;
+import com.mongodb.client.*;
+import org.bson.Document;
+import com.canteam.Byte.MongoDB.Connection;
 
 public class HomeController implements Initializable {
 
@@ -50,10 +55,30 @@ public class HomeController implements Initializable {
       List<CuisineModel> cuisineList = new ArrayList<>();
       CuisineModel cuisine;
 
+      MongoClient client = Connection.getInstance();
+      MongoDatabase database = client.getDatabase("Stores");
+      MongoCollection<Document> collection = database.getCollection("Mangyupsal");
+
+        FindIterable<Document> documents = collection.find();
+
+        HashMap<String, HashMap<String, Object>> finalMap = new HashMap<>();
+
+        int num = 0;
+        for (Document document : documents) {
+            HashMap<String, Object> dbMap = new HashMap<>();
+            for (String key : document.keySet()) {
+                Object value = document.get(key);
+                dbMap.put(key, value);
+            }
+            finalMap.put("Item "+(num++), dbMap);
+        }
+
+        String arrTags = (String) finalMap.get("Item 0").get("Item_Name");
+
       // Just a demo/placeholder data for now
       for (int i = 0; i < 12; i++){
           cuisine = new CuisineModel();
-          cuisine.setCuisineName("Cuisine " + i);
+          cuisine.setCuisineName(arrTags +" "+ i);
           cuisine.setCuisineImageSrc("/com/canteam/Byte/assets/images/CuisineType/Milktea.png");
           cuisineList.add(cuisine);
       }
@@ -62,12 +87,23 @@ public class HomeController implements Initializable {
 
 
     @FXML
-    protected void onBurgerOpenIconClicked(){
+    protected void onBurgerOpenIconClicked() throws IOException {
         TranslateTransition burgerMenuTransition = new TranslateTransition();
         burgerMenuTransition.setNode(burgerMenuPane);
         burgerMenuTransition.setToX(390);
         burgerMenuTransition.setDuration(Duration.seconds(.5));
         burgerMenuTransition.play();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml")));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        stage.setScene(scene);
+
+        stage.show();
+        burgerOpenIcon.getScene().getWindow().hide();
     }
 
     @FXML

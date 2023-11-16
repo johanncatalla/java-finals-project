@@ -19,11 +19,11 @@
          <children>
             <VBox layoutX="145.0" layoutY="97.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane prefHeight="146.0" prefWidth="390.0" style="-fx-background-color: #5A0B0C;">
+                  <AnchorPane prefHeight="161.0" prefWidth="390.0" style="-fx-background-color: #5A0B0C;">
                      <children>
-                        <Label layoutX="61.0" layoutY="34.0" styleClass="topbar-title" text="CCMS Department" />
-                        <Label layoutX="61.0" layoutY="56.0" styleClass="topbar-text" text="Manuel S. Enverga University Foundation" />
-                        <HBox alignment="CENTER" layoutX="29.0" layoutY="90.0" prefHeight="34.0" prefWidth="331.0" styleClass="topbar-searchfield">
+                        <Label layoutX="61.0" layoutY="48.0" styleClass="topbar-title" text="CCMS Department" />
+                        <Label layoutX="61.0" layoutY="70.0" styleClass="topbar-text" text="Manuel S. Enverga University Foundation" />
+                        <HBox alignment="CENTER" layoutX="29.0" layoutY="106.0" prefHeight="34.0" prefWidth="331.0" styleClass="topbar-searchfield">
                            <children>
                               <ImageView fitHeight="16.25" fitWidth="16.25" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -36,12 +36,17 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/Cart.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
+                        <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="57.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
+                        <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../assets/StatusBar.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="208.0" prefWidth="200.0" style="-fx-background-color: #EAEAEA;">
@@ -89,7 +94,7 @@
                      <children>
                         <AnchorPane prefHeight="221.0" prefWidth="200.0" style="-fx-background-color: #5A0B0C;">
                            <children>
-                              <Button fx:id="burgerCloseIcon" layoutX="29.0" layoutY="43.0" mnemonicParsing="false" onAction="#onBurgerCloseIconClicked" styleClass="burgerMenu-Icon" />
+                              <Button fx:id="burgerCloseIcon" layoutX="29.0" layoutY="27.0" mnemonicParsing="false" onAction="#onBurgerCloseIconClicked" styleClass="backMenu-Icon" />
                            </children>
                         </AnchorPane>
                      </children>

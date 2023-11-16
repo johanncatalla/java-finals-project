@@ -93,17 +93,6 @@ public class HomeController implements Initializable {
         burgerMenuTransition.setToX(390);
         burgerMenuTransition.setDuration(Duration.seconds(.5));
         burgerMenuTransition.play();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml")));
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-
-        stage.initStyle(StageStyle.UNDECORATED);
-
-        stage.setScene(scene);
-
-        stage.show();
-        burgerOpenIcon.getScene().getWindow().hide();
     }
 
     @FXML

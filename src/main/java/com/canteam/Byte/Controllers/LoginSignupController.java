@@ -16,13 +16,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginSignupController {
+public class LoginSignupController{
 
     @FXML
     private Button startButton, loginButton, signUpButton;
 
     @FXML
     private AnchorPane loginSignupPane, loginPane, signupPane;
+
+    PageNavigator pageNavigator = new PageNavigator();
 
     @FXML
     protected void onLogoClicked(){
@@ -58,16 +60,6 @@ public class LoginSignupController {
 
     @FXML
     protected void onLoginButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml")));
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-
-        stage.initStyle(StageStyle.UNDECORATED);
-
-        stage.setScene(scene);
-
-        stage.show();
-        loginButton.getScene().getWindow().hide();
+        pageNavigator.navigateToPage(loginButton, "Home");
     }
 }

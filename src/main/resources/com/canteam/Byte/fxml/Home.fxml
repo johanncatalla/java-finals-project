@@ -53,10 +53,10 @@
                      <children>
                         <ImageView fitHeight="177.67" fitWidth="161.0" layoutX="24.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/images/Food%20delivery.png" />
+                              <Image url="@../assets/images/FoodDelivery.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="92.0" fitWidth="160.0" layoutX="195.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="toRestaurantButton" fitHeight="92.0" fitWidth="160.0" layoutX="195.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/images/Restaurants.png" />
                            </image>

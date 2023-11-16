@@ -1,3 +1,7 @@
+.status-bar{
+    -fx-pref-width: 390;
+}
+
 .topbar-title{
 -fx-font-family: Poppins;
 -fx-text-fill: #FFDA4B;
@@ -32,14 +36,27 @@
 }
 
 .burgerMenu-Icon{
--fx-background-color: transparent;
--fx-background-image: url("../assets/Burger.png");
--fx-background-size: contain;
--fx-pref-width: 25;
--fx-pref-height: 22;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/Burger.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 25;
+    -fx-pref-height: 22;
 }
+
 
 .burgerPaneStyle{
 -fx-background-color: white;
 -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10, 0.5 , 0 , 0 );
+}
+
+.backMenu-Icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/BackArrow.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-max-width: 50;
+    -fx-max-height: 23;
 }

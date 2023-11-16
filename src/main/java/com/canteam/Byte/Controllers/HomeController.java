@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
     private TextField searchField;
 
     @FXML
-    protected ImageView testImageView;
+    private ImageView restaurantsButton;
 
     @FXML
     private GridPane cuisinesGridPane;
@@ -83,6 +83,21 @@ public class HomeController implements Initializable {
           cuisineList.add(cuisine);
       }
       return cuisineList;
+    }
+
+    @FXML
+    protected void onRestaurantsButtonClicked() throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/Restaurants.fxml")));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        stage.setScene(scene);
+
+        stage.show();
+        restaurantsButton.getScene().getWindow().hide();
     }
 
 
@@ -139,6 +154,8 @@ public class HomeController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 }
 

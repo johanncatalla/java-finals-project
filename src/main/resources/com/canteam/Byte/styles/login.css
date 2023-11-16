@@ -16,17 +16,20 @@
 -fx-text-fill:  #5A0B0C;
 -fx-background-color: #FFDA4B;
 -fx-background-radius: 8;
+-fx-cursor: hand;
 }
 
 .hyperlink{
 -fx-text-fill:  #5A0B0C;
 -fx-font-weight: bold;
+-fx-cursor: hand;
 }
 
 .start-button{
 -fx-background-color: transparent;
 -fx-background-image: url("../assets/Logo.png");
 -fx-background-size: contain;
+-fx-cursor: hand;
 }
 
 .text-field{

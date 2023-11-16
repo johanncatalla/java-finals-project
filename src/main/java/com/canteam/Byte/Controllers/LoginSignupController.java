@@ -3,10 +3,12 @@ package com.canteam.Byte.Controllers;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,15 +16,24 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class LoginSignupController {
+public class LoginSignupController implements Initializable {
 
     @FXML
     private Button startButton, loginButton, signUpButton;
 
     @FXML
     private AnchorPane loginSignupPane, loginPane, signupPane;
+
+    @FXML
+    private ImageView statusBar;
+
+    PageNavigator pageNavigator = new PageNavigator();
+
+    Draggable draggable = new Draggable();
 
     @FXML
     protected void onLogoClicked(){
@@ -58,16 +69,12 @@ public class LoginSignupController {
 
     @FXML
     protected void onLoginButtonClicked() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/Home.fxml")));
+        pageNavigator.navigateToPage(loginButton, "Home");
+    }
 
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-
-        stage.initStyle(StageStyle.UNDECORATED);
-
-        stage.setScene(scene);
-
-        stage.show();
-        loginButton.getScene().getWindow().hide();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set up draggable
+        draggable.makeWindowDraggable(statusBar);
     }
 }

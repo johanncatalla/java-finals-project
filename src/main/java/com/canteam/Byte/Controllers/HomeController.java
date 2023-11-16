@@ -1,24 +1,17 @@
 package com.canteam.Byte.Controllers;
 import com.canteam.Byte.Models.CuisineModel;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import javafx.scene.image.Image;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -42,7 +35,7 @@ public class HomeController implements Initializable {
     private TextField searchField;
 
     @FXML
-    protected ImageView testImageView;
+    protected ImageView toRestaurantButton, statusBar;
 
     @FXML
     private GridPane cuisinesGridPane;
@@ -50,6 +43,7 @@ public class HomeController implements Initializable {
     private List<CuisineModel> cuisineList = new ArrayList<>();
 
     private Draggable draggable = new Draggable();
+    private PageNavigator pageNavigator = new PageNavigator();
 
     private List<CuisineModel> getData(){
       List<CuisineModel> cuisineList = new ArrayList<>();
@@ -85,7 +79,6 @@ public class HomeController implements Initializable {
       return cuisineList;
     }
 
-
     @FXML
     protected void onBurgerOpenIconClicked() throws IOException {
         TranslateTransition burgerMenuTransition = new TranslateTransition();
@@ -107,6 +100,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Setup window draggable
+        draggable.makeWindowDraggable(statusBar);
+
         // Will create an error at start but will be ok when you open the home page
         cuisineList.addAll(getData());
         int column = 1;
@@ -134,7 +130,10 @@ public class HomeController implements Initializable {
             }
 
             // Make cuisine pane draggable
-            draggable.makeDraggable(cuisinesGridPane);
+            draggable.makeDraggableX(cuisinesGridPane);
+
+            // Make navigators
+            pageNavigator.makeNavigator(toRestaurantButton, "Restaurants");
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -36,13 +36,13 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                            <image>
                               <Image url="@../assets/Cart.png" />
                            </image>
                         </ImageView>
                         <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="57.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
-                        <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ImageView fx:id="statusBar" fitHeight="150.0" fitWidth="390.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
                               <Image url="@../assets/StatusBar.png" />
                            </image>
@@ -53,10 +53,10 @@
                      <children>
                         <ImageView fitHeight="177.67" fitWidth="161.0" layoutX="24.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../assets/images/Food%20delivery.png" />
+                              <Image url="@../assets/images/FoodDelivery.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="92.0" fitWidth="160.0" layoutX="195.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="toRestaurantButton" fitHeight="92.0" fitWidth="160.0" layoutX="195.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                            <image>
                               <Image url="@../assets/images/Restaurants.png" />
                            </image>

@@ -42,6 +42,8 @@ public class HomeController implements Initializable{
 
     private List<CuisineModel> cuisineList = new ArrayList<>();
 
+    private Draggable draggable = new Draggable();
+
     private List<CuisineModel> getData(){
       List<CuisineModel> cuisineList = new ArrayList<>();
       CuisineModel cuisine;
@@ -103,6 +105,10 @@ public class HomeController implements Initializable{
                 // Set the margin for the cuisine button
                 GridPane.setMargin(cuisineButton, new Insets(10));
             }
+
+            // Make cuisine pane draggable
+            draggable.makeDraggable(cuisinesGridPane);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

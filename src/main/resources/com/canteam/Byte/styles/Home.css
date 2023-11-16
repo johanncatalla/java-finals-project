@@ -1,28 +1,39 @@
 .topbar-title{
+-fx-font-family: Poppins;
 -fx-text-fill: #FFDA4B;
--fx-font-weight: bold;
+-fx-font-weight: 700;
 -fx-font-size: 17;
 }
 
 .topbar-text{
+-fx-font-family: Poppins;
 -fx-text-fill: white;
 -fx-font-size: 12.5;
 }
 
+.h2-text{
+-fx-font-family: Poppins;
+-fx-font-weight: 700;
+-fx-font-size: 15;
+-fx-text-fill: #5A0B0C;
+}
+
 .topbar-textfield{
-  -fx-background-image:url("../images/Cart.png");
-  -fx-background-repeat: no-repeat;
-  -fx-background-position: left center;
+-fx-font-family: Poppins;
+-fx-background-image:url("../assets/Cart.png");
+-fx-background-repeat: no-repeat;
+-fx-background-position: left center;
 }
 
 .topbar-searchfield{
+-fx-font-family: Poppins;
 -fx-background-color: white;
 -fx-background-radius: 20;
 }
 
 .burgerMenu-Icon{
 -fx-background-color: transparent;
--fx-background-image: url("../images/Burger.png");
+-fx-background-image: url("../assets/Burger.png");
 -fx-background-size: contain;
 -fx-pref-width: 25;
 -fx-pref-height: 22;

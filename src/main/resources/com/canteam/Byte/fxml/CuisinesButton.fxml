@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="90.0" prefWidth="70.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.CuisinesButtonController">
+   <children>
+      <VBox layoutX="-19.0" layoutY="-58.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="buttonImage" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/CuisineType/Milktea.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="cuisineName" alignment="CENTER" prefHeight="18.0" prefWidth="70.0" style="-fx-font-weight: 700; -fx-font-family: Poppins;" text="Milk Tea" textAlignment="CENTER" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

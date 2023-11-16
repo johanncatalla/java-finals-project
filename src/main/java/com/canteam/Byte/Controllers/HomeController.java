@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable{
+import com.canteam.Byte.MongoDB.DatabaseConnection;
+
+public class HomeController implements Initializable {
 
     @FXML
     private Button burgerCloseIcon, burgerOpenIcon;
@@ -41,6 +43,8 @@ public class HomeController implements Initializable{
     private GridPane cuisinesGridPane;
 
     private List<CuisineModel> cuisineList = new ArrayList<>();
+
+    private Draggable draggable = new Draggable();
 
     private List<CuisineModel> getData(){
       List<CuisineModel> cuisineList = new ArrayList<>();
@@ -103,6 +107,10 @@ public class HomeController implements Initializable{
                 // Set the margin for the cuisine button
                 GridPane.setMargin(cuisineButton, new Insets(10));
             }
+
+            // Make cuisine pane draggable
+            draggable.makeDraggable(cuisinesGridPane);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

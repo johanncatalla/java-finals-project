@@ -8,18 +8,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Properties;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 
-public class MongoMain {
+public class DatabaseConnection {
     protected String uri;
     protected MongoClient mongoClient;
     protected static MongoDatabase database;
     protected static MongoCollection<Document> collection;
     protected Document document;
 
-    public MongoMain() {
+    public DatabaseConnection() {
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream(".properties"));
@@ -45,14 +43,8 @@ public class MongoMain {
         return collection;
     }
 
-    public void addDocument(String key, String value) {
-
-        document = new Document(key, value);
-        collection.insertOne(document);
-    }
-
     public static void main(String[] args) {
-        MongoMain db = new MongoMain();
+        DatabaseConnection db = new DatabaseConnection();
         db.connect("Stores");
         db.getCollection("Mangyupsal");
         FindIterable<Document> documents = collection.find();
@@ -66,11 +58,11 @@ public class MongoMain {
                 Object value = document.get(key);
                 dbMap.put(key, value);
             }
-            finalMap.put("Item"+(i++), dbMap);
+            finalMap.put((String) dbMap.get("Item_Name"), dbMap);
         }
 
-        List<String> arrTags = (List<String>) finalMap.get("Item1").get("Item_Tags");
-        System.out.println(arrTags.get(0));
+        List<String> arrTags = (List<String>) finalMap.get("Spicy Pork Rice Bowl").get("Item_Tags");
+        System.out.println(finalMap);
 
         db.close();
     }

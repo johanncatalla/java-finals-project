@@ -16,7 +16,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class LoginSignupController extends HomeController {
+import com.canteam.Byte.MongoDB.DatabaseConnection;
+
+public class LoginSignupController {
 
     @FXML
     private Button startButton, loginButton, signUpButton;

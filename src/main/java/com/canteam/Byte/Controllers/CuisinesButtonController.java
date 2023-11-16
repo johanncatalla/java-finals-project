@@ -8,8 +8,6 @@ import javafx.scene.image.ImageView;
 
 import java.util.Objects;
 
-import com.canteam.Byte.MongoDB.DatabaseConnection;
-
 public class CuisinesButtonController {
 
     @FXML

@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomeController implements Initializable{
+import com.canteam.Byte.MongoDB.DatabaseConnection;
+
+public class HomeController implements Initializable {
 
     @FXML
     private Button burgerCloseIcon, burgerOpenIcon;

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="160.0" prefWidth="155.0" style="-fx-cursor: hand;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ShopButtonController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="buttonImage" fitHeight="135.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/ShopImgPlaceholder.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="shopName" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="155.0" style="-fx-font-size: 16; -fx-font-weight: 700; -fx-font-family: Poppins;" styleClass="poppins" text="Label" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

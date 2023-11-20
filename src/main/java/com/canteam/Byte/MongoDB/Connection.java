@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import java.util.ArrayList;
 
 public class Connection {
     private static MongoClient mongoClient;
+    private static List<String> collectionNames = new ArrayList<String>();
 
     private Connection() {}
     public static MongoClient getInstance() {
@@ -27,6 +29,7 @@ public class Connection {
         }
         return mongoClient;
     }
+
     public static void main(String[] args) {
         // Sample
         // import Connection class then create MongoClient then get instance of connection.

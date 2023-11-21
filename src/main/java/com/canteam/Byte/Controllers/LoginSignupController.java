@@ -1,5 +1,8 @@
 package com.canteam.Byte.Controllers;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +25,9 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import com.canteam.Byte.MongoDB.Connection;
 import com.canteam.Byte.Models.UserModel;
+import org.bson.Document;
 
 public class LoginSignupController implements Initializable {
 
@@ -42,7 +47,13 @@ public class LoginSignupController implements Initializable {
     private PasswordField signupPassField;
     @FXML
     private TextField signupUsernameField;
-
+    @FXML
+    private PasswordField loginPassField;
+    @FXML
+    private TextField loginUsernameField;
+    private MongoClient client = Connection.getInstance();
+    private MongoDatabase db = client.getDatabase("Byte");
+    private MongoCollection<Document> collection = db.getCollection("Users");
 
     PageNavigator pageNavigator = new PageNavigator();
 
@@ -99,7 +110,18 @@ public class LoginSignupController implements Initializable {
 
     @FXML
     protected void onLoginButtonClicked() throws IOException {
-        pageNavigator.navigateToPage(loginButton, "Home");
+        String username = loginUsernameField.getText();
+        Document user = (Document) collection.find(new Document("Username", username)).first();
+        if (user != null) {
+            if (user.getString("Password").equals(loginPassField.getText())) {
+                UserModel.loginUser(user, username, user.getString("Password"));
+                pageNavigator.navigateToPage(loginButton, "Home");
+            } else {
+                System.out.println("Incorrect Password");
+            }
+        } else {
+            System.out.println("Username does not exist");
+        }
     }
 
     @Override

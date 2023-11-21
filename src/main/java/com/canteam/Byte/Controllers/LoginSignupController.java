@@ -5,24 +5,17 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.canteam.Byte.MongoDB.Connection;
@@ -51,6 +44,11 @@ public class LoginSignupController implements Initializable {
     private PasswordField loginPassField;
     @FXML
     private TextField loginUsernameField;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private Label errorLabel2;
+
     private MongoClient client = Connection.getInstance();
     private MongoDatabase db = client.getDatabase("Byte");
     private MongoCollection<Document> collection = db.getCollection("Users");
@@ -80,17 +78,17 @@ public class LoginSignupController implements Initializable {
     @FXML
     protected void onSignUpClicked() {
         if (!UserModel.userExists(signupUsernameField.getText())) {
-            if (!signupNameField.getText().isEmpty() || signupUsernameField.getText().isEmpty() || signupEmailField.getText().isEmpty() || signupPassField.getText().isEmpty()) {
+            if (!(signupNameField.getText().isEmpty() || signupUsernameField.getText().isEmpty() || signupEmailField.getText().isEmpty() || signupPassField.getText().isEmpty())) {
                 UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer");
                 signupNameField.setText(null);
                 signupUsernameField.setText(null);
                 signupEmailField.setText(null);
                 signupPassField.setText(null);
             } else {
-                System.out.println("Please fill all fields");
+                errorLabel2.setText("Please fill in all fields");
             }
         } else {
-            System.out.println("Username is already taken");
+            errorLabel2.setText("Username is already taken");
         }
     }
 
@@ -110,17 +108,33 @@ public class LoginSignupController implements Initializable {
 
     @FXML
     protected void onLoginButtonClicked() throws IOException {
-        String username = loginUsernameField.getText();
-        Document user = (Document) collection.find(new Document("Username", username)).first();
-        if (user != null) {
-            if (user.getString("Password").equals(loginPassField.getText())) {
-                UserModel.loginUser(user, username, user.getString("Password"));
-                pageNavigator.navigateToPage(loginButton, "Home");
-            } else {
-                System.out.println("Incorrect Password");
-            }
+        loginUsernameField.setStyle("-fx-border-width: 0");
+        loginPassField.setStyle("-fx-border-width: 0");
+
+        // Check if fields are null
+        if (loginUsernameField.getText().isEmpty() || loginPassField.getText().isEmpty()){
+            errorLabel.setText("Please fill in all fields");
         } else {
-            System.out.println("Username does not exist");
+            String username = loginUsernameField.getText();
+            Document user = (Document) collection.find(new Document("Username", username)).first();
+
+            if (user != null) {
+                if (user.getString("Password").equals(loginPassField.getText())) {
+                    UserModel.loginUser(user, username, user.getString("Password"));
+                    UserModel.setUserName(username);
+                    pageNavigator.forwardToPage(loginButton, "login", "Home");
+                } else {
+                    loginPassField.setStyle(
+                            "-fx-border-color: red;" +
+                            "-fx-border-radius: 8px;");
+                    errorLabel.setText("Incorrect Password");
+                }
+            } else {
+                errorLabel.setText("Username does not exist");
+                loginUsernameField.setStyle(
+                        "-fx-border-color: red;" +
+                        "-fx-border-radius: 8px;");
+            }
         }
     }
 

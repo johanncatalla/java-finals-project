@@ -17,6 +17,15 @@ public class UserModel {
     private static String contact;
     private static String userType;
 
+    public static void signOut() {
+        UserModel.setFullName(null);
+        UserModel.setUserName(null);
+        UserModel.setUserPassword(null);
+        UserModel.setUserAddress(null);
+        UserModel.setUserContact(null);
+        UserModel.setUserType(null);
+    }
+
     public static void loginUser(Document user, String username, String password) {
         UserModel.setUserName(user.getString("Username"));
         UserModel.setUserPassword(user.getString("Password"));
@@ -40,7 +49,7 @@ public class UserModel {
         collection.insertOne(newUser);
     }
 
-    public static void setFullname(String fullname) { fullname = fullname.trim(); }
+    public static void setFullName(String fullname) { fullname = fullname.trim(); }
     public static void setUserName(String username) { username = username.trim(); }
     public static void setUserPassword(String password) { password = password; }
     public static void setUserAddress(String address) { address = address; }

@@ -33,6 +33,7 @@ public class UserModel {
         UserModel.setUserAddress(user.getString("Address"));
         UserModel.setUserContact(user.getString("Contact"));
         UserModel.setUserType(user.getString("UserType"));
+        UserModel.setFullName(user.getString("FullName"));
     }
 
     public static boolean userExists(String username) {
@@ -49,12 +50,12 @@ public class UserModel {
         collection.insertOne(newUser);
     }
 
-    public static void setFullName(String fullname) { fullname = fullname.trim(); }
-    public static void setUserName(String username) { username = username.trim(); }
-    public static void setUserPassword(String password) { password = password; }
-    public static void setUserAddress(String address) { address = address; }
-    public static void setUserContact(String contact) { contact = contact; }
-    public static void setUserType(String userType) { userType = userType.trim(); }
+    public static void setFullName(String inputFullName) { fullName = inputFullName; }
+    public static void setUserName(String inputUserName) { username = inputUserName; }
+    public static void setUserPassword(String inputPassword) { password = inputPassword; }
+    public static void setUserAddress(String inputAddress) { address = inputAddress; }
+    public static void setUserContact(String inputContact) { contact = inputContact; }
+    public static void setUserType(String inputUserType) { userType = inputUserType; }
     public static String getFullName() { return fullName; }
     public static String getUserName() { return username; }
     public static String getUserPassword() { return password; }

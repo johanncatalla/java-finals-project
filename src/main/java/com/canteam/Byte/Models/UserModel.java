@@ -17,23 +17,13 @@ public class UserModel {
     private static String contact;
     private static String userType;
 
-    public static void loginUser(String username, String password) {
-        Document user = (Document) collection.find(new Document("Username", username)).first();
-        if (user!= null) {
-            if (user.getString("Password").equals(password)) {
-                UserModel.setUserName(user.getString("Username"));
-                UserModel.setUserPassword(user.getString("Password"));
-                UserModel.setUserAddress(user.getString("Address"));
-                UserModel.setUserContact(user.getString("Contact"));
-                UserModel.setUserType(user.getString("UserType"));
-            } else {
-                // Incorrect credentials
-                System.out.println("Incorrect password");
-            }
-        } else {
-            // Username is incorrect
-            System.out.println("Username is incorrect");
-        }
+    public static void loginUser(Document user, String username, String password) {
+        UserModel.setUserName(user.getString("Username"));
+        UserModel.setUserPassword(user.getString("Password"));
+        UserModel.setUserAddress(user.getString("Address"));
+        UserModel.setUserContact(user.getString("Contact"));
+        UserModel.setUserType(user.getString("UserType"));
+
     }
 
     public static boolean userExists(String username) {
@@ -53,8 +43,8 @@ public class UserModel {
     public static void setFullname(String fullname) { fullname = fullname.trim(); }
     public static void setUserName(String username) { username = username.trim(); }
     public static void setUserPassword(String password) { password = password; }
-    public static void setUserAddress(String address) { address = address.trim(); }
-    public static void setUserContact(String contact) { contact = contact.trim(); }
+    public static void setUserAddress(String address) { address = address; }
+    public static void setUserContact(String contact) { contact = contact; }
     public static void setUserType(String userType) { userType = userType.trim(); }
     public static String getFullName() { return fullName; }
     public static String getUserName() { return username; }

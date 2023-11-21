@@ -2,6 +2,33 @@
     -fx-pref-width: 390;
 }
 
+.user-icon{
+    -fx-background-color: white;
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+    -fx-font-weight: bold;
+    -fx-font-size: 32;
+    -fx-background-radius: 30;
+
+}
+
+.hyperlink{
+    -fx-text-fill:  #5A0B0C;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+}
+
+.icons{
+    -fx-pref-width: 21;
+    -fx-pref-height: 21;
+}
+
+.userNameLabel{
+    -fx-text-fill: #FFDA4B;
+    -fx-font-weight: Bold;
+    -fx-font-size: 17px;
+}
+
 .topbar-title{
 -fx-font-family: Poppins;
 -fx-text-fill: #FFDA4B;

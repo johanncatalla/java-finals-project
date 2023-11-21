@@ -1,11 +1,14 @@
 package com.canteam.Byte.Controllers;
 import com.canteam.Byte.Models.CuisineModel;
+import com.canteam.Byte.Models.UserModel;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -35,10 +38,19 @@ public class HomeController implements Initializable {
     private TextField searchField;
 
     @FXML
+    private Label userNameLabel;
+
+    @FXML
+    private Label userIcon;
+
+    @FXML
     protected ImageView toRestaurantButton, statusBar;
 
     @FXML
     private GridPane cuisinesGridPane;
+
+    @FXML
+    private Hyperlink logoutLink, ordersLink, profileLink, addressLink;
 
     private List<CuisineModel> cuisineList = new ArrayList<>();
 
@@ -89,6 +101,12 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    protected void onLogoutLinkClicked(){
+        UserModel.signOut();
+        pageNavigator.backToPage(logoutLink);
+    }
+
+    @FXML
     protected void onBurgerCloseIconClicked(){
         TranslateTransition burgerMenuTransition = new TranslateTransition();
         burgerMenuTransition.setNode(burgerMenuPane);
@@ -100,6 +118,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userNameLabel.setText(UserModel.getFullName());
+        userIcon.setText(String.valueOf(UserModel.getUserName().toUpperCase().charAt(0)));
+
         // Setup window draggable
         draggable.makeWindowDraggable(statusBar);
 
@@ -133,7 +154,7 @@ public class HomeController implements Initializable {
             draggable.makeDraggableX(cuisinesGridPane);
 
             // Make navigators
-            pageNavigator.makeNavigator(toRestaurantButton, "Restaurants");
+            pageNavigator.makeForwardNavigator(toRestaurantButton, "Home","Restaurants");
 
         } catch (Exception e) {
             e.printStackTrace();

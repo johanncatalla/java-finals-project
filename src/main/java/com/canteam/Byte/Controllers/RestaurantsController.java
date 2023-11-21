@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -32,9 +33,14 @@ public class RestaurantsController implements Initializable {
     @FXML
     private AnchorPane gridPaneContainer;
 
+    @FXML
+    private Button backButton;
+
     private Draggable draggable = new Draggable();
 
     private List<ShopModel> shopList = new ArrayList<>();
+
+    PageNavigator pageNavigator = new PageNavigator();
 
     private List<ShopModel> getData(){
         List<ShopModel> shopList = new ArrayList<>();
@@ -57,6 +63,11 @@ public class RestaurantsController implements Initializable {
             shopList.add(shop);
         }
         return shopList;
+    }
+
+    @FXML
+    protected void onBackButtonClicked(){
+        pageNavigator.backToPage(backButton);
     }
 
     @Override

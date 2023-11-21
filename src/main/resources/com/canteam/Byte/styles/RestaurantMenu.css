@@ -1,0 +1,52 @@
+.Selection-Bar{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: solid;
+    -fx-border-color: lightgrey;
+}
+
+.status-bar{
+    -fx-pref-width: 390;
+}
+
+.topbar-title{
+    -fx-font-family: Poppins;
+    -fx-text-fill: #FFDA4B;
+    -fx-font-weight: 700;
+    -fx-font-size: 17;
+}
+
+.topbar-text{
+    -fx-font-family: Poppins;
+    -fx-text-fill: white;
+    -fx-font-size: 12.5;
+}
+
+.h2-text{
+    -fx-font-family: Poppins;
+    -fx-font-weight: 700;
+    -fx-font-size: 15;
+    -fx-text-fill: #5A0B0C;
+}
+
+.topbar-textfield{
+    -fx-font-family: Poppins;
+    -fx-background-image:url("../assets/Cart.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left center;
+}
+
+.topbar-searchfield{
+    -fx-font-family: Poppins;
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+}
+
+.backMenu-Icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/BackArrow.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-max-width: 25;
+    -fx-max-height: 13;
+}

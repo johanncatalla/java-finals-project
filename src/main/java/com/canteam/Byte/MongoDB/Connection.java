@@ -51,6 +51,8 @@ public class Connection {
             finalMap.put((String) dbMap.get("Item_Name"), dbMap);
         }
 
+
+
         Integer arrTags = (Integer) finalMap.get("Spicy Chicken Rice Bowl").get("Item_Price");
         System.out.println(arrTags);
     }

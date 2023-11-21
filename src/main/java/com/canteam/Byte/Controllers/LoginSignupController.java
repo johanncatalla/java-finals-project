@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +22,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+import com.canteam.Byte.Models.UserModel;
+
 public class LoginSignupController implements Initializable {
 
     @FXML
@@ -30,6 +34,15 @@ public class LoginSignupController implements Initializable {
 
     @FXML
     private ImageView statusBar;
+    @FXML
+    private TextField signupEmailField;
+    @FXML
+    private TextField signupNameField;
+    @FXML
+    private PasswordField signupPassField;
+    @FXML
+    private TextField signupUsernameField;
+
 
     PageNavigator pageNavigator = new PageNavigator();
 
@@ -51,6 +64,23 @@ public class LoginSignupController implements Initializable {
         logoSlider.setToY(-136);
         logoSlider.setDuration(Duration.seconds(.5));
         logoSlider.play();
+    }
+
+    @FXML
+    protected void onSignUpClicked() {
+        if (!UserModel.userExists(signupUsernameField.getText())) {
+            if (!signupNameField.getText().isEmpty() || signupUsernameField.getText().isEmpty() || signupEmailField.getText().isEmpty() || signupPassField.getText().isEmpty()) {
+                UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer");
+                signupNameField.setText(null);
+                signupUsernameField.setText(null);
+                signupEmailField.setText(null);
+                signupPassField.setText(null);
+            } else {
+                System.out.println("Please fill all fields");
+            }
+        } else {
+            System.out.println("Username is already taken");
+        }
     }
 
     @FXML

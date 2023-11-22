@@ -19,7 +19,6 @@ public class UserModel {
     private static String address;
     private static String contact;
     private static String userType;
-    private static HashMap<String, HashMap<String, String>> userHistory = new HashMap<>();
 
     public static void signOut() {
         UserModel.setFullName(null);

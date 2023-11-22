@@ -16,6 +16,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.canteam.Byte.MongoDB.Connection;
@@ -79,7 +80,7 @@ public class LoginSignupController implements Initializable {
     protected void onSignUpClicked() {
         if (!UserModel.userExists(signupUsernameField.getText())) {
             if (!(signupNameField.getText().isEmpty() || signupUsernameField.getText().isEmpty() || signupEmailField.getText().isEmpty() || signupPassField.getText().isEmpty())) {
-                UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer");
+                UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer", new HashMap<>());
                 signupNameField.setText(null);
                 signupUsernameField.setText(null);
                 signupEmailField.setText(null);

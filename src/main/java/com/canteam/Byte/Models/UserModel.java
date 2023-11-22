@@ -7,6 +7,9 @@ import java.util.HashMap;
 import org.bson.Document;
 
 public class UserModel {
+
+    // private constructor to prevent instantiation
+    private UserModel() {}
     private static MongoClient client = Connection.getInstance();
     private static MongoDatabase db = client.getDatabase("Byte");
     private static MongoCollection<Document> collection = db.getCollection("Users");
@@ -28,12 +31,13 @@ public class UserModel {
     }
 
     public static void loginUser(Document user, String username, String password) {
-        UserModel.setUserName(user.getString("Username"));
-        UserModel.setUserPassword(user.getString("Password"));
+        UserModel.setUserName(username.trim());
+        UserModel.setUserPassword(password);
         UserModel.setUserAddress(user.getString("Address"));
         UserModel.setUserContact(user.getString("Contact"));
         UserModel.setUserType(user.getString("UserType"));
         UserModel.setFullName(user.getString("FullName"));
+        UserModel.setUserType(user.getString("UserType"));
     }
 
     public static boolean userExists(String username) {
@@ -46,7 +50,7 @@ public class UserModel {
     }
 
     public static void createUser(String fullName, String username, String password, String address, String contact, String userType) {
-        Document newUser = new Document("FullName", fullName).append("Username", username).append("Password", password).append("Address", address).append("Contact", contact).append("UserType", userType);
+        Document newUser = new Document("FullName", fullName).append("Username", username.trim()).append("Password", password).append("Address", address).append("Contact", contact).append("UserType", userType);
         collection.insertOne(newUser);
     }
 

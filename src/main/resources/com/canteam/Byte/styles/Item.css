@@ -1,0 +1,12 @@
+#itemName{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+#itemPrice{
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-background-color: white;
+    -fx-padding: 0 10;
+    -fx-background-radius: 20px;
+}

@@ -1,7 +1,16 @@
 package com.canteam.Byte.Models;
 
 public class ShopModel {
-    String shopName, shopImageSrc;
+    private String shopName, shopImageSrc;
+    private static String selectedShopName;
+
+    public static String getSelectedShopName() {
+        return selectedShopName;
+    }
+
+    public static void setSelectedShopName(String selectedShop) {
+        ShopModel.selectedShopName = selectedShop;
+    }
 
     public String getShopName() {
         return shopName;

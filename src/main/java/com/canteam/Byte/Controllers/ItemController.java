@@ -22,8 +22,8 @@ public class ItemController {
 
     public void setData(ItemModel itemModel){
         this.itemName.setText(itemModel.getItemName());
-        this.itemPrice.setText(itemModel.getItemPrice());
-        this.itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(itemModel.getItemImageSrc()))));
+        this.itemPrice.setText("PHP " + itemModel.getItemPrice() + ".00");
+        this.itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg"))));
     }
 
 }

@@ -26,3 +26,15 @@
     -fx-pref-height: 20;
     -fx-pref-width: 70;
 }
+
+.button-styled-view-orders{
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #5A0B0C;
+    -fx-background-color: #FFDA4B;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 20;
+    -fx-pref-width: 94;
+}

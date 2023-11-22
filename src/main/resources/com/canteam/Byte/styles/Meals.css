@@ -1,5 +1,5 @@
 .title{
-    -fx-font: Poppins;
+    -fx-font-family: Poppins;
     -fx-font-weight: bold;
     -fx-font-size: 22;
 }
@@ -10,19 +10,19 @@
 }
 
 .price{
-    -fx-font: Poppins;
+    -fx-font-family: Poppins;
     -fx-font-weight: bold;
     -fx-font-size: 14;
 }
 
 .extra{
-    -fx-font: Poppins;
+    -fx-font-family: Poppins;
     -fx-font-weight: bold;
     -fx-font-size: 15;
 }
 
 .details{
-    -fx-font: Poppins;
+    -fx-font-family: Poppins;
     -fx-font-weight: 400;
     -fx-font-size: 14;
 }
@@ -55,7 +55,7 @@
 }
 
 .quantity{
-    -fx-font: Poppins;
+    -fx-font-family: Poppins;
     -fx-font-weight: bold;
     -fx-font-size: 20;
 }
@@ -87,7 +87,7 @@
 }
 
 .byte-Rider{
-    -fx-font: Poppins;
+    -fx-font-family: Poppins;
     -fx-font-weight: 700;
     -fx-font-size: 18;
     -fx-alignment: center;

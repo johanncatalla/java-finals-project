@@ -1,0 +1,87 @@
+.title{
+    -fx-font: Poppins;
+    -fx-font-weight: bold;
+    -fx-font-size: 22;
+}
+
+.background{
+    -fx-background-color: white;
+    -fx-background-radius: 30 30 0 0;
+}
+
+.price{
+    -fx-font: Poppins;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+}
+
+.extra{
+    -fx-font: Poppins;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+
+.details{
+    -fx-font: Poppins;
+    -fx-font-weight: 400;
+    -fx-font-size: 14;
+}
+
+.check-box > .box {
+    -fx-border-color: #5A0B0C;
+    -fx-background-color: white;
+    -fx-border-radius: 5;
+}
+
+.text-field-longer{
+    -fx-pref-height: 139;
+    -fx-pref-width: 330;
+    -fx-background-color: white;
+    -fx-border-color: #7C7C7C;
+    -fx-padding: 10;
+    -fx-border-radius: 8;
+}
+
+.button-styled{
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #5A0B0C;
+    -fx-background-color: #FFDA4B;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 49;
+    -fx-pref-width: 194;
+}
+
+.quantity{
+    -fx-font: Poppins;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+.backMenu-Icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/images/Location/ButtonClose.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-max-width: 18;
+    -fx-max-height: 18;
+}
+
+.add-Icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/images/Meals/add.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.minus-Icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/images/Meals/subtract.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

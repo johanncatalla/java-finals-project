@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 import java.util.ArrayList;
 import java.util.Objects;
 
-class PageNavigator{
+class PageNavigator {
 
     // Stacks for Navigation History
     private static ArrayList<String> navigationHistory = new ArrayList<>();

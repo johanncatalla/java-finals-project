@@ -85,3 +85,15 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+
+.byte-Rider{
+    -fx-font: Poppins;
+    -fx-font-weight: 700;
+    -fx-font-size: 18;
+    -fx-alignment: center;
+    -fx-text-fill: #5A0B0C;
+}
+
+.background{
+    -fx-background-color: white;
+}

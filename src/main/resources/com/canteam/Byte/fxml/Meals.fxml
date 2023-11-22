@@ -43,19 +43,19 @@
             </ImageView>
             <TextField fx:id="txtInstructions" layoutX="27.0" layoutY="698.0" styleClass="text-field-longer" />
             <Button fx:id="btnClose" layoutX="37.0" layoutY="68.0" maxHeight="39.0" maxWidth="45.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="45.0" styleClass="backMenu-Icon" />
-            <AnchorPane layoutY="878.0" prefHeight="86.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <children>
-                  <Button fx:id="btnAddToCart" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" styleClass="button-styled" text="Add to cart" />
-                  <Button fx:id="btnSubtractQuantity" layoutX="27.0" layoutY="24.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
-                  <Label fx:id="quantity" layoutX="77.0" layoutY="28.0" styleClass="quantity" text="1" />
-                  <Button fx:id="btnAddQuantity" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />
-                  <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/images/Meals/line.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="86.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnAddToCart" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" styleClass="button-styled" text="Add to cart" />
+            <Button fx:id="btnSubtractQuantity" layoutX="27.0" layoutY="24.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
+            <Label fx:id="quantity" layoutX="77.0" layoutY="28.0" styleClass="quantity" text="1" />
+            <Button fx:id="btnAddQuantity" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />
+            <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/Meals/line.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

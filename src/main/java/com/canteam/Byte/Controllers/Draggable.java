@@ -23,6 +23,12 @@ public class Draggable {
         });
     }
 
+    public void makeScrollableY(Node node){
+        node.setOnScroll(scrollEvent -> {
+            node.setLayoutY(node.getLayoutY() + scrollEvent.getDeltaY());
+        });
+    }
+
     public void makeParentDraggableX(Node node){
         node.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getSceneX();

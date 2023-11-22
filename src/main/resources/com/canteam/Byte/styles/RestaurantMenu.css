@@ -2,10 +2,30 @@
     -fx-border-width: 0 0 1px 0;
     -fx-border-style: solid;
     -fx-border-color: lightgrey;
+    -fx-background-color: white;
+}
+
+.Selection-buttons > .button{
+    -fx-background-color: transparent;
+}
+
+.Selection-buttons > .button:selected{
+    -fx-border-color: #F2C94C;
+    -fx-border-radius: 0 0 0 0;
+    -fx-border-width: 0 0 3 0;
+}
+
+.Selection-buttons > .button > .text{
+    -fx-cursor: hand;
 }
 
 .status-bar{
     -fx-pref-width: 390;
+}
+
+#menuSectionTitle{
+    -fx-font-weight: bold;
+    -fx-font-size: 22px;
 }
 
 .topbar-title{

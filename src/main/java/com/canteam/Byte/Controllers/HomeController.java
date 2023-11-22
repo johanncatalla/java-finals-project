@@ -76,10 +76,11 @@ public class HomeController implements Initializable {
                 Object value = document.get(key);
                 dbMap.put(key, value);
             }
-            finalMap.put("Item "+(num++), dbMap);
+            finalMap.put((String) dbMap.get("Item_Name"), dbMap);
         }
+        System.out.println(finalMap);
 
-        String arrTags = (String) finalMap.get("Item 0").get("Item_Name");
+        String arrTags = (String) finalMap.get("Soy Garlic Chicken Rice Bowl").get("Item_Name");
 
       // Just a demo/placeholder data for now
       for (int i = 0; i < 12; i++){

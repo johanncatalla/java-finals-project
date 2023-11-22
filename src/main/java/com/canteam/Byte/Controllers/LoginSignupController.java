@@ -115,7 +115,7 @@ public class LoginSignupController implements Initializable {
         if (loginUsernameField.getText().isEmpty() || loginPassField.getText().isEmpty()){
             errorLabel.setText("Please fill in all fields");
         } else {
-            String username = loginUsernameField.getText();
+            String username = loginUsernameField.getText().trim();
             Document user = (Document) collection.find(new Document("Username", username)).first();
 
             if (user != null) {

@@ -65,6 +65,7 @@ public class CartModel {
         }
         // update order subtotal and total price
         updateSubtotalAndTotalPrice(username);
+        // Fetch cart from database to local cart
         CartModel.defineCart(username);
     }
 

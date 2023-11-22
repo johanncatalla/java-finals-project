@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="964.0" prefWidth="390.0" styleClass="background" stylesheets="@../styles/Meals.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.MealsController">
+   <children>
+      <AnchorPane prefHeight="878.0" prefWidth="392.0" styleClass="background" stylesheets="@../styles/Meals.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fx:id="imgMeal" fitHeight="304.0" fitWidth="390.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/Meals/meal.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="46.0" fitWidth="417.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="918.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="3.19354248046875" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../assets/images/Meals/status-bar-black.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="txtMeal" layoutX="27.0" layoutY="324.0" styleClass="title" stylesheets="@../styles/Meals.css" text="Soy Garlic Chicken" />
+            <Label fx:id="txtPrice" layoutX="291.0" layoutY="332.0" styleClass="price" stylesheets="@../styles/Meals.css" text="PHP 69.00" />
+            <Label layoutX="27.0" layoutY="366.0" styleClass="extra" stylesheets="@../styles/Meals.css" text="Extra" />
+            <Label layoutX="28.0" layoutY="389.0" styleClass="details" stylesheets="@../styles/Meals.css" text="Select up to 4" />
+            <Label layoutX="287.0" layoutY="422.0" styleClass="details" stylesheets="@../styles/Meals.css" text="+ PHP 10.00" />
+            <Label layoutX="294.0" layoutY="461.0" styleClass="details" stylesheets="@../styles/Meals.css" text="+ PHP 0.00" />
+            <Label layoutX="287.0" layoutY="500.0" styleClass="details" stylesheets="@../styles/Meals.css" text="+ PHP 20.00" />
+            <Label layoutX="287.0" layoutY="540.0" styleClass="details" stylesheets="@../styles/Meals.css" text="+ PHP 15.00" />
+            <Label layoutX="26.0" layoutY="610.0" styleClass="extra" stylesheets="@../styles/Meals.css" text="Special Instructions" />
+            <Label layoutX="26.0" layoutY="631.0" prefHeight="48.0" prefWidth="335.0" styleClass="details" stylesheets="@../styles/Meals.css" text="(Please let us know if you are allergic to anything or if we need to avoid anything.)" wrapText="true" />
+            <CheckBox fx:id="chkExtraRice" layoutX="28.0" layoutY="423.0" mnemonicParsing="false" styleClass="details" stylesheets="@../styles/Meals.css" text="Add Extra Plain Rice" />
+            <CheckBox fx:id="chkGravy" layoutX="28.0" layoutY="460.0" mnemonicParsing="false" styleClass="details" stylesheets="@../styles/Meals.css" text="Add Gravy" />
+            <CheckBox fx:id="chkLecheFlan" layoutX="28.0" layoutY="498.0" mnemonicParsing="false" styleClass="details" stylesheets="@../styles/Meals.css" text="Add Leche Flan" />
+            <CheckBox fx:id="chkYema" layoutX="28.0" layoutY="537.0" mnemonicParsing="false" styleClass="details" stylesheets="@../styles/Meals.css" text="Add Yema" />
+            <ImageView fitHeight="150.0" fitWidth="390.0" layoutX="1.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/Meals/line.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtInstructions" layoutX="27.0" layoutY="698.0" styleClass="text-field-longer" />
+            <Button fx:id="btnClose" layoutX="37.0" layoutY="68.0" maxHeight="39.0" maxWidth="45.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="45.0" styleClass="backMenu-Icon" />
+            <AnchorPane layoutY="878.0" prefHeight="86.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Button fx:id="btnAddToCart" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" styleClass="button-styled" text="Add to cart" />
+                  <Button fx:id="btnSubtractQuantity" layoutX="27.0" layoutY="24.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
+                  <Label fx:id="quantity" layoutX="77.0" layoutY="28.0" styleClass="quantity" text="1" />
+                  <Button fx:id="btnAddQuantity" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />
+                  <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/Meals/line.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

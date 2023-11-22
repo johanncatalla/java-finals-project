@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 public class CartModel {
     private CartModel() {}
-    private static String itemName;
-    private static double itemPrice;
-    private static int itemQuantity;
-    private static String itemStore;
-    private static double itemTotalPrice;
-    private static String itemInstructions;
+    private static String itemName = "";
+    private static double itemPrice = 0.0;
+    private static int itemQuantity = 0;
+    private static String itemStore = "";
+    private static double itemTotalPrice = 0.0;
+    private static String itemInstructions = "";
 
     // order
-    private static String modeOfPayment;
-    private static float orderSubtotal;
-    private static float orderTotalPrice;
+    private static String modeOfPayment = "";
+    private static double orderSubtotal = 0.0;
+    private static double orderTotalPrice = 0.0;
 
     private static HashMap<String, HashMap<String, String>> cart = new HashMap<String, HashMap<String, String>>();
     private static HashMap<String, String> item;
@@ -25,7 +25,7 @@ public class CartModel {
             int value = Integer.parseInt(nestedMap.get("Quantity"));
             nestedMap.put("Quantity", String.valueOf((value+quantity)));
             nestedMap.put("Total Price", Double.toString((value+quantity)*price));
-            orderSubtotal += (float) (price * quantity);
+            orderSubtotal += (double) (price * quantity);
         } else {
             item = new HashMap<String, String>();
             itemName = name;
@@ -43,16 +43,46 @@ public class CartModel {
             item.put("Instructions", instructions);
 
             cart.put(itemName, item);
-            orderSubtotal += (float) (itemTotalPrice * quantity);
+            orderSubtotal += (double) (itemTotalPrice * quantity);
         }
         orderTotalPrice = orderSubtotal + 20;
     }
 
-    private static void placeOrder() {}
+    private static void placeOrder() {
+        itemName = "";
+        itemPrice = 0;
+        itemQuantity = 0;
+        itemStore = "";
+        itemTotalPrice = 0;
+        itemInstructions = "";
+        orderSubtotal = 0;
+        orderTotalPrice = 0;
+        cart.clear();
+        item.clear();
+    }
 
+    // setters
+    public static void setItemName(String inputItemName) { itemName = inputItemName; }
+    public static void setItemPrice(double inputItemPrice) { itemPrice = inputItemPrice; }
+    public static void setItemQuantity(int inputItemQuantity) { itemQuantity = inputItemQuantity; }
+    public static void setItemStore(String inputItemStore) { itemStore = inputItemStore; }
+    public static void setItemTotalPrice(double inputItemTotalPrice) { itemTotalPrice = inputItemTotalPrice; }
+    public static void setItemInstructions(String inputItemInstructions) { itemInstructions = inputItemInstructions; }
+    public static void setModeOfPayment(String inputModeOfPayment) { modeOfPayment = inputModeOfPayment; }
+
+    //getters
+    public static String getItemName() { return itemName; }
+    public static double getItemPrice() { return itemPrice; }
+    public static int getItemQuantity() { return itemQuantity; }
+    public static String getItemStore() { return itemStore; }
+    public static double getItemTotalPrice() { return itemTotalPrice; }
+    public static String getItemInstructions() { return itemInstructions; }
+    public static String getModeOfPayment() { return modeOfPayment; }
+    public static HashMap<String, String> getItem() { return item; }
     private static HashMap<String, HashMap<String, String>> getCart() { return cart; }
     private static double getSubtotal() { return orderSubtotal; }
     private static double getTotalPrice() { return orderTotalPrice; }
+
 
     public static void main(String[] args) {
         CartModel.addToCart("test",100, 1,"test", "test");
@@ -61,8 +91,5 @@ public class CartModel {
         System.out.println(CartModel.getCart());
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total: "+CartModel.getTotalPrice());
-
     }
-
-
 }

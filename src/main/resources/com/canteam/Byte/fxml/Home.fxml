@@ -38,17 +38,21 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="338.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                           <image>
-                              <Image url="@../assets/Cart.png" />
-                           </image>
-                        </ImageView>
                         <Button fx:id="burgerOpenIcon" layoutX="29.0" layoutY="57.0" mnemonicParsing="false" onAction="#onBurgerOpenIconClicked" styleClass="burgerMenu-Icon" />
                         <ImageView fx:id="statusBar" fitHeight="150.0" fitWidth="390.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
                               <Image url="@../assets/StatusBar.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="cartIcon" layoutX="323.0" layoutY="56.0" mnemonicParsing="false" onAction="#onCartIconClicked" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                 <image>
+                                    <Image url="@../assets/Cart.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="208.0" prefWidth="200.0" style="-fx-background-color: #EAEAEA;">
@@ -110,13 +114,13 @@
                                           <Image url="@../assets/Orders.png" />
                                        </image>
                                     </ImageView>
-                                    <Hyperlink fx:id="addressLink" layoutX="63.0" layoutY="110.0" text="Delivery Address" />
+                                    <Hyperlink fx:id="addressLink" layoutX="63.0" layoutY="110.0" onAction="#onMyDeliveryAddress" text="Delivery Address" />
                                     <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="33.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../assets/Address.png" />
                                        </image>
                                     </ImageView>
-                                    <Hyperlink fx:id="profileLink" layoutX="63.0" layoutY="73.0" text="My Profile" />
+                                    <Hyperlink fx:id="profileLink" layoutX="63.0" layoutY="73.0" onAction="#onMyProfile" text="My Profile" />
                                     <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="31.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../assets/Profile.png" />

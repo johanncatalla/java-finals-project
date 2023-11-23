@@ -23,12 +23,43 @@ public class Draggable {
         });
     }
 
+    /**
+     * This method makes a node scrollable on the Y axis
+     * @param node The node to be made scrollable
+     */
     public void makeScrollableY(Node node){
         node.setOnScroll(scrollEvent -> {
             node.setLayoutY(node.getLayoutY() + scrollEvent.getDeltaY());
         });
     }
 
+    /**
+     * This method makes a node scrollable on the X axis
+     * @param node The node to be made draggable
+     */
+    public void makeScrollableX(Node node){
+        node.setOnScroll(scrollEvent -> {
+            node.setLayoutX(node.getLayoutX() + scrollEvent.getDeltaX());
+        });
+    }
+
+    public void makeParentScrollableX(Node node){
+        node.setOnScroll(scrollEvent -> {
+            node.getParent().setLayoutX(node.getLayoutX() + scrollEvent.getDeltaX());
+        });
+    }
+
+    public void makeParentScrollableY(Node node){
+        node.setOnScroll(scrollEvent -> {
+            node.getParent().setLayoutY(node.getLayoutY() + scrollEvent.getDeltaY());
+        });
+    }
+
+
+    /**
+     * This method makes a node draggable on the X axis relative to its parent
+     * @param node The node to be made draggable
+     */
     public void makeParentDraggableX(Node node){
         node.setOnMousePressed(mouseEvent -> {
             mouseAnchorX = mouseEvent.getSceneX();

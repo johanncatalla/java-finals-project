@@ -21,7 +21,6 @@ import org.bson.conversions.Bson;
 
 public class OrderModel {
     private OrderModel() {}
-
     private static HashMap<Integer, HashMap<String, HashMap<String, String>>> userOrderItems = new HashMap<>();
     private static HashMap<Integer, HashMap<String, String>> userOrderDetails = new HashMap<>();
     private static MongoClient client = Connection.getInstance();
@@ -33,15 +32,25 @@ public class OrderModel {
         // transfer cart document to order document
         Bson filter = Filters.eq("UserName", username);
         Document cart = cartCollection.find(filter).first();
-        if (cart != null) {
-            System.out.println("Successfully placed order");
-            orderCollection.insertOne(cart);
 
-            // Add new Order Status and Order Number fields to order
-            orderCollection.updateOne(filter, Updates.set("Order Status", "Ordered"));
-            orderCollection.updateOne(filter, Updates.set("Order Number", getOrderNumberCount("Number")));
-            incrementOrderNumberCount("Number");
+        // Copy the contents of the cart except the id
+        Document cartCopy = new Document();
+        assert cart != null;
+        for (String key : cart.keySet()) {
+            if (!key.equals("_id")) {
+                cartCopy.append(key, cart.get(key));
+            }
         }
+
+        if (cartCopy != null) {
+            // Add order status and order number fields to the order
+            cartCopy.append("Order Status", "Ordered").append("Order Number", getOrderNumberCount("Number"));
+            orderCollection.insertOne(cartCopy);
+
+            incrementOrderNumberCount("Number");
+            System.out.println("Successfully placed order");
+        }
+
         CartModel.emptyCart(username);
         System.out.println("Successfully placed order");
     }

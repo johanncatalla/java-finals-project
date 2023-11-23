@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/Profile.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.UserProfileController">
+   <children>
+      <ImageView fitHeight="47.0" fitWidth="390.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/Profile/StatusBarDark.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="closeProfileButton" layoutX="39.0" layoutY="61.0" mnemonicParsing="false" onAction="#onCloseButton" prefHeight="18.0" prefWidth="18.0" styleClass="button-close" stylesheets="@../styles/Profile.css" />
+      <Label layoutX="77.0" layoutY="60.0" styleClass="title" stylesheets="@../styles/Profile.css" text="Profile" />
+      <TextField fx:id="fullNameField" layoutX="30.4" layoutY="240.0" promptText="Full Name" styleClass="text-field" stylesheets="@../styles/Profile.css" AnchorPane.leftAnchor="30.4" AnchorPane.rightAnchor="30.399999999999977" />
+      <TextField fx:id="emailField" layoutX="30.4" layoutY="297.0" promptText="Email" styleClass="text-field" stylesheets="@../styles/Profile.css" AnchorPane.leftAnchor="30.4" AnchorPane.rightAnchor="30.399999999999977" />
+      <PasswordField fx:id="passwordField" layoutX="30.4" layoutY="351.0" promptText="Password" styleClass="text-field" stylesheets="@../styles/Profile.css" AnchorPane.leftAnchor="30.4" AnchorPane.rightAnchor="30.399999999999977" />
+      <Button layoutX="30.4" layoutY="765.8000000000001" mnemonicParsing="false" styleClass="button-save" stylesheets="@../styles/Profile.css" text="Save Changes" />
+      <Label alignment="CENTER" layoutX="165.4" layoutY="140.0" styleClass="letter" stylesheets="@../styles/Profile.css" text="J" AnchorPane.leftAnchor="165.4" AnchorPane.rightAnchor="165.8" />
+   </children>
+</AnchorPane>

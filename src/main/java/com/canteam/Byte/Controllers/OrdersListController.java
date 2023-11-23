@@ -15,7 +15,6 @@ public class OrdersListController {
     private GridPane gridOrders;
     private PageNavigator pageNavigator = new PageNavigator();
 
-
     public void onCloseOrdersButtonClick() {
         pageNavigator.backToPage(closeOrdersButton);
     }

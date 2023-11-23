@@ -32,7 +32,7 @@ public class HomeController implements Initializable {
     private AnchorPane burgerMenuPane;
 
     @FXML
-    private ImageView cartIcon;
+    private Button cartIcon;
 
     @FXML
     private TextField searchField;
@@ -90,6 +90,11 @@ public class HomeController implements Initializable {
           cuisineList.add(cuisine);
       }
       return cuisineList;
+    }
+
+    @FXML
+    protected void onCartIconClicked() throws IOException {
+        pageNavigator.forwardToPage(cartIcon, "Home", "Cart");
     }
 
     @FXML

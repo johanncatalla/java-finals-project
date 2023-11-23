@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxWidth="-Infinity" minHeight="-Infinity" prefHeight="62.0" prefWidth="380.0" style="-fx-background-color: white;" stylesheets="@../styles/OrderItemCard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.OrderItemCardController">
+   <children>
+      <Label fx:id="itemName" layoutX="97.0" layoutY="11.0" prefHeight="39.0" prefWidth="128.0" style="-fx-font-weight: Bold;" styleClass="maroon-text" text="Soy Garlic Chicken Wrap Test" wrapText="true" />
+      <Label fx:id="itemPrice" layoutX="230.0" layoutY="20.0" prefHeight="18.0" prefWidth="77.0" style="-fx-font-weight: bold;" text="PHP 1200.00" />
+      <Label fx:id="itemQty" alignment="CENTER" layoutX="8.0" layoutY="23.0" prefHeight="18.0" prefWidth="18.0" style="-fx-font-weight: bold;" text="X1" />
+      <AnchorPane id="itemImage" fx:id="itemImage" layoutX="34.0" layoutY="5.0" prefHeight="52.0" prefWidth="56.0" />
+      <Button fx:id="removeBtn" layoutX="315.0" layoutY="16.0" mnemonicParsing="false" styleClass="removeBtn" text="Remove" />
+   </children>
+</AnchorPane>

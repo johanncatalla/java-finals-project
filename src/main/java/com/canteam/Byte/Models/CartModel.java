@@ -128,7 +128,6 @@ public class CartModel {
         }
     }
 
-
     public static void emptyCart(String username) {
         collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart", new Document()));
         collection.updateOne(Filters.eq("UserName", username), Updates.set("Subtotal", 0));
@@ -165,7 +164,6 @@ public class CartModel {
                 // Add the item to the cart
                 cart.put(key, item);
             }
-
             System.out.println(userDocument);
         }
 
@@ -179,16 +177,16 @@ public class CartModel {
     public static void main(String[] args) {
         // Sample usage
         // define cart to update local variable cart
-        CartModel.defineCart("testt");
+        CartModel.defineCart("admin");
         System.out.println(cart);
 
         // add to cart
         // adding to cart already syncs cart in database to local cart
-        CartModel.addToCart("123", "order", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "order", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
-        CartModel.addToCart("123", "order", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "order", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
-        CartModel.addToCart("123", "order", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "order", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total Price of Order: "+CartModel.getTotalPriceOfOrder());

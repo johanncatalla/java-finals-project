@@ -47,7 +47,6 @@ public class UserModel {
         CartModel.defineCart(username);
     }
 
-
     public static boolean userExists(String username) {
         Document user = (Document) collection.find(new Document("Username", username)).first();
         if (user != null) {
@@ -83,6 +82,7 @@ public class UserModel {
     public static String getUserPassword() { return password; }
     public static String getUserAddress() { return address; }
     public static String getUserContact() { return contact; }
+    public static String getUserType() { return userType; }
 
     public static void main(String[] args) {
         UserModel.createUser("Hehefull","Johann", "hehe", "addressTest", "contact", "Customer", "email");

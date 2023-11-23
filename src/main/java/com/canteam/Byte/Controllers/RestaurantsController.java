@@ -101,7 +101,8 @@ public class RestaurantsController implements Initializable {
                 // Set the margin for the cuisine button
                 GridPane.setMargin(cuisineButton, new Insets(20));
             }
-            draggable.makeDraggableY(gridPaneContainer);
+            // Make gridpane scrollable
+            draggable.makeScrollableY(gridPaneContainer);
         } catch (Exception e) {
             e.printStackTrace();
         }

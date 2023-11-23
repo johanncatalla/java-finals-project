@@ -152,7 +152,7 @@ public class HomeController implements Initializable {
             }
 
             // Make cuisine pane draggable
-            draggable.makeDraggableX(cuisinesGridPane);
+            draggable.makeScrollableX(cuisinesGridPane);
 
             // Make navigators
             pageNavigator.makeForwardNavigator(toRestaurantButton, "Home","Restaurants");

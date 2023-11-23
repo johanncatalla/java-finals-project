@@ -192,8 +192,7 @@ public class RestaurantMenuController {
                 // Check if itemTags contains "Rice Meal"
 
 
-                if (shopItems.get(i).isItemPopular()){
-                    System.out.println("Went In");
+                if (shopItems.get(i).getItemCuisineTags().contains("Chicken")){
                     itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
@@ -214,7 +213,7 @@ public class RestaurantMenuController {
         restaurantName.setText(ShopModel.getSelectedShopName());
         draggable.makeWindowDraggable(statusBar);
 
-        // Make draggable all the buttons in the section bar
+        // Make scrollable all the buttons in the section bar
         draggable.makeParentDraggableX(popularBtn);
         draggable.makeParentDraggableX(koreanStreetFoodBtn);
         draggable.makeParentDraggableX(riceBowlBtn);

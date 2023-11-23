@@ -110,7 +110,7 @@
                                           <Image url="@../assets/Orders.png" />
                                        </image>
                                     </ImageView>
-                                    <Hyperlink fx:id="addressLink" layoutX="63.0" layoutY="110.0" text="Delivery Address" />
+                                    <Hyperlink fx:id="addressLink" layoutX="63.0" layoutY="110.0" onAction="#onMyDeliveryAddress" text="Delivery Address" />
                                     <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="33.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../assets/Address.png" />

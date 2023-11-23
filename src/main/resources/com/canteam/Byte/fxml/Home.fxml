@@ -104,7 +104,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="515.0" prefWidth="276.0">
                                  <children>
-                                    <Hyperlink fx:id="ordersLink" layoutX="63.0" layoutY="34.0" text="My Orders" />
+                                    <Hyperlink fx:id="ordersLink" layoutX="63.0" layoutY="34.0" onAction="#onMyOrders" text="My Orders" />
                                     <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="31.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../assets/Orders.png" />

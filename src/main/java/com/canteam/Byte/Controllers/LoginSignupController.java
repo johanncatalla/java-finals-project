@@ -80,7 +80,7 @@ public class LoginSignupController implements Initializable {
     protected void onSignUpClicked() {
         if (!UserModel.userExists(signupUsernameField.getText())) {
             if (!(signupNameField.getText().isEmpty() || signupUsernameField.getText().isEmpty() || signupEmailField.getText().isEmpty() || signupPassField.getText().isEmpty())) {
-                UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer", new HashMap<>());
+                UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer", signupEmailField.getText());
                 signupNameField.setText(null);
                 signupUsernameField.setText(null);
                 signupEmailField.setText(null);

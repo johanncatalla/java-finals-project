@@ -10,8 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="135.0" prefWidth="155.0" stylesheets="@../styles/Item.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.fxml.Item">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="135.0" prefWidth="155.0" style="-fx-background-radius: 8;" stylesheets="@../styles/Item.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ItemController">
    <children>
       <ImageView fx:id="itemImage" fitHeight="135.0" fitWidth="155.0" layoutX="-75.0" layoutY="-56.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -24,7 +23,7 @@
                <stops>
                   <Stop>
                      <color>
-                        <Color opacity="0.5744681358337402" />
+                        <Color opacity="0.4133739471435547" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
@@ -36,14 +35,11 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Label id="itemName" fx:id="itemName" layoutX="8.0" layoutY="7.0" prefHeight="18.0" prefWidth="139.0" stylesheets="@../styles/Item.css" text="Sizzling Sisig" textFill="WHITE" wrapText="true">
+      <Label id="itemName" fx:id="itemName" alignment="TOP_LEFT" layoutX="8.0" layoutY="7.0" prefHeight="55.0" prefWidth="139.0" stylesheets="@../styles/Item.css" text="Sizzling Sisig" textFill="WHITE" wrapText="true">
          <effect>
             <DropShadow />
          </effect>
       </Label>
-      <Label id="itemPrice" fx:id="itemPrice" alignment="CENTER" layoutX="91.0" layoutY="112.0" text="PHP 69" textAlignment="RIGHT" />
+      <Label id="itemPrice" fx:id="itemPrice" alignment="CENTER" layoutX="68.0" layoutY="112.0" prefHeight="15.0" prefWidth="78.0" text="PHP 69.00" textAlignment="RIGHT" />
    </children>
-   <effect>
-      <DropShadow />
-   </effect>
 </AnchorPane>

@@ -174,16 +174,16 @@ public class CartModel {
     public static void main(String[] args) {
         // Sample usage
         // define cart to update local variable cart
-        CartModel.defineCart("johann");
+        CartModel.defineCart("admin");
         System.out.println(cart);
 
         // add to cart
         // adding to cart already syncs cart in database to local cart
-        CartModel.addToCart("johann", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
-        CartModel.addToCart("johann", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
-        CartModel.addToCart("johann", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total Price of Order: "+CartModel.getTotalPriceOfOrder());

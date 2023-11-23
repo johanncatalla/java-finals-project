@@ -105,18 +105,23 @@ public class CartModel {
             Document cartDocument = (Document) userDocument.get("Cart");
 
             // Calculate the subtotal
-            int subtotal = 0;
+            int subtotalIt = 0;
             for (String key : cartDocument.keySet()) {
                 Document itemDocument = (Document) cartDocument.get(key);
-                subtotal += itemDocument.getInteger("Total Price");
+                subtotalIt += itemDocument.getInteger("Total Price");
             }
 
             // Calculate the total price of order
-            int totalPriceOfOrder = subtotal + 20;
+            int totalPriceOfOrderIt = subtotalIt + 20;
 
             // Update the Subtotal and Total Price of Order fields in the user document
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Subtotal", subtotal));
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Total Price of Order", totalPriceOfOrder));
+            collection.updateOne(Filters.eq("UserName", username), Updates.set("Subtotal", subtotalIt));
+            collection.updateOne(Filters.eq("UserName", username), Updates.set("Total Price of Order", totalPriceOfOrderIt));
+
+
+            // update local variables for subtotal and total
+            subtotal = subtotalIt;
+            totalPriceOfOrder = totalPriceOfOrderIt;
         }
     }
 
@@ -158,10 +163,7 @@ public class CartModel {
                 cart.put(key, item);
             }
 
-            // update local variables for subtotal and total
-            subtotal = userDocument.getInteger("Subtotal");
-            totalPriceOfOrder = userDocument.getInteger("Total Price of Order");
-
+            System.out.println(userDocument);
         }
 
     }

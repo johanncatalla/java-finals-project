@@ -22,7 +22,6 @@ public class UserModel {
     private static String email;
     private static String contact;
     private static String userType;
-    private static HashMap<String, HashMap<String, String>> userCart;
 
     public static void signOut() {
         UserModel.setFullName(null);
@@ -58,7 +57,13 @@ public class UserModel {
     }
 
     public static void createUser(String fullName, String username, String password, String address, String contact, String userType, HashMap<String, HashMap<String, String>> cart){
-        Document newUser = new Document("FullName", fullName).append("Username", username.trim()).append("Password", password).append("Address", address).append("Contact", contact).append("UserType", userType).append("Cart", cart);
+        Document newUser = new Document("FullName", String.valueOf(fullName))
+                .append("Username", String.valueOf(username).trim())
+                .append("Password", String.valueOf(username))
+                .append("Address", address)
+                .append("Contact", contact)
+                .append("UserType", userType);
+
         collection.insertOne(newUser);
         CartModel.createUserCart(username);
     }
@@ -70,7 +75,6 @@ public class UserModel {
     private static void setEmail(String inputEmail) { email = inputEmail; }
     public static void setUserContact(String inputContact) { contact = inputContact; }
     public static void setUserType(String inputUserType) { userType = inputUserType; }
-    private static void setUserCart(HashMap<String, HashMap<String, String>> cart) { userCart = cart; }
 
     public static String getFullName() { return fullName; }
     public static String getUserName() { return username; }

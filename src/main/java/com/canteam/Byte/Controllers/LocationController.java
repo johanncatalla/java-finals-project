@@ -28,9 +28,11 @@ public class LocationController {
     @FXML
     private Button saveChangesButton;
 
+    private PageNavigator pageNavigator = new PageNavigator();
+
     @FXML
     void onBackButton(ActionEvent event) {
-
+        pageNavigator.backToPage(backButton);
     }
 
     @FXML

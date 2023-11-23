@@ -30,6 +30,7 @@ public class UserModel {
         UserModel.setUserAddress(null);
         UserModel.setUserContact(null);
         UserModel.setUserType(null);
+        UserModel.setEmail(null);
     }
 
     public static void loginUser(Document user, String username, String password) {
@@ -56,13 +57,14 @@ public class UserModel {
         }
     }
 
-    public static void createUser(String fullName, String username, String password, String address, String contact, String userType, HashMap<String, HashMap<String, String>> cart){
+    public static void createUser(String fullName, String username, String password, String address, String contact, String userType, String email){
         Document newUser = new Document("FullName", String.valueOf(fullName))
                 .append("Username", String.valueOf(username).trim())
                 .append("Password", String.valueOf(username))
                 .append("Address", address)
                 .append("Contact", contact)
-                .append("UserType", userType);
+                .append("UserType", userType)
+                .append("Email", email);
 
         collection.insertOne(newUser);
         CartModel.createUserCart(username);
@@ -83,6 +85,6 @@ public class UserModel {
     public static String getUserContact() { return contact; }
 
     public static void main(String[] args) {
-        UserModel.createUser("Hehefull","Johann", "hehe", "addressTest", "contact", "Customer", new HashMap<String, HashMap<String, String>>());
+        UserModel.createUser("Hehefull","Johann", "hehe", "addressTest", "contact", "Customer", "email");
     }
 }

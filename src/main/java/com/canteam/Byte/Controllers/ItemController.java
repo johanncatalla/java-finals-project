@@ -20,10 +20,10 @@ public class ItemController {
 
     private ItemModel itemModel;
 
-    public void setData(ItemModel itemModel){
+    public void setData(ItemModel itemModel, String path){
         this.itemName.setText(itemModel.getItemName());
         this.itemPrice.setText("PHP " + itemModel.getItemPrice() + ".00");
-        this.itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg"))));
+        this.itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(path))));
     }
 
 }

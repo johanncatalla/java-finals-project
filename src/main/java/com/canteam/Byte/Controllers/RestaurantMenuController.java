@@ -71,8 +71,6 @@ public class RestaurantMenuController {
 
     List<ItemModel> shopItems = new ArrayList<>();
 
-
-
     private Draggable draggable = new Draggable();
 
     private PageNavigator pageNavigator = new PageNavigator();
@@ -155,8 +153,6 @@ public class RestaurantMenuController {
             finalArray.add(dbMap);
         }
 
-
-
         // Create a list of ItemModel objects
         List<ItemModel> itemList = new ArrayList<>();
         ItemModel item;
@@ -198,7 +194,7 @@ public class RestaurantMenuController {
 
                 if (shopItems.get(i).isItemPopular()){
                     System.out.println("Went In");
-                    itemController.setData(shopItems.get(i));
+                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
@@ -214,9 +210,6 @@ public class RestaurantMenuController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
 
         restaurantName.setText(ShopModel.getSelectedShopName());
         draggable.makeWindowDraggable(statusBar);

@@ -195,7 +195,7 @@ public class CartModel {
 
         // add to cart
         // adding to cart already syncs cart in database to local cart
-        // if order does not have a size is null, set size param to null
+        // if item's size is null, set size param to null
         CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsa;", "Instructions", null);
         System.out.println(cart);
         CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsa;", "Instructions", null);

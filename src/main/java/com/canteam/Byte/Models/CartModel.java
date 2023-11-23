@@ -38,7 +38,7 @@ public class CartModel {
         collection.insertOne(newUser);
     }
 
-    public static void addToCart(String username, String name, double price, int quantity, String store, String instructions) {
+    public static void addToCart(String username, String name, double price, int quantity, String store, String instructions, HashMap<String, Integer> size) {
         CartModel.defineCart(username);
         if (cart.containsKey(name)) {
 
@@ -56,7 +56,8 @@ public class CartModel {
                     .append("Price", price)
                     .append("Quantity", quantity)
                     .append("Instructions", instructions)
-                    .append("Total Price", itemTotalPrice);
+                    .append("Total Price", itemTotalPrice)
+                    .append("Size", size);
 
             // update store
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", store));
@@ -194,12 +195,22 @@ public class CartModel {
 
         // add to cart
         // adding to cart already syncs cart in database to local cart
-        CartModel.addToCart("admin", "order", 100, 2, "Mangyupsa;", "Instructions");
+        // if order does not have a size is null, set size param to null
+        CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsa;", "Instructions", null);
         System.out.println(cart);
-        CartModel.addToCart("admin", "order", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsa;", "Instructions", null);
         System.out.println(cart);
-        CartModel.addToCart("admin", "order", 100, 2, "Mangyupsa;", "Instructions");
-        System.out.println(cart);
+
+        // If order's size upgrade button is selected, concatenate the size with the order name with space in the middle, then add extra to price:
+        HashMap<String, Integer> size = new HashMap<>();
+        size.put("22oz", 10);
+        // parameters should be from get methods
+        CartModel.addToCart("admin", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsa;", "Instructions", size);
+
+        // If order's size is not null in menu and upgrade button is not selected, concatenate "Regular" to the item name, then set size to null.
+        CartModel.addToCart("admin", "order2"+" [Regular]", 100, 2, "Mangyupsa;", "Instructions", null);
+
+
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total Price of Order: "+CartModel.getTotalPriceOfOrder());
 

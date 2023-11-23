@@ -32,7 +32,8 @@ public class CartModel {
                 .append("Cart", new HashMap<String, HashMap<String, String>>())
                 .append("Subtotal", 0.0)
                 .append("Total Price of Order", 0.0)
-                .append("Mode of Payment", "Cash on Delivery");
+                .append("Mode of Payment", "Cash on Delivery")
+                .append("Store", null);
         collection.insertOne(newUser);
     }
 
@@ -53,9 +54,11 @@ public class CartModel {
             Document itemDB = new Document("Name", name)
                     .append("Price", price)
                     .append("Quantity", quantity)
-                    .append("Store", store)
                     .append("Instructions", instructions)
                     .append("Total Price", itemTotalPrice);
+
+            // update store
+            collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", store));
 
             // Append item document to cart
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name, itemDB));
@@ -176,16 +179,16 @@ public class CartModel {
     public static void main(String[] args) {
         // Sample usage
         // define cart to update local variable cart
-        CartModel.defineCart("admin");
+        CartModel.defineCart("testt");
         System.out.println(cart);
 
         // add to cart
         // adding to cart already syncs cart in database to local cart
-        CartModel.addToCart("admin", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("123", "order", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
-        CartModel.addToCart("admin", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("123", "order", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
-        CartModel.addToCart("admin", "Chicken", 100, 2, "Mangyupsa;", "Instructions");
+        CartModel.addToCart("123", "order", 100, 2, "Mangyupsa;", "Instructions");
         System.out.println(cart);
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total Price of Order: "+CartModel.getTotalPriceOfOrder());

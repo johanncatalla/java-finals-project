@@ -165,6 +165,5 @@ public class HomeController implements Initializable {
     public void onMyOrders() {
         pageNavigator.forwardToPage(ordersLink, "Home", "OrdersList");
     }
-
 }
 

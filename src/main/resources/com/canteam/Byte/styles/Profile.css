@@ -1,0 +1,46 @@
+.button-close{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/images/Location/ButtonClose.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-max-width: 18;
+    -fx-max-height: 18;
+}
+.title{
+    -fx-font-family: Poppins;
+    -fx-font-weight: 700;
+    -fx-font-size: 17;
+    -fx-text-fill: #5A0B0C;
+}
+.text-field{
+-fx-pref-height: 39;
+-fx-pref-width: 330;
+-fx-background-color: #EAEAEA;
+-fx-padding: 10;
+-fx-background-radius: 8;
+}
+
+.button-save{
+-fx-font-family: Poppins;
+-fx-font-size: 16;
+-fx-font-weight: bold;
+-fx-text-fill:  #5A0B0C;
+-fx-background-color: #FFDA4B;
+-fx-background-radius: 8;
+-fx-cursor: hand;
+-fx-pref-height: 38;
+-fx-pref-width: 330;
+}
+
+.letter{
+-fx-font-family: Poppins;
+-fx-pref-height: 60;
+-fx-pref-width: 60;
+-fx-radius: 5000;
+-fx-background-color: #5A0B0C;
+-fx-text-fill: #FFDA4B;
+-fx-font-size: 33;
+-fx-font-weight: 700;
+
+}

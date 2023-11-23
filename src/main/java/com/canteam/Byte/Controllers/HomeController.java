@@ -168,6 +168,8 @@ public class HomeController implements Initializable {
     public void onMyDeliveryAddress() {
         pageNavigator.forwardToPage(addressLink, "Home", "Location");
     }
-
+    public void onMyProfile() { pageNavigator.forwardToPage(profileLink, "Home", "UserProfile");
+    };
 }
+
 

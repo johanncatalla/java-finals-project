@@ -37,7 +37,7 @@
 -fx-font-family: Poppins;
 -fx-pref-height: 60;
 -fx-pref-width: 60;
--fx-radius: 5000;
+-fx-background-radius: 5000;
 -fx-background-color: #5A0B0C;
 -fx-text-fill: #FFDA4B;
 -fx-font-size: 33;

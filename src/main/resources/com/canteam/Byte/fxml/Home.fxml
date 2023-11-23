@@ -116,7 +116,7 @@
                                           <Image url="@../assets/Address.png" />
                                        </image>
                                     </ImageView>
-                                    <Hyperlink fx:id="profileLink" layoutX="63.0" layoutY="73.0" text="My Profile" />
+                                    <Hyperlink fx:id="profileLink" layoutX="63.0" layoutY="73.0" onAction="#onMyProfile" text="My Profile" />
                                     <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="31.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../assets/Profile.png" />

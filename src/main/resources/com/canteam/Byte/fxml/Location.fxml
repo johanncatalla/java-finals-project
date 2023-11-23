@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="47.0" fitWidth="391.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../../Downloads/iPhone%2013%20&amp;%2013%20Pro.png" />
+            <Image url="@../assets/images/Meals/status-bar-black.png" />
          </image>
       </ImageView>
       <Label layoutX="86.0" layoutY="57.0" style="-fx-text-fill: #5A0B0C;" styleClass="Header-Style" stylesheets="@../styles/Location.css" text="Delivery Address" />

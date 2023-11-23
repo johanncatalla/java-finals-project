@@ -21,7 +21,6 @@ import org.bson.conversions.Bson;
 
 public class OrderModel {
     private OrderModel() {}
-
     private static HashMap<Integer, HashMap<String, HashMap<String, String>>> userOrderItems = new HashMap<>();
     private static HashMap<Integer, HashMap<String, String>> userOrderDetails = new HashMap<>();
     private static MongoClient client = Connection.getInstance();

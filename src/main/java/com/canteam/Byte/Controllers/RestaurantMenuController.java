@@ -192,7 +192,7 @@ public class RestaurantMenuController {
                 // Check if itemTags contains "Rice Meal"
 
 
-                if (shopItems.get(i).getItemCuisineTags().contains("Chicken")){
+                if (shopItems.get(i).getItemShopTags().contains("Beverages")){
                     itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {

@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import com.canteam.Byte.Controllers.PageNavigator;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,7 +34,11 @@ public class UserProfileController implements Initializable {
 
     @FXML
     private Button saveButton;
+
+    @FXML
+    private ImageView statusBar;
     private PageNavigator pageNavigator = new PageNavigator();
+    private Draggable draggable = new Draggable();
 
     @FXML
     void onCloseButton(ActionEvent event) {
@@ -47,11 +52,14 @@ public class UserProfileController implements Initializable {
         String newFullName = fullNameField.getText();
         String newPassword = passwordField.getText();
 
-        // Update user info in database
+        // TODO: Update user info in database
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Make draggable
+        draggable.makeWindowDraggable(statusBar);
+
         // Set the prompt text for the text fields by current user info
         profileIcon.setText(UserModel.getFullName().substring(0, 1));
 

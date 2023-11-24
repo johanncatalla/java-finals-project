@@ -37,6 +37,10 @@
     -fx-background-radius: 8;
 }
 
+.text-field-longer .content{
+    -fx-background-color: #EAEAEA;
+}
+
 .button-styled{
     -fx-font-family: Poppins;
     -fx-font-size: 16;

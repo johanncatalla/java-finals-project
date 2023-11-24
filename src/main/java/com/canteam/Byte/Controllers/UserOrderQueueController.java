@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OrdersQueueUserController implements Initializable {
+public class UserOrderQueueController implements Initializable {
 
     @FXML
     private Button btnViewOrder;

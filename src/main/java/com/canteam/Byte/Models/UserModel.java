@@ -83,6 +83,7 @@ public class UserModel {
     public static String getUserAddress() { return address; }
     public static String getUserContact() { return contact; }
     public static String getUserType() { return userType; }
+    public static String getEmail() { return email; }
 
     public static void main(String[] args) {
         UserModel.createUser("Hehefull","Johann", "hehe", "addressTest", "contact", "Customer", "email");

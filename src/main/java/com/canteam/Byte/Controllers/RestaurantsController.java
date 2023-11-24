@@ -2,24 +2,20 @@ package com.canteam.Byte.Controllers;
 
 import com.canteam.Byte.Models.ShopModel;
 import com.canteam.Byte.MongoDB.Connection;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import org.bson.Document;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,11 +32,16 @@ public class RestaurantsController implements Initializable {
     @FXML
     private Button backButton;
 
+    @FXML
+    private TextField searchField;
+
     private Draggable draggable = new Draggable();
 
     private List<ShopModel> shopList = new ArrayList<>();
 
     PageNavigator pageNavigator = new PageNavigator();
+
+    private static String initialSearch = null;
 
     private List<ShopModel> getData(){
         List<ShopModel> shopList = new ArrayList<>();
@@ -67,17 +68,14 @@ public class RestaurantsController implements Initializable {
 
     @FXML
     protected void onBackButtonClicked(){
+        initialSearch = null;
         pageNavigator.backToPage(backButton);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Set up window dragging
-        draggable.makeWindowDraggable(statusBar);
+    void onSearchEntered(String text){
+        // Clear the gridpane
+        shopsGridPane.getChildren().clear();
 
-        // Set up data for the shops
-        // Will create an error at start but will be ok when you open the home page
-        shopList.addAll(getData());
         int column = 0;
         int row = 1;
         try {
@@ -89,22 +87,76 @@ public class RestaurantsController implements Initializable {
 
                 // Set the data for the cuisine button
                 ShopButtonController shopButtonController = fxmlLoader.getController();
-                shopButtonController.setData(shopList.get(i));
 
-                // Place the cuisine button in the gridPane
-                if (column == 2) {
-                    row++;
-                    column = 0;
+                if (shopList.get(i).getShopName().toLowerCase().contains(text.toLowerCase())){
+                    shopButtonController.setData(shopList.get(i));
+                    // Place the cuisine button in the gridPane
+                    if (column == 2) {
+                        row++;
+                        column = 0;
+                    }
+                    shopsGridPane.add(cuisineButton, column++, row);
+
+                    // Set the margin for the cuisine button
+                    GridPane.setMargin(cuisineButton, new Insets(20));
                 }
-                shopsGridPane.add(cuisineButton, column++, row);
-
-                // Set the margin for the cuisine button
-                GridPane.setMargin(cuisineButton, new Insets(20));
             }
-            // Make gridpane scrollable
-            draggable.makeScrollableY(gridPaneContainer);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void setInitialSearch(String search) {
+        initialSearch = search;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set up window dragging
+        draggable.makeWindowDraggable(statusBar);
+
+        // Set up enter on search field
+        searchField.setOnKeyReleased(keyEvent -> {
+            if (keyEvent.getCode().toString().equals("ENTER")){
+                onSearchEntered(searchField.getText());
+            }
+        });
+
+        // Set up data for the shops
+        // Will create an error at start but will be ok when you open the home page
+        shopList.addAll(getData());
+
+        if (initialSearch != null){
+            onSearchEntered(initialSearch);
+        } else {
+            int column = 0;
+            int row = 1;
+            try {
+                for (int i = 0; i < shopList.size(); i++) {
+                    // Get the fxml file for the cuisine button
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/ShopButton.fxml"));
+                    AnchorPane cuisineButton = fxmlLoader.load();
+
+                    // Set the data for the cuisine button
+                    ShopButtonController shopButtonController = fxmlLoader.getController();
+                    shopButtonController.setData(shopList.get(i));
+
+                    // Place the cuisine button in the gridPane
+                    if (column == 2) {
+                        row++;
+                        column = 0;
+                    }
+                    shopsGridPane.add(cuisineButton, column++, row);
+
+                    // Set the margin for the cuisine button
+                    GridPane.setMargin(cuisineButton, new Insets(20));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        // Make gridpane scrollable
+        draggable.makeScrollableY(gridPaneContainer);
     }
 }

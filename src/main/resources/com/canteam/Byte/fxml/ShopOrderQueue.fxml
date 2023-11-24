@@ -26,5 +26,7 @@
       <Label layoutX="15.0" layoutY="64.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Contact:" />
       <Label fx:id="txtContactRider" layoutX="73.0" layoutY="64.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="09123456789" />
       <Button fx:id="btnDeliver" layoutX="219.0" layoutY="85.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="View Order" />
+      <Label layoutX="15.0" layoutY="88.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
+      <Label fx:id="txtContactRider1" layoutX="73.0" layoutY="88.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="1" />
    </children>
 </AnchorPane>

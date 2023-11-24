@@ -126,9 +126,9 @@ public class LoginSignupController implements Initializable {
                     if (UserModel.getUserType().equals("Customer")) {
                         pageNavigator.forwardToPage(loginButton, "login", "Home");
                     } else if (UserModel.getUserType().equals("Store")) {
-                        pageNavigator.forwardToPage(loginButton, "login", "ShopsOrder");
+                        pageNavigator.forwardToPage(loginButton, "login", "ShopOrderList");
                     } else {
-                        pageNavigator.forwardToPage(loginButton, "login", "DeliveryRider");
+                        pageNavigator.forwardToPage(loginButton, "login", "RiderOrderList");
                     }
                 } else {
                     loginPassField.setStyle(

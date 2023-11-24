@@ -49,7 +49,7 @@ public class CartModel {
 
             System.out.println("Successfully updated");
         } else {
-            int itemTotalPrice = (int) (price * quantity);
+            int itemTotalPrice = (int) (price * quantity);;
 
             // Create item document containing item details
             Document itemDB = new Document("Name", name)
@@ -164,7 +164,11 @@ public class CartModel {
 
                 // Add each field from the item document to the item HashMap
                 for (Map.Entry<String, Object> entry : itemDocument.entrySet()) {
-                    item.put(entry.getKey(), entry.getValue().toString());
+                    if (entry.getValue() != null) {
+                        item.put(entry.getKey(), entry.getValue().toString());
+                    } else {
+                        item.put(entry.getKey(), null);
+                    }
                 }
                 // Add the item to the cart
                 cart.put(key, item);
@@ -206,8 +210,10 @@ public class CartModel {
         size.put("22oz", 10);
         // parameters should be from get methods
         CartModel.addToCart("admin", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsa;", "Instructions", size);
+        CartModel.addToCart("admin", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsa;", "Instructions", size);
 
         // If order's size is not null in menu and upgrade button is not selected, concatenate "Regular" to the item name, then set size to null.
+        CartModel.addToCart("admin", "order2"+" [Regular]", 100, 2, "Mangyupsa;", "Instructions", null);
         CartModel.addToCart("admin", "order2"+" [Regular]", 100, 2, "Mangyupsa;", "Instructions", null);
 
 

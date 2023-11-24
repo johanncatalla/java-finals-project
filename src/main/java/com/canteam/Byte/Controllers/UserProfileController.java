@@ -60,6 +60,11 @@ public class UserProfileController implements Initializable {
         // Make draggable
         draggable.makeWindowDraggable(statusBar);
 
+        // Set text for fields
+        profileIcon.setText(UserModel.getFullName().substring(0, 1));
+        emailField.setText(UserModel.getEmail());
+        fullNameField.setText(UserModel.getFullName());
+
         // Set the prompt text for the text fields by current user info
         profileIcon.setText(UserModel.getFullName().substring(0, 1));
 

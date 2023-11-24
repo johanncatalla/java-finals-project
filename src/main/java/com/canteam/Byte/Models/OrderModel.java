@@ -21,14 +21,55 @@ import org.bson.conversions.Bson;
 
 public class OrderModel {
     private OrderModel() {}
-    private static ArrayList<Document> userOrders = new ArrayList<>();
-    private static ArrayList<Document> userOrderDetails = new ArrayList<>();
-    private static HashMap<Integer, HashMap<String, HashMap<String, String>>> userOrderItems = new HashMap<>();
-    private static HashMap<Integer, HashMap<String, String>> userOrderDetails1 = new HashMap<>();
     private static MongoClient client = Connection.getInstance();
     private static MongoDatabase database = client.getDatabase("Byte");
     private static MongoCollection<Document> cartCollection = database.getCollection("Carts");
     private static MongoCollection<Document> orderCollection = database.getCollection("Orders");
+
+    // Get array list of orders based on user type
+    // Customer: Ordered, Confirmed, Picked-up
+    // Store: Ordered, Confirmed
+    // Rider: Confirmed, Picked-up
+    // Customer History: Delivered
+    public static ArrayList<Document> getRiderOrders() {
+        ArrayList<Document> userOrders = new ArrayList<>();
+        Document query = new Document("Order Status", new Document("$in", Arrays.asList("Confirmed", "Picked-up")));
+        for (Document doc : orderCollection.find(query).sort(new Document("Order Number", 1))) {
+            if (doc != null) {
+                userOrders.add(doc);
+            }
+        }
+        return userOrders;
+    }
+
+    public static ArrayList<Document> getStoreOrders(String storeName) {
+        ArrayList<Document> userOrders = new ArrayList<>();
+        Document query = new Document("Store", storeName)
+                .append("Order Status", new Document("$in", Arrays.asList("Ordered", "Confirmed")));
+        for (Document doc : orderCollection.find(query).sort(new Document("Order Number", 1))) {
+            if (doc != null) {
+                userOrders.add(doc);
+            }
+        }
+        return userOrders;
+    }
+
+    public static ArrayList<Document> getUserOrders(String username) {
+        ArrayList<Document> userOrders = new ArrayList<>();
+        Document query = new Document("UserName", username)
+                .append("Order Status", new Document("$in", Arrays.asList("Ordered", "Confirmed", "Picked-up")));
+        for (Document doc : orderCollection.find(query).sort(new Document("Order Number", 1))) {
+            if (doc != null) {
+                userOrders.add(doc);
+            }
+        }
+        return userOrders;
+    }
+
+
+    public static void updateOrderStatus(Integer orderNumber, String status) {
+        orderCollection.updateOne(Filters.eq("Order Number", orderNumber), Updates.set("Order Status", status));
+    }
 
     public static void placeOrder(String username) {
         // transfer cart document to order document
@@ -78,6 +119,11 @@ public class OrderModel {
     }
 
     public static void main(String[] args) {
-        placeOrder("admin");
+        ArrayList<Document> ordered = OrderModel.getUserOrders("admin");
+        System.out.println(ordered);
+        OrderModel.updateOrderStatus(12, "Delivered");
+        ArrayList<Document> ordered1 = OrderModel.getUserOrders("admin");
+        System.out.println(ordered1);
+
     }
 }

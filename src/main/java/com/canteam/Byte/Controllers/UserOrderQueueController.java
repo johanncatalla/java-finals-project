@@ -1,17 +1,17 @@
 package com.canteam.Byte.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class UserOrderQueueController implements Initializable {
+public class UserOrderQueueController {
 
     @FXML
     private Button btnViewOrder;
+
+    @FXML
+    private Label txtOderNumber;
 
     @FXML
     private Label txtOrderItems;
@@ -22,9 +22,15 @@ public class UserOrderQueueController implements Initializable {
     @FXML
     private Label txtOrderStatus;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // get data
+    @FXML
+    private AnchorPane orderContainer;
 
+    public void setData(String orderNum, String orderItems, String orderShop, String orderStatus) {
+        txtOderNumber.setText(orderNum);
+        txtOrderItems.setText(orderItems);
+        txtOrderShop.setText(orderShop);
+        txtOrderStatus.setText(orderStatus);
     }
+
+
 }

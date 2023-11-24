@@ -174,7 +174,6 @@ public class CartModel {
                 // Add the item to the cart
                 cart.put(key, item);
             }
-            System.out.println(userDocument);
             updateSubtotalAndTotalPrice(username);
             store = (String) userDocument.get("Store");
             modeOfPayment = (String) userDocument.get("ModeOfPayment");

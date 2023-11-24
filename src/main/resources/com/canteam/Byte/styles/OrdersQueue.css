@@ -38,3 +38,7 @@
     -fx-pref-height: 20;
     -fx-pref-width: 94;
 }
+
+.text{
+    -fx-font-family: Poppins;
+}

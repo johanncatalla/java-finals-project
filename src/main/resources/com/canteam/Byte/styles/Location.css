@@ -1,3 +1,7 @@
+.text{
+    -fx-font-family: Poppins;
+}
+
 .Header-Style{
     -fx-font-family: Poppins;
     -fx-text-fill: #5A0B0C;

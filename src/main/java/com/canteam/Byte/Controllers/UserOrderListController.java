@@ -4,9 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-import com.canteam.Byte.Controllers.PageNavigator;
-
-public class OrdersListController {
+public class UserOrderListController {
 
     @FXML
     private Button closeOrdersButton;

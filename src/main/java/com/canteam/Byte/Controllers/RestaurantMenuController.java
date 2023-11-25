@@ -85,6 +85,41 @@ public class RestaurantMenuController {
     protected void onPopularButtonClicked(){
         sectionTitle.setText("Popular");
         sectionDescription.setText("These are the most popular items in " + ShopModel.getSelectedShopName());
+
+        // clear the grid pane
+        itemsGridPane.getChildren().clear();
+
+        // Add the items to the grid pane
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < shopItems.size(); i++) {
+                // Get the fxml file for the cuisine button
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
+                AnchorPane item = fxmlLoader.load();
+
+                // Set the data for the cuisine button
+                ItemController itemController = fxmlLoader.getController();
+                // Check if itemTags contains "Rice Meal"
+
+
+                if (shopItems.get(i).isItemPopular()) {
+                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    // Place the cuisine button in the gridPane
+                    if (column == 2) {
+                        row++;
+                        column = 0;
+                    }
+                    itemsGridPane.add(item, column++, row);
+                }
+
+                // Set the margin for the cuisine button
+                GridPane.setMargin(item, new Insets(20));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // onKoreanStreetFoodButtonClicked() is a method that is called when the koreanStreetFoodBtn is clicked
@@ -92,6 +127,8 @@ public class RestaurantMenuController {
     protected void onKoreanStreetFoodButtonClicked(){
         sectionTitle.setText("Korean Street Food");
         sectionDescription.setText("These are the Korean Street Food items in " + ShopModel.getSelectedShopName());
+
+        conditionShopTags("Korean Street Food");
     }
 
     // onRiceBowlButtonClicked() is a method that is called when the riceBowlBtn is clicked
@@ -99,6 +136,8 @@ public class RestaurantMenuController {
     protected void onRiceBowlButtonClicked(){
         sectionTitle.setText("Rice Bowl");
         sectionDescription.setText("These are the Rice Bowl items in " + ShopModel.getSelectedShopName());
+
+        conditionShopTags("Rice Bowl");
     }
 
     // onRiceToppingsButtonClicked() is a method that is called when the riceToppingsBtn is clicked
@@ -106,6 +145,8 @@ public class RestaurantMenuController {
     protected void onRiceToppingsButtonClicked(){
         sectionTitle.setText("Rice Toppings");
         sectionDescription.setText("These are the Rice Toppings items in " + ShopModel.getSelectedShopName());
+
+        conditionShopTags("Rice Toppings");
     }
 
     // onSizzlingButtonClicked() is a method that is called when the sizzlingBtn is clicked
@@ -113,6 +154,8 @@ public class RestaurantMenuController {
     protected void onSizzlingButtonClicked(){
         sectionTitle.setText("Sizzling");
         sectionDescription.setText("These are the Sizzling items in " + ShopModel.getSelectedShopName());
+
+        conditionShopTags("Sizzling");
     }
 
     // onBeveragesButtonClicked() is a method that is called when the beveragesButton is clicked
@@ -120,6 +163,8 @@ public class RestaurantMenuController {
     protected void onBeveragesButtonClicked(){
         sectionTitle.setText("Beverages");
         sectionDescription.setText("These are the Beverages items in " + ShopModel.getSelectedShopName());
+
+        conditionShopTags("Beverages");
     }
 
     // onAddOnsButtonClicked() is a method that is called when the addOnsButton is clicked
@@ -127,6 +172,82 @@ public class RestaurantMenuController {
     protected void onAddOnsButtonClicked(){
         sectionTitle.setText("Add-Ons");
         sectionDescription.setText("These are the Add-Ons items in " + ShopModel.getSelectedShopName());
+
+        conditionShopTags("Add-Ons");
+    }
+
+    private void conditionShopTags(String shopTag){
+        // clear the grid pane
+        itemsGridPane.getChildren().clear();
+
+        // Add the items to the grid pane
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < shopItems.size(); i++) {
+                // Get the fxml file for the cuisine button
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
+                AnchorPane item = fxmlLoader.load();
+
+                // Set the data for the cuisine button
+                ItemController itemController = fxmlLoader.getController();
+                // Check if itemTags contains "Rice Meal"
+
+
+                if (shopItems.get(i).getItemShopTags().contains(shopTag)) {
+                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    // Place the cuisine button in the gridPane
+                    if (column == 2) {
+                        row++;
+                        column = 0;
+                    }
+                    itemsGridPane.add(item, column++, row);
+                }
+
+                // Set the margin for the cuisine button
+                GridPane.setMargin(item, new Insets(20));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void onEnterPressed(){
+        // clear the grid pane
+        itemsGridPane.getChildren().clear();
+
+        // Add the items to the grid pane
+        int column = 0;
+        int row = 1;
+        try {
+            for (int i = 0; i < shopItems.size(); i++) {
+                // Get the fxml file for the cuisine button
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
+                AnchorPane item = fxmlLoader.load();
+
+                // Set the data for the cuisine button
+                ItemController itemController = fxmlLoader.getController();
+                // Check if itemTags contains "Rice Meal"
+
+
+                if (shopItems.get(i).getItemName().toLowerCase().contains(searchField.getText())) {
+                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    // Place the cuisine button in the gridPane
+                    if (column == 2) {
+                        row++;
+                        column = 0;
+                    }
+                    itemsGridPane.add(item, column++, row);
+                }
+
+                // Set the margin for the cuisine button
+                GridPane.setMargin(item, new Insets(20));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -175,7 +296,6 @@ public class RestaurantMenuController {
 
         // Get the data from the database
         shopItems.addAll(getData());
-        System.out.println(shopItems.size());
 
         // Add the items to the grid pane
         int column = 0;
@@ -189,18 +309,13 @@ public class RestaurantMenuController {
 
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
-                // Check if itemTags contains "Rice Meal"
 
-
-                if (shopItems.get(i).getItemCuisineTags().contains("Chicken")){
-                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
-                    // Place the cuisine button in the gridPane
-                    if (column == 2) {
-                        row++;
-                        column = 0;
-                    }
-                    itemsGridPane.add(item, column++, row);
+                itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                if (column == 2) {
+                    row++;
+                    column = 0;
                 }
+                itemsGridPane.add(item, column++, row);
 
                 // Set the margin for the cuisine button
                 GridPane.setMargin(item, new Insets(20));
@@ -221,6 +336,15 @@ public class RestaurantMenuController {
         draggable.makeParentDraggableX(sizzlingBtn);
         draggable.makeParentDraggableX(beveragesButton);
         draggable.makeParentDraggableX(addOnsButton);
+
+        // Make the search field on enter pressed
+        searchField.setOnKeyPressed(keyEvent -> {
+            switch (keyEvent.getCode()){
+                case ENTER:
+                    onEnterPressed();
+                    break;
+            }
+        });
     }
 
 }

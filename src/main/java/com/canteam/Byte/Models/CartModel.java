@@ -38,7 +38,7 @@ public class CartModel {
         collection.insertOne(newUser);
     }
 
-    public static void addToCart(String username, String name, double price, int quantity, String store, String instructions, HashMap<String, Integer> size) {
+    public static void addToCart(String username, String name, double price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
         CartModel.defineCart(username);
         if (cart.containsKey(name)) {
 
@@ -49,7 +49,7 @@ public class CartModel {
 
             System.out.println("Successfully updated");
         } else {
-            int itemTotalPrice = (int) (price * quantity);
+            int itemTotalPrice = (int) (price * quantity);;
 
             // Create item document containing item details
             Document itemDB = new Document("Name", name)
@@ -57,7 +57,8 @@ public class CartModel {
                     .append("Quantity", quantity)
                     .append("Instructions", instructions)
                     .append("Total Price", itemTotalPrice)
-                    .append("Size", size);
+                    .append("Size", size)
+                    .append("Image", imageName);
 
             // update store
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", store));
@@ -164,12 +165,15 @@ public class CartModel {
 
                 // Add each field from the item document to the item HashMap
                 for (Map.Entry<String, Object> entry : itemDocument.entrySet()) {
-                    item.put(entry.getKey(), entry.getValue().toString());
+                    if (entry.getValue() != null) {
+                        item.put(entry.getKey(), entry.getValue().toString());
+                    } else {
+                        item.put(entry.getKey(), null);
+                    }
                 }
                 // Add the item to the cart
                 cart.put(key, item);
             }
-            System.out.println(userDocument);
             updateSubtotalAndTotalPrice(username);
             store = (String) userDocument.get("Store");
             modeOfPayment = (String) userDocument.get("ModeOfPayment");
@@ -185,7 +189,7 @@ public class CartModel {
     public static void main(String[] args) {
         // Sample usage
         // define cart to update local variable cart
-        CartModel.defineCart("admin");
+        CartModel.defineCart("johann");
         System.out.println(cart);
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total Price of Order: "+CartModel.getTotalPriceOfOrder());
@@ -196,19 +200,21 @@ public class CartModel {
         // add to cart
         // adding to cart already syncs cart in database to local cart
         // if item's size is null, set size param to null
-        CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsa;", "Instructions", null);
+        CartModel.addToCart("johann", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
         System.out.println(cart);
-        CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsa;", "Instructions", null);
+        CartModel.addToCart("johann", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SamopleItem");
         System.out.println(cart);
 
         // If order's size upgrade button is selected, concatenate the size with the order name with space in the middle, then add extra to price:
         HashMap<String, Integer> size = new HashMap<>();
         size.put("22oz", 10);
         // parameters should be from get methods
-        CartModel.addToCart("admin", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsa;", "Instructions", size);
+        CartModel.addToCart("johann", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsal", "Instructions", size, "SampleItem");
+        CartModel.addToCart("johann", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsal", "Instructions", size, "SampleItem");
 
-        // If order's size is not null in menu and upgrade button is not selected, concatenate "Regular" to the item name, then set size to null.
-        CartModel.addToCart("admin", "order2"+" [Regular]", 100, 2, "Mangyupsa;", "Instructions", null);
+        // If item has size option and upgrade button is not selected, concatenate "Regular" to the item name, then set size to null.
+        CartModel.addToCart("johann", "order2"+" [Regular]", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
+        CartModel.addToCart("johann", "order2"+" [Regular]", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
 
 
         System.out.println("Subtotal: "+CartModel.getSubtotal());

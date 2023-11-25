@@ -57,7 +57,7 @@
                               <Label layoutX="26.0" layoutY="70.0" styleClass="text" text="Your order number" />
                               <Label fx:id="orderNumberLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="70.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
                               <Label layoutX="26.0" layoutY="90.0" styleClass="text" text="Delivery address" />
-                              <Label fx:id="deliveryAddressLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="90.0" prefHeight="70.0" prefWidth="190.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
+                              <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" layoutX="173.0" layoutY="90.0" prefHeight="70.0" prefWidth="190.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
                               <Label layoutX="25.0" layoutY="20.0" text="Order Details">
                                  <font>
                                     <Font name="Poppins Regular" size="12.0" />

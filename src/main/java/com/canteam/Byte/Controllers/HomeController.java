@@ -109,7 +109,8 @@ public class HomeController implements Initializable {
     @FXML
     protected void onLogoutLinkClicked(){
         UserModel.signOut();
-        pageNavigator.backToPage(logoutLink);
+        pageNavigator.navigateToPage(logoutLink, "login");
+        PageNavigator.clearHistory();
     }
 
     @FXML
@@ -129,6 +130,27 @@ public class HomeController implements Initializable {
 
         // Setup window draggable
         draggable.makeWindowDraggable(statusBar);
+
+        // Set up enter on search field
+        searchField.setOnKeyReleased(keyEvent -> {
+            if (keyEvent.getCode().toString().equals("ENTER")){
+
+                // get the fxml controller of the RestaurantFXML
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Restaurants.fxml"));
+                AnchorPane restaurantsPane = null;
+                try {
+                    restaurantsPane = fxmlLoader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                RestaurantsController restaurantsController = fxmlLoader.getController();
+                restaurantsController.setInitialSearch(searchField.getText());
+
+                pageNavigator.forwardToPage(searchField, "Home", "Restaurants");
+
+            }
+        });
 
         // Will create an error at start but will be ok when you open the home page
         cuisineList.addAll(getData());
@@ -168,7 +190,7 @@ public class HomeController implements Initializable {
     }
 
     public void onMyOrders() {
-        pageNavigator.forwardToPage(ordersLink, "Home", "OrdersList");
+        pageNavigator.forwardToPage(ordersLink, "Home", "UserOrderList");
     }
     public void onMyDeliveryAddress() {
         pageNavigator.forwardToPage(addressLink, "Home", "Location");

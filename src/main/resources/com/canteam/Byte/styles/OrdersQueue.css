@@ -1,6 +1,6 @@
-.shadowed-pane{
-    -fx-background-radius: 8;
-
+.anchorStyle{
+    -fx-background-color: #e8e8e8;
+    -fx-background-radius: 10;
 }
 
 .left{
@@ -37,4 +37,8 @@
     -fx-cursor: hand;
     -fx-pref-height: 20;
     -fx-pref-width: 94;
+}
+
+.text{
+    -fx-font-family: Poppins;
 }

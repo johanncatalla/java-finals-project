@@ -8,6 +8,10 @@
     -fx-border-color: #EAEAEA;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .removeBtn{
     -fx-background-color: #5A0B0C;
     -fx-text-fill: white;

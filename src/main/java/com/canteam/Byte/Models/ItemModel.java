@@ -1,14 +1,31 @@
 package com.canteam.Byte.Models;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class ItemModel {
-    private String itemName, itemImageSrc, itemStore;
+    private String itemName, itemImageSrc, itemStore, itemSizes;
     private String itemPrice;
-    private List<String> itemShopTags, itemCuisineTags;
+    private String itemShopTags, itemCuisineTags;
     private boolean itemAvailable, itemPopular;
+    private HashMap<String, String> itemInfo = new HashMap<>();
+    public static HashMap<String, String> selectedItemInfo;
+
+
+    public void setItemInfo(HashMap<String, String> itemInfo) {
+        this.itemInfo = itemInfo;
+    }
+
+    public HashMap<String, String> getItemInfo() {
+        return itemInfo;
+    }
+
+    public static void setSelectedItemInfo(HashMap<String, String> itemInfo) {
+        selectedItemInfo = itemInfo;
+    }
+
+    public static HashMap<String, String> getSelectedItemInfo() {
+        return selectedItemInfo;
+    }
 
     public String getItemName() {
         return itemName;
@@ -42,19 +59,19 @@ public class ItemModel {
         this.itemStore = itemStore;
     }
 
-    public List<String> getItemShopTags() {
+    public String getItemShopTags() {
         return itemShopTags;
     }
 
-    public void setItemShopTags(List<String> itemShopTags) {
+    public void setItemShopTags(String itemShopTags) {
         this.itemShopTags = itemShopTags;
     }
 
-    public List<String> getItemCuisineTags() {
+    public String getItemCuisineTags() {
         return itemCuisineTags;
     }
 
-    public void setItemCuisineTags(List<String> itemCuisineTags) {
+    public void setItemCuisineTags(String itemCuisineTags) {
         this.itemCuisineTags = itemCuisineTags;
     }
 
@@ -75,14 +92,26 @@ public class ItemModel {
     }
 
     // setData() method
-    public void setData(HashMap<String, String> item) {
+    public void setData(HashMap<String, String> item){
+        this.setItemInfo(item);
         this.setItemName(item.get("Item_Name"));
         this.setItemPrice(item.get("Item_Price"));
         this.setItemImageSrc(item.get("Item_Image"));
         this.setItemStore(item.get("Item_Store"));
-        this.setItemShopTags(Collections.singletonList(item.get("Item_Shop_Tag")));
-        this.setItemCuisineTags(Collections.singletonList(item.get("Item_Cuisine_Tag")));
+        this.setItemShopTags(item.get("Item_Shop_Tag"));
+        this.setItemCuisineTags(item.get("Item_Cuisine_Tag"));
         this.setItemPopular(Boolean.parseBoolean(item.get("Item_Popular")));
         this.setItemAvailable(Boolean.parseBoolean(item.get("Item_Available")));
+        System.out.println("This is the item: "+item.get("Item_Sizes")+" Item type:"+item.get("Item_Sizes").getClass());
+    }
+
+    public static HashMap<String, Integer> convertDocumentStrToHashMap(String str) {
+        str = str.substring(11, str.length()-2); // remove "Document{{" and "}}"
+        String[] keyValuePairs = str.split("="); // split the string to create key-value pairs
+        HashMap<String, Integer> map = new HashMap<>();
+
+        map.put(keyValuePairs[0].trim(), Integer.parseInt(keyValuePairs[1].trim())); // add them to the hashmap and trim whitespaces
+
+        return map;
     }
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="135.0" prefWidth="155.0" style="-fx-background-radius: 8;" stylesheets="@../styles/Item.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ItemController">
+<AnchorPane fx:id="itemButton" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="135.0" prefWidth="155.0" style="-fx-background-radius: 8;" stylesheets="@../styles/Item.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ItemController">
    <children>
       <ImageView fx:id="itemImage" fitHeight="135.0" fitWidth="155.0" layoutX="-75.0" layoutY="-56.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="125.0" prefWidth="330.0" styleClass="shadowed-pane" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.OrdersQueueShopsController">
+<AnchorPane prefHeight="125.0" prefWidth="330.0" styleClass="shadowed-pane" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderQueueController">
    <effect>
       <DropShadow blurType="GAUSSIAN" height="5.0" offsetX="1.0" offsetY="1.0" radius="2.0" width="5.0">
          <color>
@@ -25,6 +25,8 @@
       <Label fx:id="txtAddressRider" layoutX="73.0" layoutY="40.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="CCMS Department Building Underground Student Lounge" />
       <Label layoutX="15.0" layoutY="64.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Contact:" />
       <Label fx:id="txtContactRider" layoutX="73.0" layoutY="64.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="09123456789" />
-      <Button fx:id="btnDeliver" layoutX="219.0" layoutY="85.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="View Order" />
+      <Button fx:id="btnDeliver" layoutX="243.0" layoutY="85.0" mnemonicParsing="false" prefHeight="23.0" styleClass="button-styled" text="Deliver" />
+      <Label layoutX="16.0" layoutY="87.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
+      <Label fx:id="txtContactRider1" layoutX="74.0" layoutY="87.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="1" />
    </children>
 </AnchorPane>

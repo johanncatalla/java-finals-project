@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="500.0" prefWidth="330.0" stylesheets="@../styles/OverlayOrderDetails.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.OverlayOrderDetailsController">
+<AnchorPane prefHeight="500.0" prefWidth="330.0" stylesheets="@../styles/OverlayOrderDetails.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ShopOrderView">
    <children>
       <Label layoutX="25.0" layoutY="25.0" styleClass="header" text="Order Details" />
       <Label layoutX="25.0" layoutY="74.0" styleClass="left" text="Order number:" />
       <Label layoutX="25.0" layoutY="103.0" styleClass="left" text="Delivery address:" />
       <Label layoutX="25.0" layoutY="174.0" styleClass="left" text="Landmark:" />
-      <Label fx:id="txtRestaurant" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="49.0" prefHeight="19.0" prefWidth="145.0" styleClass="right" text="Manggyupsal" textAlignment="RIGHT" />
+      <Label fx:id="txtRestaurant" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="49.0" prefHeight="19.0" prefWidth="145.0" styleClass="right" text="Name" textAlignment="RIGHT" />
       <Label fx:id="txtOrderNumber" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="75.0" prefHeight="19.0" prefWidth="145.0" styleClass="right" text="#ccms-order14" textAlignment="RIGHT" />
       <Label fx:id="txtAddress" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="104.0" prefHeight="57.0" prefWidth="145.0" styleClass="right" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
       <Label layoutX="25.0" layoutY="50.0" styleClass="left" text="Order from:" />
@@ -67,5 +67,6 @@
             </AnchorPane>
          </children>
       </GridPane>
+      <Button fx:id="btnClose" layoutX="294.0" layoutY="9.0" mnemonicParsing="false" onAction="#onExit" styleClass="exit-icon" />
    </children>
 </AnchorPane>

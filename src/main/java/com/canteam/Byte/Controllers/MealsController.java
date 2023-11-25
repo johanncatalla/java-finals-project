@@ -75,9 +75,9 @@ public class MealsController implements Initializable{
 
     @FXML
     private void onAddtoCartBtnClicked(){
-//        CartModel.addToCart(UserModel.getUserName(), itemInfo.get("Item_Name"),
-//                Double.parseDouble(itemInfo.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
-//                itemInfo.get("Item_Store"), specialInstructionsTxt.getText(), itemInfo.get("Item_Sizes"), itemInfo.get("Item_Image") )
+        //CartModel.addToCart(UserModel.getUserName(), itemInfo.get("Item_Name"),
+        //        Double.parseDouble(itemInfo.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+        ///        itemInfo.get("Item_Store"), specialInstructionsTxt.getText(), ItemModel.convertDocumentStrToHashMap(itemInfo.get("Item_Sizes")), itemInfo.get("Item_Image"));
     }
 
     public void setData(HashMap<String, String> itemInfo) {

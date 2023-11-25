@@ -72,7 +72,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="86.0" prefWidth="390.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="addToCartBtn" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" styleClass="button-styled" text="Add to cart" />
+            <Button fx:id="addToCartBtn" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" onAction="#onAddtoCartBtnClicked" styleClass="button-styled" text="Add to cart" />
             <Button fx:id="subtractQtyBtn" layoutX="27.0" layoutY="24.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
             <Label fx:id="qtyLabel" layoutX="77.0" layoutY="28.0" styleClass="quantity" text="1" />
             <Button fx:id="addQtyBtn" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />

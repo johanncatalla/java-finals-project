@@ -189,7 +189,7 @@ public class CartModel {
     public static void main(String[] args) {
         // Sample usage
         // define cart to update local variable cart
-        CartModel.defineCart("admin");
+        CartModel.defineCart("johann");
         System.out.println(cart);
         System.out.println("Subtotal: "+CartModel.getSubtotal());
         System.out.println("Total Price of Order: "+CartModel.getTotalPriceOfOrder());
@@ -200,21 +200,21 @@ public class CartModel {
         // add to cart
         // adding to cart already syncs cart in database to local cart
         // if item's size is null, set size param to null
-        CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
+        CartModel.addToCart("johann", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
         System.out.println(cart);
-        CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SamopleItem");
+        CartModel.addToCart("johann", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SamopleItem");
         System.out.println(cart);
 
         // If order's size upgrade button is selected, concatenate the size with the order name with space in the middle, then add extra to price:
         HashMap<String, Integer> size = new HashMap<>();
         size.put("22oz", 10);
         // parameters should be from get methods
-        CartModel.addToCart("admin", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsal", "Instructions", size, "SampleItem");
-        CartModel.addToCart("admin", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsal", "Instructions", size, "SampleItem");
+        CartModel.addToCart("johann", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsal", "Instructions", size, "SampleItem");
+        CartModel.addToCart("johann", "order2"+" "+size.keySet(), 100+size.get("22oz"), 2, "Mangyupsal", "Instructions", size, "SampleItem");
 
         // If item has size option and upgrade button is not selected, concatenate "Regular" to the item name, then set size to null.
-        CartModel.addToCart("admin", "order2"+" [Regular]", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
-        CartModel.addToCart("admin", "order2"+" [Regular]", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
+        CartModel.addToCart("johann", "order2"+" [Regular]", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
+        CartModel.addToCart("johann", "order2"+" [Regular]", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
 
 
         System.out.println("Subtotal: "+CartModel.getSubtotal());

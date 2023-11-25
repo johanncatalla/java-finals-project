@@ -104,4 +104,14 @@ public class ItemModel {
         this.setItemAvailable(Boolean.parseBoolean(item.get("Item_Available")));
         System.out.println("This is the item: "+item.get("Item_Sizes")+" Item type:"+item.get("Item_Sizes").getClass());
     }
+
+    public static HashMap<String, Integer> convertDocumentStrToHashMap(String str) {
+        str = str.substring(11, str.length()-2); // remove "Document{{" and "}}"
+        String[] keyValuePairs = str.split("="); // split the string to create key-value pairs
+        HashMap<String, Integer> map = new HashMap<>();
+
+        map.put(keyValuePairs[0].trim(), Integer.parseInt(keyValuePairs[1].trim())); // add them to the hashmap and trim whitespaces
+
+        return map;
+    }
 }

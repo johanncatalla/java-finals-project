@@ -40,10 +40,7 @@ public class ItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        itemButton.setOnMouseClicked(mouseEvent -> {
-            ItemModel.setSelectedItemInfo(itemModel.getItemInfo());
-            pageNavigator.makeForwardNavigator(itemButton, "RestaurantMenu", "Meals");
-        });
+;
     }
 }
 

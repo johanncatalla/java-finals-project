@@ -106,7 +106,7 @@ public class ItemModel {
     }
 
     public static HashMap<String, Integer> convertDocumentStrToHashMap(String str) {
-        str = str.substring(11, str.length()-2); // remove "Document{{" and "}}"
+        str = str.substring(10, str.length()-2); // remove "Document{{" and "}}"
         String[] keyValuePairs = str.split("="); // split the string to create key-value pairs
         HashMap<String, Integer> map = new HashMap<>();
 

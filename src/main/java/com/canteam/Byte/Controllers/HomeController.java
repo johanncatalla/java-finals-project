@@ -109,7 +109,8 @@ public class HomeController implements Initializable {
     @FXML
     protected void onLogoutLinkClicked(){
         UserModel.signOut();
-        pageNavigator.backToPage(logoutLink);
+        pageNavigator.navigateToPage(logoutLink, "login");
+        PageNavigator.clearHistory();
     }
 
     @FXML

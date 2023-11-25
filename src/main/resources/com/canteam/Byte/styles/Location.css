@@ -37,6 +37,16 @@
     -fx-background-radius: 8;
 }
 
+.user-alert{
+    -fx-font-family: Poppins;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+    -fx-background-color: white;
+}
+
 .text-field-longer .content{
     -fx-background-color: #EAEAEA;
 }

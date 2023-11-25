@@ -73,7 +73,7 @@ public class UserModel {
     public static void setUserAddress(ArrayList<String> inputAddress) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Address", inputAddress));
     }
-    private static void setEmail(String inputEmail) {
+    public static void setEmail(String inputEmail) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Email", inputEmail));
     }
     public static void setUserContact(String inputContact) {

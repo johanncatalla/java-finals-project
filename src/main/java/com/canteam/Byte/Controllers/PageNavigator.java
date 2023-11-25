@@ -15,16 +15,20 @@ class PageNavigator {
     // Stacks for Navigation History
     private static ArrayList<String> navigationHistory = new ArrayList<>();
 
-    public void push(String pageName){
+    public static void push(String pageName){
         navigationHistory.add(pageName);
         System.out.println(navigationHistory.toString());
     }
 
-    public String pop(){
+    public static String pop(){
         String destination = navigationHistory.get(navigationHistory.size() - 1);
         navigationHistory.remove(navigationHistory.size()-1);
         System.out.println(navigationHistory.toString());
         return destination;
+    }
+
+    public static void clearHistory(){
+        navigationHistory.clear();
     }
 
     /**

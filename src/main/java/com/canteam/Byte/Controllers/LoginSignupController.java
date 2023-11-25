@@ -58,6 +58,16 @@ public class LoginSignupController implements Initializable {
 
     Draggable draggable = new Draggable();
 
+    public static boolean newUser;
+
+    public static void setNewUser(boolean value) {
+        newUser = value;
+    }
+
+    public static boolean getNewUser() {
+    	return newUser;
+    }
+
     @FXML
     protected void onLogoClicked(){
 
@@ -80,11 +90,25 @@ public class LoginSignupController implements Initializable {
     protected void onSignUpClicked() {
         if (!UserModel.userExists(signupUsernameField.getText())) {
             if (!(signupNameField.getText().isEmpty() || signupUsernameField.getText().isEmpty() || signupEmailField.getText().isEmpty() || signupPassField.getText().isEmpty())) {
-                UserModel.createUser(signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(), null, null, "Customer", signupEmailField.getText());
+                // Create new user
+                UserModel.createUser(
+                        signupNameField.getText(), signupUsernameField.getText(), signupPassField.getText(),
+                        null, "", "Customer", signupEmailField.getText());
+
+                // switch to login pane
+                signupPane.setVisible(false);
+                loginPane.setVisible(true);
+
+                // Set new user to true
+                LoginSignupController.setNewUser(true);
+                LocationController.setNewUser(true);
+
+                // Clear fields
                 signupNameField.setText(null);
                 signupUsernameField.setText(null);
                 signupEmailField.setText(null);
                 signupPassField.setText(null);
+
             } else {
                 errorLabel2.setText("Please fill in all fields");
             }
@@ -123,6 +147,10 @@ public class LoginSignupController implements Initializable {
                 if (user.getString("Password").equals(loginPassField.getText())) {
                     UserModel.loginUser(user, username, user.getString("Password"));
                     if (UserModel.getUserType().equals("Customer")) {
+                        if (newUser){
+                            pageNavigator.navigateToPage(loginButton, "Location");
+                            return;
+                        }
                         pageNavigator.forwardToPage(loginButton, "login", "Home");
                     } else if (UserModel.getUserType().equals("Store")) {
                         pageNavigator.forwardToPage(loginButton, "login", "ShopOrderList");

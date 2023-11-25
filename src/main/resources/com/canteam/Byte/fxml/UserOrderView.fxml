@@ -37,10 +37,10 @@
                                     <String fx:value="subtitle-text" />
                                  </styleClass>
                               </Label>
-                              <AnchorPane layoutX="8.0" layoutY="221.0">
+                              <AnchorPane layoutX="8.0" layoutY="221.0" prefHeight="30.0" prefWidth="238.0">
                                  <children>
-                                    <Label layoutX="8.0" layoutY="8.0" text="Order confirmed by " />
-                                    <Label fx:id="confirmedByLabel" layoutX="120.0" layoutY="5.0" prefHeight="24.0" prefWidth="77.0" styleClass="bold-text" text="Mangyupsal" textAlignment="CENTER" />
+                                    <Label layoutX="4.0" layoutY="7.0" text="Order confirmed by " />
+                                    <Label fx:id="confirmedByLabel" layoutX="142.0" layoutY="4.0" prefHeight="24.0" prefWidth="101.0" styleClass="bold-text" text="Mangyupsal" textAlignment="CENTER" />
                                  </children>
                               </AnchorPane>
                               <Label layoutX="7.0" layoutY="248.0" text="Your food will be delivered once ready." />
@@ -56,7 +56,7 @@
                               <Label layoutX="26.0" layoutY="70.0" styleClass="text" text="Your order number" />
                               <Label fx:id="orderNumberLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="70.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
                               <Label layoutX="26.0" layoutY="90.0" styleClass="text" text="Delivery address" />
-                              <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" layoutX="173.0" layoutY="90.0" prefHeight="35.0" prefWidth="190.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
+                              <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" layoutX="173.0" layoutY="90.0" maxHeight="300.0" prefHeight="27.0" prefWidth="190.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
                               <Label layoutX="25.0" layoutY="20.0" text="Order Details">
                                  <font>
                                     <Font name="Poppins Regular" size="12.0" />
@@ -76,8 +76,7 @@
                            <children>
                               <GridPane fx:id="ordersGridPane" alignment="BOTTOM_LEFT" layoutX="25.333333333333332" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="337.0">
                                 <columnConstraints>
-                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="66.66668701171875" minWidth="30.0" prefWidth="58.66664632161458" />
-                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="225.0" minWidth="179.33335367838544" prefWidth="189.33331298828125" />
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="300.0" minWidth="179.33335367838544" prefWidth="189.33331298828125" />
                                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="95.33331298828122" minWidth="-Infinity" prefWidth="90.66668701171872" />
                                 </columnConstraints>
                                 <rowConstraints>

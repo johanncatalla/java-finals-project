@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import org.bson.Document;
 
@@ -62,7 +63,7 @@ public class UserOrderViewController implements Initializable {
 
     @FXML
     void onCloseBtnClicked(ActionEvent event) {
-        pageNavigator.navigateToPage(closeBtn, "UserOrderList");
+        pageNavigator.backToPage(closeBtn);
     }
 
     public static void setOrderNumber(int inputOrderNumber) { orderNumber = inputOrderNumber; }
@@ -85,37 +86,36 @@ public class UserOrderViewController implements Initializable {
         // Load content to grid pane
         int i = 0;
         for (String key : cart.keySet()) {
-            // Column 0 = Quantity
-            // Column 1 = Item Name
-            // Column 2 = Price
+            // Column 0 = Quantity + Item Name
+            // Column 1 = Price
             // Create labels
             Document itemInfo = (Document) cart.get(key);
             Label quantityLabel = new Label(itemInfo.get("Quantity").toString()+"×");
             Label itemNameLabel = new Label(itemInfo.get("Name").toString());
-            Label priceLabel = new Label("PHP "+itemInfo.get("Total Price").toString()+".00");
+            Label priceLabel = new Label("PHP "+itemInfo.get("Price").toString()+".00");
 
             priceLabel.setAlignment(Pos.CENTER_RIGHT);
             itemNameLabel.wrapTextProperty().setValue(true);
             itemNameLabel.maxHeight(50);
 
-            // Add labels to grid pane
-            ordersGridPane.add(quantityLabel, 0, i);
-            ordersGridPane.add(itemNameLabel, 1, i);
-            ordersGridPane.add(priceLabel, 2, i);
+            // Place quantity label and item name in a Hbox
+            HBox quantityItemNameHBox = new HBox(quantityLabel, itemNameLabel);
+            quantityItemNameHBox.setSpacing(10);
+            quantityItemNameHBox.setAlignment(Pos.CENTER_LEFT);
+            HBox.setHgrow(itemNameLabel, Priority.ALWAYS);
+
+            // Align price label to the right
+            priceLabel.setAlignment(Pos.CENTER_RIGHT);
+
+            // Add Hbox to grid pane
+            ordersGridPane.add(quantityItemNameHBox, 0, i);
+            ordersGridPane.add(priceLabel, 1, i);
 
             // Set margin for labels
             GridPane.setMargin(quantityLabel, new javafx.geometry.Insets(0, 0, 5, 0));
             i++;
         }
-        confirmedByLabel.setText(order.getString("Store"));
-        orderStoreLabel.setText(order.getString("Store"));
-        orderNumberLabel.setText("#"+order.getInteger("Order Number"));
-        deliveryAddressLabel.setText(UserModel.getLandmark()+", "+UserModel.getAddressDetails());
-        modePaymentLabel.setText(order.getString("Mode of Payment"));
-        subtotalLabel.setText("PHP "+order.getInteger("Subtotal").toString()+".00");
-        deliveryFeeLabel.setText("PHP 20.00");
-        totalLabel.setText("PHP "+order.getInteger("Total Price of Order").toString()+".00");
-
+        confirmedByLabel.setText(order.get("Store").toString());
     }
 
 }

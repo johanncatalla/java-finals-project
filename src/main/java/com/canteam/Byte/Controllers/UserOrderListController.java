@@ -82,7 +82,7 @@ public class UserOrderListController implements Initializable {
     }
 
     public void onCloseOrdersButtonClick() {
-        pageNavigator.backToPage(closeOrdersButton);
+        pageNavigator.navigateToPage(closeOrdersButton, "Home");
 
 
     }

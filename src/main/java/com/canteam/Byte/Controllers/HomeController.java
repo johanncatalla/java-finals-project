@@ -190,7 +190,7 @@ public class HomeController implements Initializable {
     }
 
     public void onMyOrders() {
-        pageNavigator.forwardToPage(ordersLink, "Home", "UserOrderList");
+        pageNavigator.navigateToPage(ordersLink, "UserOrderList");
     }
     public void onMyDeliveryAddress() {
         pageNavigator.forwardToPage(addressLink, "Home", "Location");

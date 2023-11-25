@@ -92,7 +92,7 @@ public class UserOrderViewController implements Initializable {
             Document itemInfo = (Document) cart.get(key);
             Label quantityLabel = new Label(itemInfo.get("Quantity").toString()+"×");
             Label itemNameLabel = new Label(itemInfo.get("Name").toString());
-            Label priceLabel = new Label("PHP "+itemInfo.get("Price").toString()+".00");
+            Label priceLabel = new Label("PHP "+itemInfo.get("Total Price").toString()+".00");
 
             priceLabel.setAlignment(Pos.CENTER_RIGHT);
             itemNameLabel.wrapTextProperty().setValue(true);
@@ -115,7 +115,15 @@ public class UserOrderViewController implements Initializable {
             GridPane.setMargin(quantityLabel, new javafx.geometry.Insets(0, 0, 5, 0));
             i++;
         }
-        confirmedByLabel.setText(order.get("Store").toString());
+        confirmedByLabel.setText(order.getString("Store"));
+        orderStoreLabel.setText(order.getString("Store"));
+        orderNumberLabel.setText("#"+order.getInteger("Order Number"));
+        deliveryAddressLabel.setText(UserModel.getLandmark()+", "+UserModel.getAddressDetails());
+        modePaymentLabel.setText(order.getString("Mode of Payment"));
+        subtotalLabel.setText("PHP "+order.getInteger("Subtotal").toString()+".00");
+        deliveryFeeLabel.setText("PHP 20.00");
+        totalLabel.setText("PHP "+order.getInteger("Total Price of Order").toString()+".00");
+
     }
 
 }

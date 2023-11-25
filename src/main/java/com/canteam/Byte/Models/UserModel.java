@@ -3,7 +3,12 @@ import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
 
 import com.canteam.Byte.Models.CartModel;
@@ -18,7 +23,7 @@ public class UserModel {
     private static String fullName;
     private static String username;
     private static String password;
-    private static String address;
+    private static ArrayList<String> address;
     private static String email;
     private static String contact;
     private static String userType;
@@ -33,18 +38,19 @@ public class UserModel {
         UserModel.setEmail(null);
     }
 
-    public static void loginUser(Document user, String username, String password) {
-        UserModel.setUserName(username.trim());
+    public static void loginUser(Document user, String inputUsername, String password) {
+        UserModel.setUserName(inputUsername.trim());
         UserModel.setUserPassword(password);
-        UserModel.setUserAddress(user.getString("Address"));
+        UserModel.setUserAddress(user.get("Address", ArrayList.class));
         UserModel.setUserContact(user.getString("Contact"));
         UserModel.setUserType(user.getString("UserType"));
         UserModel.setFullName(user.getString("FullName"));
         UserModel.setUserType(user.getString("UserType"));
         UserModel.setEmail(user.getString("Email"));
+        username = inputUsername;
 
         // fetch user cart from database
-        CartModel.defineCart(username);
+        CartModel.defineCart(inputUsername);
     }
 
     public static boolean userExists(String username) {
@@ -56,7 +62,7 @@ public class UserModel {
         }
     }
 
-    public static void createUser(String fullName, String username, String password, String address, String contact, String userType, String email){
+    public static void createUser(String fullName, String username, String password, ArrayList<String> address, String contact, String userType, String email){
         Document newUser = new Document("FullName", String.valueOf(fullName))
                 .append("Username", String.valueOf(username).trim())
                 .append("Password", String.valueOf(username))
@@ -69,23 +75,61 @@ public class UserModel {
         CartModel.createUserCart(username);
     }
 
-    public static void setFullName(String inputFullName) { fullName = inputFullName; }
-    public static void setUserName(String inputUserName) { username = inputUserName; }
-    public static void setUserPassword(String inputPassword) { password = inputPassword; }
-    public static void setUserAddress(String inputAddress) { address = inputAddress; }
-    private static void setEmail(String inputEmail) { email = inputEmail; }
-    public static void setUserContact(String inputContact) { contact = inputContact; }
-    public static void setUserType(String inputUserType) { userType = inputUserType; }
+    public static void setFullName(String inputFullName) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("FullName", inputFullName));
+    }
+    public static void setUserName(String inputUserName) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("Username", inputUserName));
+    }
+    public static void setUserPassword(String inputPassword) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("Password", inputPassword));
+    }
+    public static void setUserAddress(ArrayList<String> inputAddress) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("Address", inputAddress));
+    }
+    private static void setEmail(String inputEmail) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("Email", inputEmail));
+    }
+    public static void setUserContact(String inputContact) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("Contact", inputContact));
+    }
+    public static void setUserType(String inputUserType) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("UserType", inputUserType));
+    }
 
-    public static String getFullName() { return fullName; }
+    public static String getFullName() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.getString("FullName");
+    }
     public static String getUserName() { return username; }
-    public static String getUserPassword() { return password; }
-    public static String getUserAddress() { return address; }
-    public static String getUserContact() { return contact; }
-    public static String getUserType() { return userType; }
-    public static String getEmail() { return email; }
+    public static String getUserPassword() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.getString("Password");
+    }
+    public static ArrayList<String> getUserAddress() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.get("Address", ArrayList.class);
+    }
+    public static String getLandmark() {
+        return getUserAddress().get(0);
+    }
+    public static String getAddressDetails() {
+        return getUserAddress().get(1);
+    }
+    public static String getUserContact() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.getString("Contact");
+    }
+    public static String getUserType() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.getString("UserType");
+    }
+    public static String getEmail() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.getString("Email");
+    }
 
     public static void main(String[] args) {
-        UserModel.createUser("Hehefull","Johann", "hehe", "addressTest", "contact", "Customer", "email");
+        UserModel.createUser("Hehefull","Johann", "hehe", null, "contact", "Customer", "email");
     }
 }

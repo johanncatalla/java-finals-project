@@ -122,7 +122,6 @@ public class LoginSignupController implements Initializable {
             if (user != null) {
                 if (user.getString("Password").equals(loginPassField.getText())) {
                     UserModel.loginUser(user, username, user.getString("Password"));
-                    UserModel.setUserName(username);
                     if (UserModel.getUserType().equals("Customer")) {
                         pageNavigator.forwardToPage(loginButton, "login", "Home");
                     } else if (UserModel.getUserType().equals("Store")) {

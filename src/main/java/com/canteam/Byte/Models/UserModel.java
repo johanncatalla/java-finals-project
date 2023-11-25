@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
@@ -24,19 +25,13 @@ public class UserModel {
 
     public static void signOut() { username = null; }
 
-    public static void loginUser(Document user, String inputUsername, String password) {
-        UserModel.setUserName(inputUsername.trim());
-        UserModel.setUserPassword(password);
-        UserModel.setUserAddress(user.get("Address", ArrayList.class));
-        UserModel.setUserContact(user.getString("Contact"));
-        UserModel.setUserType(user.getString("UserType"));
-        UserModel.setFullName(user.getString("FullName"));
-        UserModel.setUserType(user.getString("UserType"));
-        UserModel.setEmail(user.getString("Email"));
+    public static void loginUser(String inputUsername) {
         username = inputUsername;
 
         // fetch user cart from database
-        CartModel.defineCart(inputUsername);
+        if (Objects.equals(getUserType(), "Customer")) {
+            CartModel.defineCart(inputUsername);
+        }
     }
 
     public static boolean userExists(String username) {
@@ -49,16 +44,41 @@ public class UserModel {
     }
 
     public static void createUser(String fullName, String username, String password, ArrayList<String> address, String contact, String userType, String email){
-        Document newUser = new Document("FullName", String.valueOf(fullName))
-                .append("Username", String.valueOf(username).trim())
-                .append("Password", String.valueOf(username))
-                .append("Address", address)
-                .append("Contact", contact)
-                .append("UserType", userType)
-                .append("Email", email);
+        // Creates cart and sets new user to true if user type is Customer
+        if (Objects.equals(userType, "Customer")) {
+            Document newUser = new Document("FullName", String.valueOf(fullName))
+                    .append("Username", String.valueOf(username).trim())
+                    .append("Password", String.valueOf(username))
+                    .append("Address", address)
+                    .append("Contact", contact)
+                    .append("UserType", userType)
+                    .append("Email", email)
+                    .append("New User", true);
 
-        collection.insertOne(newUser);
-        CartModel.createUserCart(username);
+            collection.insertOne(newUser);
+            CartModel.createUserCart(username);
+
+        } else {
+            Document newUser = new Document("FullName", String.valueOf(fullName))
+                    .append("Username", String.valueOf(username).trim())
+                    .append("Password", String.valueOf(username))
+                    .append("Address", address)
+                    .append("Contact", contact)
+                    .append("UserType", userType)
+                    .append("Email", email)
+                    .append("New User", null);
+
+            collection.insertOne(newUser);
+        }
+    }
+
+    public static void setNewOldUser(boolean trueFalse) {
+        collection.updateOne(Filters.eq("Username", username), Updates.set("New User", trueFalse));
+    }
+
+    public static boolean isNewUser() {
+        Document user = collection.find(Filters.eq("Username", username)).first();
+        return user.getBoolean("New User");
     }
 
     public static void setFullName(String inputFullName) {

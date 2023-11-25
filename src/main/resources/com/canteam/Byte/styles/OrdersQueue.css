@@ -4,6 +4,10 @@
 
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .left{
     -fx-font: Poppins;
     -fx-font-weight: 700;

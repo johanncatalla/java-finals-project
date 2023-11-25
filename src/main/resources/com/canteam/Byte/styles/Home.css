@@ -2,6 +2,10 @@
     -fx-pref-width: 390;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .user-icon{
     -fx-background-color: white;
     -fx-pref-width: 60px;

@@ -115,6 +115,9 @@
     -fx-border-radius: 8;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
 .button-styled{
     -fx-font-family: Poppins;
     -fx-font-size: 13;

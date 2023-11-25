@@ -54,6 +54,10 @@
     -fx-pref-width: 194;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .quantity{
     -fx-font-family: Poppins;
     -fx-font-weight: bold;

@@ -7,6 +7,10 @@
     -fx-max-width: 18;
     -fx-max-height: 18;
 }
+
+.text{
+    -fx-font-family: Poppins;
+}
 .title{
     -fx-font-family: Poppins;
     -fx-font-weight: 700;

@@ -5,6 +5,10 @@
     -fx-text-fill:  #5A0B0C;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .left{
     -fx-font: Poppins;
     -fx-font-weight: 300;

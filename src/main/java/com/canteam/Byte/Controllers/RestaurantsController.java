@@ -98,7 +98,7 @@ public class RestaurantsController implements Initializable {
                     shopsGridPane.add(cuisineButton, column++, row);
 
                     // Set the margin for the cuisine button
-                    GridPane.setMargin(cuisineButton, new Insets(20));
+                    GridPane.setMargin(cuisineButton, new Insets(0, 20, 15, 20));
                 }
             }
         } catch (Exception e) {
@@ -150,7 +150,7 @@ public class RestaurantsController implements Initializable {
                     shopsGridPane.add(cuisineButton, column++, row);
 
                     // Set the margin for the cuisine button
-                    GridPane.setMargin(cuisineButton, new Insets(20));
+                    GridPane.setMargin(cuisineButton, new Insets(0, 20, 15, 20));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

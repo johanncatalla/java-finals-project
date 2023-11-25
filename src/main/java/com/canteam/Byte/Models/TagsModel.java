@@ -20,7 +20,7 @@ public class TagsModel {
     public static ArrayList<String> getShopTagArray(String shopName) {
         ArrayList<String> shopTags = new ArrayList<String>();
         Document shops = tagsCollection.find(Filters.eq("Category", "Store Tags")).first();
-        shopTags = (ArrayList<String>) shops.get("Mangyupsal");
+        shopTags = (ArrayList<String>) shops.get(shopName);
 
         return shopTags;
     }

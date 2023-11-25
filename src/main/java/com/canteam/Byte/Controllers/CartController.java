@@ -1,7 +1,9 @@
 package com.canteam.Byte.Controllers;
 
 import com.canteam.Byte.Models.CartModel;
+import com.canteam.Byte.Models.OrderModel;
 import com.canteam.Byte.Models.ShopModel;
+import com.canteam.Byte.Models.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,8 +67,10 @@ public class CartController implements Initializable {
     }
 
     @FXML
-    public void onPlaceOrderBtnClicked(){
+    public void onPlaceOrderBtnClicked() throws IOException {
         // TODO: Place order
+        OrderModel.placeOrder(UserModel.getUserName());
+        pageNavigator.navigateToPage(placeOrderBtn, "Cart");
     }
 
 

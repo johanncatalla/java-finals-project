@@ -1,5 +1,7 @@
+
 package com.canteam.Byte.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,6 +11,9 @@ public class UserOrderQueueController {
 
     @FXML
     private Button btnViewOrder;
+
+    @FXML
+    private AnchorPane orderContainer;
 
     @FXML
     private Label txtOderNumber;
@@ -23,14 +28,17 @@ public class UserOrderQueueController {
     private Label txtOrderStatus;
 
     @FXML
-    private AnchorPane orderContainer;
+    void onViewOrder(ActionEvent event) {
 
-    public void setData(String orderNum, String orderItems, String orderShop, String orderStatus) {
-        txtOderNumber.setText(orderNum);
+    }
+
+    public void setData(String orderItems, String orderShop, String orderStatus, String orderNum) {
         txtOrderItems.setText(orderItems);
         txtOrderShop.setText(orderShop);
         txtOrderStatus.setText(orderStatus);
+        txtOderNumber.setText(orderNum);
+
     }
 
-
 }
+

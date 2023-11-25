@@ -16,6 +16,10 @@
     -fx-text-fill: #5A0B0C;
 }
 
+.bold-text {
+    -fx-font-weight: bold;
+}
+
 .title-text{
     -fx-font-family: Poppins;
     -fx-font-size: 17;

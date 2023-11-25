@@ -119,11 +119,7 @@ public class OrderModel {
     }
 
     public static void main(String[] args) {
-        ArrayList<Document> ordered = OrderModel.getUserOrders("admin");
-        System.out.println(ordered);
-        OrderModel.updateOrderStatus(12, "Delivered");
-        ArrayList<Document> ordered1 = OrderModel.getUserOrders("admin");
-        System.out.println(ordered1);
+        placeOrder("admin");
 
     }
 }

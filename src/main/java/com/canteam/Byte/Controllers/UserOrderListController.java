@@ -11,10 +11,12 @@ import javafx.scene.layout.GridPane;
 import org.bson.Document;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 
 import com.canteam.Byte.Models.UserModel;
 import com.canteam.Byte.Models.OrderModel;
@@ -45,8 +47,28 @@ public class UserOrderListController implements Initializable {
 
                 // Set the data for the cuisine button
                 UserOrderQueueController userOrderQueueController = fxmlLoader.getController();
-                userOrderQueueController.setData("test", "test", "test", "test");
 
+                // Get the current item's data
+                Document orderData = userOrderList.get(i);
+                System.out.println(orderData);
+                Document cartData = (Document) orderData.get("Cart");
+                String orderItemString = "";
+                String orderStore = orderData.getString("Store");
+                String orderStatus = orderData.getString("Order Status");
+                String orderNumber = orderData.getInteger("Order Number").toString();
+
+                // Get the string of order items
+                int item = 0;
+                for (String key : cartData.keySet()) {
+                    if (item == cartData.keySet().size() - 1) {
+                        orderItemString += key;
+                    } else {
+                        orderItemString += key + ", ";
+                        item++;
+                    }
+                }
+
+                userOrderQueueController.setData(orderItemString, orderStore, orderStatus, orderNumber);
 
                 gridOrders.add(orderContainer, column, row++);
 

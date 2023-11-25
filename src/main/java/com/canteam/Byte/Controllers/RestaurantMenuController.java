@@ -9,6 +9,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -36,6 +37,14 @@ public class RestaurantMenuController {
 
     @FXML
     private Button addOnsButton;
+
+    @FXML
+    private Button addQtyBtn;
+
+    @FXML
+    private Button subtractQtyBtn;
+    @FXML
+    private Label qtyLabel;
 
     @FXML
     private Button backButton;
@@ -87,9 +96,6 @@ public class RestaurantMenuController {
 
     @FXML
     private Label mealPrice;
-
-    @FXML
-    private Label qtyLabel;
 
     @FXML
     private TextField specialInstructionsTxt;
@@ -199,6 +205,20 @@ public class RestaurantMenuController {
         sectionDescription.setText("These are the Add-Ons items in " + ShopModel.getSelectedShopName());
 
         conditionShopTags("Add-Ons");
+    }
+
+    @FXML
+    void onAddQty(ActionEvent event) {
+        if (Integer.parseInt(qtyLabel.getText()) < 10) {
+            qtyLabel.setText(Integer.toString(Integer.parseInt(qtyLabel.getText()) + 1));
+        }
+    }
+
+    @FXML
+    void onSubtractQty(ActionEvent event) {
+        if (Integer.parseInt(qtyLabel.getText()) > 1) {
+            qtyLabel.setText(Integer.toString(Integer.parseInt(qtyLabel.getText()) - 1));
+        }
     }
 
     private void conditionShopTags(String shopTag){

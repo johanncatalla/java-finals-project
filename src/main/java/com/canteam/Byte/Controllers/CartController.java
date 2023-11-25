@@ -68,7 +68,8 @@ public class CartController implements Initializable {
 
     @FXML
     public void onPlaceOrderBtnClicked() throws IOException {
-        // TODO: Place order
+        // TODO: show input dialog box when payment method is digital currency
+        CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
         OrderModel.placeOrder(UserModel.getUserName());
         pageNavigator.navigateToPage(placeOrderBtn, "Cart");
     }

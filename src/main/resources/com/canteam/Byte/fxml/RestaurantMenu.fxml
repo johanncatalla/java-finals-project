@@ -188,9 +188,9 @@
       <AnchorPane fx:id="qtyAddSubPane" layoutX="10.0" layoutY="10.0" prefHeight="86.0" prefWidth="390.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="addToCartBtn" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" onAction="#onAddtoCartBtnClicked" styleClass="button-styled" text="Add to cart" />
-            <Button fx:id="subtractQtyBtn" layoutX="15.0" layoutY="24.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
+            <Button fx:id="subtractQtyBtn" layoutX="15.0" layoutY="24.0" mnemonicParsing="false" onAction="#onSubtractQty" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
             <Label fx:id="qtyLabel" alignment="CENTER" layoutX="58.0" layoutY="30.0" prefHeight="28.0" prefWidth="39.0" styleClass="quantity" text="1" />
-            <Button fx:id="addQtyBtn" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />
+            <Button fx:id="addQtyBtn" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" onAction="#onAddQty" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />
             <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/images/Meals/line.png" />

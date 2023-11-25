@@ -1,6 +1,7 @@
 package com.canteam.Byte.Controllers;
 
 import com.canteam.Byte.Models.UserModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -81,9 +82,8 @@ public class UserOrderListController implements Initializable {
 
     }
 
-    public void onCloseOrdersButtonClick() {
+    @FXML
+    public void onCloseOrdersButtonClick(ActionEvent event) {
         pageNavigator.navigateToPage(closeOrdersButton, "Home");
-
-
     }
 }

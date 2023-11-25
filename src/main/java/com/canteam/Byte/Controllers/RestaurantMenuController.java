@@ -1,26 +1,36 @@
 package com.canteam.Byte.Controllers;
+import com.canteam.Byte.Models.CartModel;
 import com.canteam.Byte.Models.ItemModel;
 import com.canteam.Byte.Models.ShopModel;
+import com.canteam.Byte.Models.UserModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class RestaurantMenuController {
 
@@ -37,7 +47,7 @@ public class RestaurantMenuController {
     private ImageView cartIcon;
 
     @FXML
-    private AnchorPane gridPaneContainer;
+    private AnchorPane gridPaneContainer, itemViewPane, qtyAddSubPane, scrollAnchorPane;
 
     @FXML
     private GridPane itemsGridPane;
@@ -68,6 +78,21 @@ public class RestaurantMenuController {
 
     @FXML
     private GridPane sectionBar;
+
+    @FXML
+    private ImageView mealImg;
+
+    @FXML
+    private Label mealName;
+
+    @FXML
+    private Label mealPrice;
+
+    @FXML
+    private Label qtyLabel;
+
+    @FXML
+    private TextField specialInstructionsTxt;
 
     List<ItemModel> shopItems = new ArrayList<>();
 
@@ -250,6 +275,65 @@ public class RestaurantMenuController {
         }
     }
 
+    public void showItem(){
+
+        // Set the meal name and price
+        mealName.setText(ItemModel.getSelectedItemInfo().get("Item_Name"));
+        mealPrice.setText("PHP " + ItemModel.getSelectedItemInfo().get("Item_Price") + ".00");
+
+        // sample item image
+        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg")));
+        mealImg.setImage(imagePlaceHolder);
+
+        // Animation for the item view pane after clicking an item
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setNode(itemViewPane);
+        transition.setToY(-750);
+        transition.play();
+
+        // Set qtyAddSubPane to visible
+        qtyAddSubPane.setVisible(true);
+    }
+
+    @FXML
+    public void hideItem(){
+        // Animation for the item view pane after clicking an item
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setNode(itemViewPane);
+        transition.setToY(0);
+        transition.play();
+
+        // Set qtyAddSubPane to visible
+        qtyAddSubPane.setVisible(false);
+
+        // clear the special instructions text field
+        specialInstructionsTxt.clear();
+
+        // put the scrollAnchorPane back to the top
+        scrollAnchorPane.setLayoutY(0);
+    }
+
+    @FXML
+    private void onAddtoCartBtnClicked(){
+        // TODO: Change behavior when extra is checked
+        HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
+
+        System.out.println(selectedItem);
+        if (selectedItem.get("Item_Sizes").isEmpty()) {
+            CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
+                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+                    selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
+        } else {
+            HashMap<String, Integer> sizesMap = ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes"));
+            CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
+                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+                    selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
+        }
+
+    }
+
 
     private List<ItemModel> getData(){
         MongoClient client = Connection.getInstance();
@@ -302,10 +386,18 @@ public class RestaurantMenuController {
         int row = 1;
         try {
             for (int i = 0; i < shopItems.size(); i++) {
+                ItemModel itemModel = shopItems.get(i);
+
                 // Get the fxml file for the cuisine button
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
                 AnchorPane item = fxmlLoader.load();
+
+                // add event listener to the item button
+                item.setOnMouseClicked(mouseEvent -> {
+                    ItemModel.setSelectedItemInfo(itemModel.getItemInfo());
+                    showItem();
+                });
 
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
@@ -327,6 +419,7 @@ public class RestaurantMenuController {
 
         restaurantName.setText(ShopModel.getSelectedShopName());
         draggable.makeWindowDraggable(statusBar);
+        draggable.makeScrollableY(scrollAnchorPane);
 
         // Make scrollable all the buttons in the section bar
         draggable.makeParentDraggableX(popularBtn);
@@ -345,6 +438,15 @@ public class RestaurantMenuController {
                     break;
             }
         });
+
+        //Clip the scrollAnchorPane to ItemViewPane
+        Rectangle clip = new Rectangle(
+                itemViewPane.getPrefWidth(), itemViewPane.getPrefHeight()
+        );
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+
+        itemViewPane.setClip(clip);
     }
 
 }

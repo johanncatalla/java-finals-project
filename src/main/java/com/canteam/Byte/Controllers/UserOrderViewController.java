@@ -63,7 +63,7 @@ public class UserOrderViewController implements Initializable {
 
     @FXML
     void onCloseBtnClicked(ActionEvent event) {
-        pageNavigator.backToPage(closeBtn);
+        pageNavigator.navigateToPage(closeBtn, "UserOrderList");
     }
 
     public static void setOrderNumber(int inputOrderNumber) { orderNumber = inputOrderNumber; }

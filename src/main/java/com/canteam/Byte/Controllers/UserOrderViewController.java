@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import org.bson.Document;
 
@@ -85,9 +86,8 @@ public class UserOrderViewController implements Initializable {
         // Load content to grid pane
         int i = 0;
         for (String key : cart.keySet()) {
-            // Column 0 = Quantity
-            // Column 1 = Item Name
-            // Column 2 = Price
+            // Column 0 = Quantity + Item Name
+            // Column 1 = Price
             // Create labels
             Document itemInfo = (Document) cart.get(key);
             Label quantityLabel = new Label(itemInfo.get("Quantity").toString()+"×");
@@ -98,15 +98,24 @@ public class UserOrderViewController implements Initializable {
             itemNameLabel.wrapTextProperty().setValue(true);
             itemNameLabel.maxHeight(50);
 
-            // Add labels to grid pane
-            ordersGridPane.add(quantityLabel, 0, i);
-            ordersGridPane.add(itemNameLabel, 1, i);
-            ordersGridPane.add(priceLabel, 2, i);
+            // Place quantity label and item name in a Hbox
+            HBox quantityItemNameHBox = new HBox(quantityLabel, itemNameLabel);
+            quantityItemNameHBox.setSpacing(10);
+            quantityItemNameHBox.setAlignment(Pos.CENTER_LEFT);
+            HBox.setHgrow(itemNameLabel, Priority.ALWAYS);
+
+            // Align price label to the right
+            priceLabel.setAlignment(Pos.CENTER_RIGHT);
+
+            // Add Hbox to grid pane
+            ordersGridPane.add(quantityItemNameHBox, 0, i);
+            ordersGridPane.add(priceLabel, 1, i);
 
             // Set margin for labels
             GridPane.setMargin(quantityLabel, new javafx.geometry.Insets(0, 0, 5, 0));
             i++;
         }
+        confirmedByLabel.setText(order.get("Store").toString());
     }
 
 }

@@ -33,7 +33,7 @@ public class UserOrderQueueController {
     @FXML
     void onViewOrder(ActionEvent event) {
         UserOrderViewController.setOrderNumber(Integer.parseInt(txtOderNumber.getText()));
-        pageNavigator.forwardToPage(btnViewOrder, "UserOrderList", "UserOrderView");
+        pageNavigator.navigateToPage(btnViewOrder, "UserOrderView");
     }
 
     public void setData(String orderItems, String orderShop, String orderStatus, String orderNum) {

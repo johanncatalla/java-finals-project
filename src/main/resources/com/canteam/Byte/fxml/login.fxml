@@ -16,7 +16,7 @@
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane fx:id="loginPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                  <AnchorPane fx:id="loginPane" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="30.0" layoutY="64.0" styleClass="title-text" text="Log in to your account" />
                         <TextField fx:id="loginUsernameField" layoutX="30.0" layoutY="110.0" prefHeight="26.0" prefWidth="338.0" promptText="Username" />
@@ -28,7 +28,7 @@
                         <Label fx:id="errorLabel" alignment="CENTER" layoutX="29.0" layoutY="245.0" prefHeight="18.0" prefWidth="330.0" style="-fx-font-weight: bold;" textFill="#e10000" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="signupPane" prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane fx:id="signupPane" prefHeight="200.0" prefWidth="200.0" visible="false">
                      <children>
                         <Label layoutX="30.0" layoutY="38.0" styleClass="title-text" text="Sign up free account" />
                         <TextField fx:id="signupNameField" layoutX="30.0" layoutY="80.0" prefHeight="26.0" prefWidth="338.0" promptText="Full Name" />

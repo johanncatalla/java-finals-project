@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
+import com.canteam.Byte.Controllers.PageNavigator;
+
 public class UserOrderQueueController {
 
     @FXML
@@ -26,10 +28,12 @@ public class UserOrderQueueController {
 
     @FXML
     private Label txtOrderStatus;
+    private PageNavigator pageNavigator = new PageNavigator();
 
     @FXML
     void onViewOrder(ActionEvent event) {
-
+        UserOrderViewController.setOrderNumber(Integer.parseInt(txtOderNumber.getText()));
+        pageNavigator.forwardToPage(btnViewOrder, "UserOrderList", "UserOrderView");
     }
 
     public void setData(String orderItems, String orderShop, String orderStatus, String orderNum) {

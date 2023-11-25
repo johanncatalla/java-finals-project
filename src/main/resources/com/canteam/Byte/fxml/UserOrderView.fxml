@@ -34,7 +34,7 @@
                               <Label layoutX="81.0" layoutY="15.0" text="5 Mins">
                                  <styleClass>
                                     <String fx:value="maroon-text" />
-                                    <String fx:value="title-text" />
+                                    <String fx:value="subtitle-text" />
                                  </styleClass>
                               </Label>
                               <AnchorPane layoutX="8.0" layoutY="221.0">
@@ -74,11 +74,11 @@
                         </AnchorPane>
                         <AnchorPane prefWidth="390.0">
                            <children>
-                              <GridPane fx:id="ordersGridPane" layoutX="27.2" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="355.0" AnchorPane.leftAnchor="30.0">
+                              <GridPane fx:id="ordersGridPane" alignment="BOTTOM_LEFT" layoutX="25.333333333333332" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="337.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="66.66668701171875" minWidth="30.0" prefWidth="58.66664632161458" />
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="225.0" minWidth="179.33335367838544" prefWidth="189.33331298828125" />
+                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="95.33331298828122" minWidth="-Infinity" prefWidth="90.66668701171872" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints vgrow="SOMETIMES" />
@@ -128,7 +128,7 @@
                   <Label layoutX="65.0" layoutY="50.0" text="Your Order">
                      <styleClass>
                         <String fx:value="maroon-text" />
-                        <String fx:value="title-text" />
+                        <String fx:value="large-text" />
                      </styleClass>
                   </Label>
                   <Button id="closeButton" fx:id="closeBtn" layoutX="16.0" layoutY="49.0" maxHeight="22.0" maxWidth="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#onCloseBtnClicked" prefHeight="22.0" prefWidth="32.0" />

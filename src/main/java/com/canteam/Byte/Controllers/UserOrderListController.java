@@ -30,8 +30,6 @@ public class UserOrderListController implements Initializable {
     private GridPane gridOrders;
     private PageNavigator pageNavigator = new PageNavigator();
 
-    private ArrayList<Document> userOrderList = new ArrayList<>();
-
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<Document> userOrderList = OrderModel.getUserOrders(UserModel.getUserName());

@@ -327,6 +327,7 @@ public class RestaurantMenuController {
 
         // Set qtyAddSubPane to visible
         qtyAddSubPane.setVisible(false);
+        qtyLabel.setText("1");
 
         // clear the special instructions text field
         specialInstructionsTxt.clear();

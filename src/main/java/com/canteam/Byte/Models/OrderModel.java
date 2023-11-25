@@ -87,7 +87,11 @@ public class OrderModel {
 
         if (cartCopy != null) {
             // Add order status and order number fields to the order
-            cartCopy.append("Order Status", "Ordered").append("Order Number", getOrderNumberCount("Number"));
+            cartCopy.append("Order Status", "Ordered")
+                    .append("Order Number", getOrderNumberCount("Number"))
+                    .append("Full Name", UserModel.getFullName())
+                    .append("Address", UserModel.getLandmark()+", "+UserModel.getAddressDetails())
+                    .append("Contact", UserModel.getUserContact());
             orderCollection.insertOne(cartCopy);
 
             incrementOrderNumberCount("Number");

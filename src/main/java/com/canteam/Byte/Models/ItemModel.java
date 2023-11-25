@@ -102,5 +102,6 @@ public class ItemModel {
         this.setItemCuisineTags(item.get("Item_Cuisine_Tag"));
         this.setItemPopular(Boolean.parseBoolean(item.get("Item_Popular")));
         this.setItemAvailable(Boolean.parseBoolean(item.get("Item_Available")));
+        System.out.println("This is the item: "+item.get("Item_Sizes")+" Item type:"+item.get("Item_Sizes").getClass());
     }
 }

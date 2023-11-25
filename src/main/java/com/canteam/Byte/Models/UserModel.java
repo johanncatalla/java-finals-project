@@ -20,23 +20,9 @@ public class UserModel {
     private static MongoClient client = Connection.getInstance();
     private static MongoDatabase db = client.getDatabase("Byte");
     private static MongoCollection<Document> collection = db.getCollection("Users");
-    private static String fullName;
     private static String username;
-    private static String password;
-    private static ArrayList<String> address;
-    private static String email;
-    private static String contact;
-    private static String userType;
 
-    public static void signOut() {
-        UserModel.setFullName(null);
-        UserModel.setUserName(null);
-        UserModel.setUserPassword(null);
-        UserModel.setUserAddress(null);
-        UserModel.setUserContact(null);
-        UserModel.setUserType(null);
-        UserModel.setEmail(null);
-    }
+    public static void signOut() { username = null; }
 
     public static void loginUser(Document user, String inputUsername, String password) {
         UserModel.setUserName(inputUsername.trim());

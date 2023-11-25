@@ -113,7 +113,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Hyperlink fx:id="addItemLink" layoutX="120.0" layoutY="588.0" onAction="#onAddItemLinkClicked" style="-fx-font-weight: bold;" text="+ Add more items">
+      <Hyperlink fx:id="addItemLink" alignment="CENTER" layoutX="24.0" layoutY="588.0" onAction="#onAddItemLinkClicked" prefHeight="32.0" prefWidth="345.0" style="-fx-font-weight: bold;" text="+ Add more items">
          <styleClass>
             <String fx:value="maroon-text" />
             <String fx:value="title-text" />

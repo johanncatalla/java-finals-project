@@ -71,6 +71,24 @@ public class CartController implements Initializable {
 
 
     public void loadOrders() throws IOException {
+
+        if (userCart.isEmpty()) {
+            // Set the add item link
+            addItemLink.setText("+ Add an item to your cart");
+            addItemLink.setOnAction(actionEvent -> {
+                pageNavigator.forwardToPage(addItemLink, "Cart", "Restaurants");
+            });
+
+            // Set subtotal and total price
+            subtotalLabel.setText("PHP 0.00");
+            totalLabel.setText("PHP 0.00");
+            deliveryFeeLabel.setText("PHP 0.00");
+
+            // Disable place order button
+            placeOrderBtn.setDisable(true);
+
+            return;
+        }
         int row = 1;
         for (String itemName : userCart.keySet()) {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -93,6 +111,12 @@ public class CartController implements Initializable {
             GridPane.setMargin(orderItemCard, new javafx.geometry.Insets(0, 0, 5, 0));
             row++;
         }
+        // Set subtotal and total price
+        subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
+        totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
+
+        // Set delivery fee
+        deliveryFeeLabel.setText("PHP " + "20.00");
     }
 
 
@@ -114,14 +138,6 @@ public class CartController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        // Set subtotal and total price
-        subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
-        totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
-
-        // Set delivery fee
-        deliveryFeeLabel.setText("PHP " + "20.00");
-
 
     }
 }

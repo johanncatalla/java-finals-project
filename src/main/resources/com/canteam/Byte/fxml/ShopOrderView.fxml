@@ -34,9 +34,9 @@
       <AnchorPane layoutX="-2.0" layoutY="95.0" prefWidth="393.0">
          <children>
             <Label layoutX="26.0" layoutY="40.0" styleClass="text" text="Name" />
-            <Label fx:id="orderStoreLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="40.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
+            <Label fx:id="fullNameLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="40.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
             <Label layoutX="26.0" layoutY="91.0" styleClass="text" text="Order #" />
-            <Label fx:id="orderNumberLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="91.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
+            <Label fx:id="orderNumLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="91.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
             <Label layoutX="26.0" layoutY="109.0" styleClass="text" text="Delivery address" />
             <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="124.0" layoutY="109.0" maxHeight="300.0" prefHeight="58.0" prefWidth="239.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
             <Label layoutX="25.0" layoutY="15.0" text="Order Details">
@@ -50,9 +50,9 @@
             </Label>
             <Line endX="390.0" stroke="#eaeaea" strokeWidth="6.0" />
             <Label layoutX="26.0" layoutY="58.0" styleClass="text" text="Username" />
-            <Label fx:id="orderStoreLabel1" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="58.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
+            <Label fx:id="userNameLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="58.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
             <Label layoutX="26.0" layoutY="75.0" styleClass="text" text="Contact #" />
-            <Label fx:id="orderStoreLabel11" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="75.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
+            <Label fx:id="contactNumLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="75.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
          </children>
       </AnchorPane>
       <ScrollPane fx:id="itemScrollPane" layoutX="18.0" layoutY="260.0" prefHeight="153.0" prefWidth="353.0">

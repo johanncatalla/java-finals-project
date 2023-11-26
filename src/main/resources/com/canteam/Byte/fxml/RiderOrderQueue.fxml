@@ -7,26 +7,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane prefHeight="125.0" prefWidth="330.0" styleClass="shadowed-pane" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderQueueController">
-   <effect>
-      <DropShadow blurType="GAUSSIAN" height="5.0" offsetX="1.0" offsetY="1.0" radius="2.0" width="5.0">
-         <color>
-            <Color opacity="0.6259542107582092" />
-         </color>
-      </DropShadow>
-   </effect>
+<AnchorPane fx:id="orderContainer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;" styleClass="anchorStyle" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderQueueController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <children>
-      <Label layoutX="15.0" layoutY="15.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order:" />
-      <Label fx:id="txtOrderRider" layoutX="73.0" layoutY="16.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Manggyupsal - Soy Garlic Chicken, Iced Coffee" />
-      <Label layoutX="15.0" layoutY="39.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Address:" />
-      <Label fx:id="txtAddressRider" layoutX="73.0" layoutY="40.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="CCMS Department Building Underground Student Lounge" />
-      <Label layoutX="15.0" layoutY="64.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Contact:" />
-      <Label fx:id="txtContactRider" layoutX="73.0" layoutY="64.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="09123456789" />
-      <Button fx:id="btnDeliver" layoutX="243.0" layoutY="85.0" mnemonicParsing="false" prefHeight="23.0" styleClass="button-styled" text="Deliver" />
-      <Label layoutX="16.0" layoutY="87.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
-      <Label fx:id="txtContactRider1" layoutX="74.0" layoutY="87.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="1" />
+      <AnchorPane layoutX="15.0" layoutY="15.0">
+         <children>
+            <Label layoutY="-1.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Name" />
+            <Label fx:id="txtName" layoutX="69.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Lalisa Manoban" />
+            <Label layoutY="16.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Contact #" />
+            <Label fx:id="txtContact" layoutX="69.0" layoutY="17.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="099999999" />
+            <Label layoutY="33.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Address" />
+            <Label fx:id="txtAddress" layoutX="69.0" layoutY="33.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="address" />
+            <Label fx:id="txtOrderNum" layoutX="69.0" layoutY="50.0" prefHeight="17.0" prefWidth="126.0" styleClass="right" text="1" />
+            <Label layoutY="50.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
+            <Button fx:id="btnDeliverOrder" layoutX="206.0" layoutY="65.0" mnemonicParsing="false" onAction="#onDeliver" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="Deliver" />
+            <Label fx:id="txtShopName" layoutX="69.0" layoutY="66.0" prefHeight="17.0" prefWidth="126.0" styleClass="right" text="Shopname" />
+            <Label layoutY="66.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Shop" />
+            <Label fx:id="pickedUpTxt" layoutX="206.0" layoutY="2.0" styleClass="confirmed-text" stylesheets="@../styles/OrdersQueue.css" text=" PICKED-UP " visible="false" />
+         </children>
+      </AnchorPane>
    </children>
+   <effect>
+      <DropShadow>
+         <color>
+            <Color opacity="0.24058221280574799" />
+         </color>
+      </DropShadow>
+   </effect>
 </AnchorPane>

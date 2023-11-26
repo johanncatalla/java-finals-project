@@ -29,9 +29,6 @@ public class ShopOrderViewController implements Initializable {
     private Button confirmOrderBtn;
 
     @FXML
-    private Label deliveryAddressLabel;
-
-    @FXML
     private Label deliveryFeeLabel;
 
     @FXML
@@ -53,18 +50,6 @@ public class ShopOrderViewController implements Initializable {
     private GridPane orderItemGrid;
 
     @FXML
-    private Label orderNumberLabel;
-
-    @FXML
-    private Label orderStoreLabel;
-
-    @FXML
-    private Label orderStoreLabel1;
-
-    @FXML
-    private Label orderStoreLabel11;
-
-    @FXML
     private ImageView statusBar;
 
     @FXML
@@ -78,6 +63,22 @@ public class ShopOrderViewController implements Initializable {
 
     @FXML
     private Label orderCancelled;
+
+    @FXML
+    private Label contactNumLabel;
+
+    @FXML
+    private Label deliveryAddressLabel;
+
+    @FXML
+    private Label fullNameLabel;
+
+    @FXML
+    private Label orderNumLabel;
+
+    @FXML
+    private Label userNameLabel;
+
     private PageNavigator pageNavigator = new PageNavigator();
     private static int orderNumber;
 
@@ -132,7 +133,6 @@ public class ShopOrderViewController implements Initializable {
             Label itemNameLabel = new Label(itemInfo.get("Name").toString());
             Label priceLabel = new Label("PHP "+itemInfo.get("Total Price").toString()+".00");
 
-            // Add Hbox to grid pane
             orderItemGrid.add(quantityLabel, 0, i);
             orderItemGrid.add(itemNameLabel, 1, i);
             orderItemGrid.add(priceLabel, 2, i);
@@ -145,12 +145,16 @@ public class ShopOrderViewController implements Initializable {
                 orderInstructions.add(quantityLabel, 1, i);
             }
             i++;
-
-            modePaymentLabel.setText(order.getString("Mode of Payment"));
-            subtotalLabel.setText("PHP "+order.getInteger("Subtotal").toString()+".00");
-            deliveryFeeLabel.setText("PHP 20.00");
-            totalLabel.setText("PHP "+order.getInteger("Total Price of Order").toString()+".00");
         }
+        fullNameLabel.setText(order.getString("Full Name"));
+        userNameLabel.setText(order.getString("UserName"));
+        contactNumLabel.setText(order.getString("Contact"));
+        orderNumLabel.setText(String.valueOf(order.getInteger("Order Number")));
+        deliveryAddressLabel.setText(order.getString("Address"));
+        modePaymentLabel.setText(order.getString("Mode of Payment"));
+        subtotalLabel.setText("PHP "+order.getInteger("Subtotal").toString()+".00");
+        deliveryFeeLabel.setText("PHP 20.00");
+        totalLabel.setText("PHP "+order.getInteger("Total Price of Order").toString()+".00");
     }
 
     public static void setOrderNumber(int inputOrderNumber) {

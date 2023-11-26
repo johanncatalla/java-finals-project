@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,22 +9,35 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane prefHeight="893.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderListController">
+<AnchorPane maxHeight="844.0" maxWidth="390.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" style="-fx-background-color: white;" stylesheets="@../styles/Meals.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderListController">
    <children>
-      <ImageView fitHeight="48.42" fitWidth="390.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assets/images/Meals/status-bar-black.png" />
-         </image>
-      </ImageView>
-      <GridPane fx:id="gridOrders" layoutX="30.0" layoutY="125.0" prefHeight="125.0" prefWidth="330.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-      <Label layoutX="146.0" layoutY="56.0" prefHeight="27.0" prefWidth="98.0" styleClass="byte-Rider" stylesheets="@../styles/Meals.css" text="Byte Rider" />
+      <AnchorPane fx:id="scrollAnchor" layoutX="-2.0" layoutY="125.0" prefHeight="126.0" prefWidth="362.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <GridPane fx:id="gridOrders" prefHeight="125.0" prefWidth="330.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="30.0" layoutY="56.0" prefHeight="104.0" prefWidth="390.0" style="-fx-border-width: 0 0 3 0; -fx-border-color: lightgray; -fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="134.0" layoutY="57.0" prefHeight="27.0" prefWidth="122.0" styleClass="byte-Rider" stylesheets="@../styles/Meals.css" text="Byte Rider" />
+            <Button fx:id="closeOrdersButton" layoutX="30.0" layoutY="59.0" maxHeight="68.0" maxWidth="50.0" mnemonicParsing="false" onAction="#onCloseOrdersButtonClick" prefHeight="21.0" prefWidth="23.0" styleClass="exit-icon" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="statusBar">
+         <children>
+            <ImageView fitHeight="48.42" fitWidth="390.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/Meals/status-bar-black.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="reloadBtn" layoutX="309.0" layoutY="104.0" mnemonicParsing="false" onAction="#onReload" prefHeight="27.0" prefWidth="37.0" styleClass="reload-icon" />
    </children>
 </AnchorPane>

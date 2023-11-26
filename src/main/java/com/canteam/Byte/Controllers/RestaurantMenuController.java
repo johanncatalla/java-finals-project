@@ -94,7 +94,7 @@ public class RestaurantMenuController {
 
     @FXML
     private HBox tagsHBox;
-
+    private boolean extraChecked;
     List<ItemModel> shopItems = new ArrayList<>();
 
     private Draggable draggable = new Draggable();
@@ -246,15 +246,19 @@ public class RestaurantMenuController {
             // Create a checkbox
             for (String key : sizesMap.keySet()){
                 CheckBox checkBox = new CheckBox(key);
-                Label label = new Label("PHP " + sizesMap.get(key) + ".00");
+                Label label = new Label("+ PHP " + sizesMap.get(key) + ".00");
 
                 // Add event listener to the checkbox
                 checkBox.setOnAction(actionEvent -> {
                     if (checkBox.isSelected()){
                         extrasMap.put(key, sizesMap.get(key));
+                        mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price"))+sizesMap.get(key))+".00");
+                        extraChecked = true;
                         System.out.println(extrasMap);
                     } else {
                         extrasMap.remove(key);
+                        mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price")))+".00");
+                        extraChecked = false;
                         System.out.println(extrasMap);
                     }
                 });
@@ -314,17 +318,25 @@ public class RestaurantMenuController {
     private void onAddtoCartBtnClicked(){
         // TODO: Change behavior when extra is checked
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
+        String txtPrice = mealPrice.getText();
+        int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
 
         System.out.println(selectedItem);
-        if (selectedItem.get("Item_Sizes").isEmpty()) {
+        if (ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes")).isEmpty()) {
             CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
-                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+                    price, Integer.parseInt(qtyLabel.getText()),
                     selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
         } else {
-            HashMap<String, Integer> sizesMap = ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes"));
-            CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
-                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
-                    selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+            if (extraChecked) {
+                CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [22oz]",
+                        price, Integer.parseInt(qtyLabel.getText()),
+                        selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+            } else {
+                CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [Regular]",
+                        price, Integer.parseInt(qtyLabel.getText()),
+                        selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+            }
+
         }
 
     }

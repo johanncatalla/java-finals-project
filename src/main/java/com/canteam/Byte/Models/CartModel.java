@@ -38,7 +38,7 @@ public class CartModel {
         collection.insertOne(newUser);
     }
 
-    public static void addToCart(String username, String name, double price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
+    public static void addToCart(String username, String name, int price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
         CartModel.defineCart(username);
         if (cart.containsKey(name)) {
 
@@ -49,7 +49,7 @@ public class CartModel {
 
             System.out.println("Successfully updated");
         } else {
-            int itemTotalPrice = (int) (price * quantity);;
+            int itemTotalPrice = (price * quantity);
 
             // Create item document containing item details
             Document itemDB = new Document("Name", name)
@@ -110,9 +110,9 @@ public class CartModel {
             Document cartDocument = (Document) userDocument.get("Cart");
             Document itemDocument = (Document) cartDocument.get(itemName);
             int quantity = itemDocument.getInteger("Quantity");
-            double price = itemDocument.getDouble("Price");
+            int price = itemDocument.getInteger("Price");
 
-            return (int) (quantity * price);
+            return (quantity * price);
         }
         return 0;
     }

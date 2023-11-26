@@ -56,7 +56,7 @@
                                 <Insets left="10.0" />
                             </padding>
                         </HBox>
-                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="336.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cartIcon" fitHeight="150.0" fitWidth="22.0" layoutX="336.0" layoutY="65.0" onMousePressed="#onCartIconClicked" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../assets/Cart.png" />
                             </image>

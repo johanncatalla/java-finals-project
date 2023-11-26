@@ -74,9 +74,19 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="27.0" layoutY="9.0" styleClass="h2-text" text="Your Daily Deals" />
+                        <GridPane fx:id="dailyDealsGridPane" layoutX="27.0" layoutY="35.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="162.0" prefWidth="126.0" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="35.0">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane prefHeight="240.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="26.0" layoutY="9.0" styleClass="h2-text" text="Cuisines" />
+                        <Label layoutX="27.0" layoutY="9.0" styleClass="h2-text" text="Cuisines" />
                         <GridPane fx:id="cuisinesGridPane" layoutY="37.0" prefHeight="208.0" prefWidth="400.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

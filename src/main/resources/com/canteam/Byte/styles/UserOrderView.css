@@ -78,3 +78,51 @@
     -fx-pref-height: 38;
     -fx-pref-width: 330;
 }
+
+.button-styled{
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #5A0B0C;
+    -fx-background-color: #FFDA4B;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 30;
+    -fx-pref-width: 125;
+}
+
+.button-styled-grey{
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #3a3b3c;
+    -fx-background-color: #e8e8e8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 30;
+    -fx-pref-width: 125;
+}
+
+.button-styled-rider{
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #5A0B0C;
+    -fx-background-color: #FFDA4B;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 30;
+    -fx-pref-width: 150;
+}
+
+.button-styled-grey-rider{
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #3a3b3c;
+    -fx-background-color: #e8e8e8;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-pref-height: 30;
+    -fx-pref-width: 150;
+}

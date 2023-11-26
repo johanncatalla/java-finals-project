@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="500.0" prefWidth="330.0" stylesheets="@../styles/OverlayOrderDetails.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ShopOrderView">
+<AnchorPane prefHeight="500.0" prefWidth="330.0" stylesheets="@../styles/OverlayOrderDetails.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ShopOrderViewController">
    <children>
       <Label layoutX="25.0" layoutY="25.0" styleClass="header" text="Order Details" />
       <Label layoutX="25.0" layoutY="74.0" styleClass="left" text="Order number:" />
       <Label layoutX="25.0" layoutY="103.0" styleClass="left" text="Delivery address:" />
       <Label layoutX="25.0" layoutY="174.0" styleClass="left" text="Landmark:" />
-      <Label fx:id="txtRestaurant" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="49.0" prefHeight="19.0" prefWidth="145.0" styleClass="right" text="Manggyupsal" textAlignment="RIGHT" />
+      <Label fx:id="tztCustomerName" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="49.0" prefHeight="19.0" prefWidth="145.0" styleClass="right" text="Name" textAlignment="RIGHT" />
       <Label fx:id="txtOrderNumber" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="75.0" prefHeight="19.0" prefWidth="145.0" styleClass="right" text="#ccms-order14" textAlignment="RIGHT" />
       <Label fx:id="txtAddress" alignment="CENTER_RIGHT" layoutX="160.0" layoutY="104.0" prefHeight="57.0" prefWidth="145.0" styleClass="right" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
       <Label layoutX="25.0" layoutY="50.0" styleClass="left" text="Order from:" />
@@ -56,8 +56,8 @@
                   <Label layoutX="25.0" layoutY="64.0" styleClass="left" text="Total" />
                   <Label fx:id="txtModeOfPayment" alignment="CENTER_RIGHT" layoutX="209.0" layoutY="41.0" styleClass="left" text="Cash on Delivery" />
                   <Label fx:id="txtTotal" alignment="CENTER_RIGHT" layoutX="215.0" layoutY="63.0" prefWidth="90.0" styleClass="total-price" text="PHP 114.00" />
-                  <Button fx:id="btnPickUpOrder" layoutX="25.0" layoutY="99.0" mnemonicParsing="false" styleClass="button-styled" text="Pick up Order" />
-                  <Button fx:id="btnOrderDelivered" layoutX="180.0" layoutY="99.0" mnemonicParsing="false" prefWidth="150.0" styleClass="button-styled" text="Order Delivered" />
+                  <Button fx:id="btnPickUpOrder" layoutX="25.0" layoutY="99.0" mnemonicParsing="false" styleClass="button-styled" text="Deny Order" />
+                  <Button fx:id="btnOrderDelivered" layoutX="180.0" layoutY="99.0" mnemonicParsing="false" prefWidth="150.0" styleClass="button-styled" text="Confirm Order" />
                   <ImageView fitHeight="150.0" fitWidth="330.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/Line7PX.png" />
@@ -67,5 +67,6 @@
             </AnchorPane>
          </children>
       </GridPane>
+      <Button fx:id="btnClose" layoutX="294.0" layoutY="9.0" mnemonicParsing="false" onAction="#onExit" styleClass="exit-icon" />
    </children>
 </AnchorPane>

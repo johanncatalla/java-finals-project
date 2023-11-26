@@ -1,5 +1,6 @@
 package com.canteam.Byte.Controllers;
 
+import com.canteam.Byte.Models.CartModel;
 import com.canteam.Byte.Models.ShopModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
@@ -35,15 +36,18 @@ public class RestaurantsController implements Initializable {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private ImageView cartIcon;
+
     private Draggable draggable = new Draggable();
 
-    private List<ShopModel> shopList = new ArrayList<>();
+    public static List<ShopModel> shopList = new ArrayList<>();
 
     PageNavigator pageNavigator = new PageNavigator();
 
     private static String initialSearch = null;
 
-    private List<ShopModel> getData(){
+    public static List<ShopModel> getData(){
         List<ShopModel> shopList = new ArrayList<>();
         ShopModel shop;
 
@@ -99,6 +103,9 @@ public class RestaurantsController implements Initializable {
 
                     // Set the margin for the cuisine button
                     GridPane.setMargin(cuisineButton, new Insets(0, 20, 15, 20));
+
+                    // Disable other shops not matching the shop in the cart
+                    disableIfHasCart(cuisineButton, i);
                 }
             }
         } catch (Exception e) {
@@ -110,8 +117,34 @@ public class RestaurantsController implements Initializable {
         initialSearch = search;
     }
 
+    @FXML
+    private void onCartIconClicked(){
+        pageNavigator.forwardToPage(cartIcon, "Restaurants", "Cart");
+    }
+
+    public static void disableIfHasCart(AnchorPane shopButton, int i){
+        String hasCart = CartModel.getStore();
+        System.out.println(hasCart);
+        if (hasCart != null){
+            if (hasCart.equals(shopList.get(i).getShopName())){
+                shopButton.setOpacity(1);
+                shopButton.setDisable(false);
+            } else {
+                shopButton.setOpacity(0.5);
+                shopButton.setDisable(true);
+            }
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // if CartController.addItemClicked is true, disable the add to cart button
+        if (CartController.addItemClicked){
+            cartIcon.setVisible(false);
+        } else {
+            cartIcon.setVisible(true);
+        }
+
         // Set up window dragging
         draggable.makeWindowDraggable(statusBar);
 
@@ -123,12 +156,11 @@ public class RestaurantsController implements Initializable {
         });
 
         // Set up data for the shops
-        // Will create an error at start but will be ok when you open the home page
-        shopList.addAll(getData());
 
         if (initialSearch != null){
             onSearchEntered(initialSearch);
         } else {
+            String hasCart = CartModel.getStore();
             int column = 0;
             int row = 1;
             try {
@@ -136,7 +168,7 @@ public class RestaurantsController implements Initializable {
                     // Get the fxml file for the cuisine button
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/ShopButton.fxml"));
-                    AnchorPane cuisineButton = fxmlLoader.load();
+                    AnchorPane shopButton = fxmlLoader.load();
 
                     // Set the data for the cuisine button
                     ShopButtonController shopButtonController = fxmlLoader.getController();
@@ -147,10 +179,13 @@ public class RestaurantsController implements Initializable {
                         row++;
                         column = 0;
                     }
-                    shopsGridPane.add(cuisineButton, column++, row);
+                    shopsGridPane.add(shopButton, column++, row);
 
                     // Set the margin for the cuisine button
-                    GridPane.setMargin(cuisineButton, new Insets(0, 20, 15, 20));
+                    GridPane.setMargin(shopButton, new Insets(0, 20, 15, 20));
+
+                    // Disable other shops not matching the shop in the cart
+                    disableIfHasCart(shopButton, i);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

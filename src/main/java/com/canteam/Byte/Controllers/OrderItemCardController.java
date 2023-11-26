@@ -1,14 +1,21 @@
 package com.canteam.Byte.Controllers;
 
+import com.canteam.Byte.Models.CartModel;
+import com.canteam.Byte.Models.UserModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
+
+import java.util.Objects;
 
 public class OrderItemCardController {
 
     @FXML
-    private AnchorPane itemImage;
+    private ImageView itemImage;
 
     @FXML
     private Label itemName;
@@ -20,22 +27,25 @@ public class OrderItemCardController {
     private Label itemQty;
 
     @FXML
-    private Button removeBtn;
+    public Button removeBtn;
 
     public void setData(String itemStore, String itemName, String itemPrice, String itemQty){
-        System.out.println("Setting data for " + itemName + ":");
-        System.out.println("itemStore: " + itemStore + "\nitemName: " + itemName + "\nitemPrice: " + itemPrice + "\nitemQty: " + itemQty + "\n");
-        String imageSrc = "/com/canteam/Byte/images/" + itemStore + "/" + itemName + ".jpg";
+        // set data to labels
         this.itemName.setText(itemName);
-        this.itemPrice.setText(itemPrice);
+        this.itemPrice.setText("PHP "+itemPrice+".00");
         this.itemQty.setText("X"+itemQty);
-        this.itemImage.setStyle("" +
-                "-fx-background-image: url("+imageSrc+");" +
-                " -fx-background-size: cover;" +
-                " -fx-background-position: center;" +
-                " -fx-background-repeat: no-repeat;" +
-                " -fx-border-width: 2;" +
-                " -fx-border-color: #EAEAEA;");
+
+        // get image resource as stream
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg")));
+        // set image to image view
+        itemImage.setImage(image);
+        // clip the image to rounded rectangle
+        Rectangle clip = new Rectangle(
+                itemImage.getFitWidth(), itemImage.getFitHeight()
+        );
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        itemImage.setClip(clip);
     }
 
 }

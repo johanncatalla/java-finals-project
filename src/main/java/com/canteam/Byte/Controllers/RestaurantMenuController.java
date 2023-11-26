@@ -94,7 +94,7 @@ public class RestaurantMenuController {
 
     @FXML
     private HBox tagsHBox;
-
+    private boolean extraChecked;
     List<ItemModel> shopItems = new ArrayList<>();
 
     private Draggable draggable = new Draggable();
@@ -148,7 +148,7 @@ public class RestaurantMenuController {
 
 
                 if (itemModel.getItemShopTags().contains(shopTag)) {
-                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
@@ -194,7 +194,7 @@ public class RestaurantMenuController {
 
 
                 if (itemModel.getItemName().toLowerCase().contains(searchField.getText())) {
-                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
@@ -219,7 +219,7 @@ public class RestaurantMenuController {
         mealPrice.setText("PHP " + selectedItem.get("Item_Price") + ".00");
 
         // sample item image
-        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg")));
+        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg")));
         mealImg.setImage(imagePlaceHolder);
 
         // Animation for the item view pane after clicking an item
@@ -246,15 +246,19 @@ public class RestaurantMenuController {
             // Create a checkbox
             for (String key : sizesMap.keySet()){
                 CheckBox checkBox = new CheckBox(key);
-                Label label = new Label("PHP " + sizesMap.get(key) + ".00");
+                Label label = new Label("+ PHP " + sizesMap.get(key) + ".00");
 
                 // Add event listener to the checkbox
                 checkBox.setOnAction(actionEvent -> {
                     if (checkBox.isSelected()){
                         extrasMap.put(key, sizesMap.get(key));
+                        mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price"))+sizesMap.get(key))+".00");
+                        extraChecked = true;
                         System.out.println(extrasMap);
                     } else {
                         extrasMap.remove(key);
+                        mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price")))+".00");
+                        extraChecked = false;
                         System.out.println(extrasMap);
                     }
                 });
@@ -311,20 +315,32 @@ public class RestaurantMenuController {
     }
 
     @FXML
+    private void onCartIconClicked(){
+        pageNavigator.forwardToPage(cartIcon, "RestaurantMenu", "Cart");
+    }
+
+    @FXML
     private void onAddtoCartBtnClicked(){
-        // TODO: Change behavior when extra is checked
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
+        String txtPrice = mealPrice.getText();
+        int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
 
         System.out.println(selectedItem);
-        if (selectedItem.get("Item_Sizes").isEmpty()) {
+        if (ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes")).isEmpty()) {
             CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
-                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+                    price, Integer.parseInt(qtyLabel.getText()),
                     selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
         } else {
-            HashMap<String, Integer> sizesMap = ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes"));
-            CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
-                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
-                    selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+            if (extraChecked) {
+                CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [22oz]",
+                        price, Integer.parseInt(qtyLabel.getText()),
+                        selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+            } else {
+                CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [Regular]",
+                        price, Integer.parseInt(qtyLabel.getText()),
+                        selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+            }
+
         }
 
     }
@@ -381,6 +397,13 @@ public class RestaurantMenuController {
 
     @FXML
     void initialize() {
+        // if CartController.addItemClicked is true, disable the add to cart button
+        if (CartController.addItemClicked){
+            cartIcon.setVisible(false);
+        } else {
+            cartIcon.setVisible(true);
+        }
+
         // clear the grid pane
         itemsGridPane.getChildren().clear();
 
@@ -429,7 +452,7 @@ public class RestaurantMenuController {
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
 
-                itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                 if (column == 2) {
                     row++;
                     column = 0;

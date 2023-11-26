@@ -29,10 +29,18 @@ public class UserOrderListController implements Initializable {
 
     @FXML
     private GridPane gridOrders;
+
+    @FXML
+    private AnchorPane scrollAnchor, statusBar;
     private PageNavigator pageNavigator = new PageNavigator();
+
+    private Draggable draggable = new Draggable();
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        draggable.makeScrollableY(scrollAnchor);
+        draggable.makeWindowDraggable(statusBar);
+
         ArrayList<Document> userOrderList = OrderModel.getUserOrders(UserModel.getUserName());
 
         int column = 0;
@@ -72,7 +80,7 @@ public class UserOrderListController implements Initializable {
                 gridOrders.add(orderContainer, column, row++);
 
                 // Set the margin for the cuisine button
-                GridPane.setMargin(orderContainer, new Insets(10));
+                GridPane.setMargin(orderContainer, new Insets(0, 0, 20, 0));
             }
 
         } catch (IOException e) {

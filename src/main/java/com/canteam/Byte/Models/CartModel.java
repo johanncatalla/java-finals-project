@@ -89,6 +89,20 @@ public class CartModel {
         return 0;
     }
 
+    // Delete item from cart
+    public static void deleteItemFromCart(String username, String itemName) {
+        // Delete item from cart
+        collection.updateOne(Filters.eq("UserName", username), Updates.unset("Cart."+itemName));
+        // update order subtotal and total price
+        updateSubtotalAndTotalPrice(username);
+        // If cart is empty, set store to null
+        if (cart.isEmpty()) {
+            collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", null));
+        }
+        // Fetch cart from database to local cart
+        CartModel.defineCart(username);
+    }
+
     private static int getItemTotalPriceFromCart(String username, String itemName) {
         Document userDocument = collection.find(Filters.eq("UserName", username)).first();
 

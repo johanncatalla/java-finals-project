@@ -148,7 +148,7 @@ public class RestaurantMenuController {
 
 
                 if (itemModel.getItemShopTags().contains(shopTag)) {
-                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
@@ -194,7 +194,7 @@ public class RestaurantMenuController {
 
 
                 if (itemModel.getItemName().toLowerCase().contains(searchField.getText())) {
-                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
@@ -315,8 +315,12 @@ public class RestaurantMenuController {
     }
 
     @FXML
+    private void onCartIconClicked(){
+        pageNavigator.forwardToPage(cartIcon, "RestaurantMenu", "Cart");
+    }
+
+    @FXML
     private void onAddtoCartBtnClicked(){
-        // TODO: Change behavior when extra is checked
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
         String txtPrice = mealPrice.getText();
         int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
@@ -393,6 +397,13 @@ public class RestaurantMenuController {
 
     @FXML
     void initialize() {
+        // if CartController.addItemClicked is true, disable the add to cart button
+        if (CartController.addItemClicked){
+            cartIcon.setVisible(false);
+        } else {
+            cartIcon.setVisible(true);
+        }
+
         // clear the grid pane
         itemsGridPane.getChildren().clear();
 
@@ -441,7 +452,7 @@ public class RestaurantMenuController {
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
 
-                itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                 if (column == 2) {
                     row++;
                     column = 0;

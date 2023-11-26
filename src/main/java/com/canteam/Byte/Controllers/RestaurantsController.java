@@ -35,6 +35,9 @@ public class RestaurantsController implements Initializable {
     @FXML
     private TextField searchField;
 
+    @FXML
+    private ImageView cartIcon;
+
     private Draggable draggable = new Draggable();
 
     private List<ShopModel> shopList = new ArrayList<>();
@@ -110,8 +113,20 @@ public class RestaurantsController implements Initializable {
         initialSearch = search;
     }
 
+    @FXML
+    private void onCartIconClicked(){
+        pageNavigator.forwardToPage(cartIcon, "Restaurants", "Cart");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // if CartController.addItemClicked is true, disable the add to cart button
+        if (CartController.addItemClicked){
+            cartIcon.setVisible(false);
+        } else {
+            cartIcon.setVisible(true);
+        }
+
         // Set up window dragging
         draggable.makeWindowDraggable(statusBar);
 

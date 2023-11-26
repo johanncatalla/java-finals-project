@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 
-<AnchorPane fx:id="orderContainer" prefHeight="125.0" prefWidth="330.0" styleClass="anchorStyle" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.UserOrderQueueController">
+<AnchorPane fx:id="orderContainer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;" styleClass="anchorStyle" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.UserOrderQueueController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -24,4 +25,11 @@
          </children>
       </AnchorPane>
    </children>
+   <effect>
+      <DropShadow>
+         <color>
+            <Color opacity="0.24058221280574799" />
+         </color>
+      </DropShadow>
+   </effect>
 </AnchorPane>

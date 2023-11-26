@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -19,6 +20,7 @@ public class MainApplication extends Application {
         changeScene("Login");
         // stage.initStyle(StageStyle.UNDECORATED); // Remove the titleBar
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

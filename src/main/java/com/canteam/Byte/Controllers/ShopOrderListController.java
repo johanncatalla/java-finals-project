@@ -35,6 +35,14 @@ public class ShopOrderListController implements Initializable {
     @FXML
     private Label shopName;
 
+    @FXML
+    private AnchorPane scrollAnchor;
+
+    @FXML
+    private AnchorPane statusBar;
+
+    private Draggable draggable = new Draggable();
+
     private PageNavigator pageNavigator = new PageNavigator();
 
     @FXML
@@ -46,6 +54,8 @@ public class ShopOrderListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        draggable.makeScrollableY(scrollAnchor);
+        draggable.makeWindowDraggable(statusBar);
         shopName.setText("Byte Shop: "+UserModel.getUserName());
         ArrayList<Document> shopOrderList = OrderModel.getStoreOrders(UserModel.getUserName());
 

@@ -219,7 +219,7 @@ public class RestaurantMenuController {
         mealPrice.setText("PHP " + selectedItem.get("Item_Price") + ".00");
 
         // sample item image
-        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg")));
+        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg")));
         mealImg.setImage(imagePlaceHolder);
 
         // Animation for the item view pane after clicking an item

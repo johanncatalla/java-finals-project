@@ -39,9 +39,7 @@ public class CartModel {
     }
 
     public static void addToCart(String username, String name, int price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
-        CartModel.defineCart(username);
         if (cart.containsKey(name)) {
-
             // Update item quantity if item is already in cart
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity));
             // Update item total price accordingly
@@ -70,8 +68,6 @@ public class CartModel {
 
             System.out.println("Successfully added");
         }
-        // update order subtotal and total price
-        updateSubtotalAndTotalPrice(username);
         // Fetch cart from database to local cart
         CartModel.defineCart(username);
     }

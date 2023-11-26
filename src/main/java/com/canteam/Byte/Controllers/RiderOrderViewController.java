@@ -92,6 +92,7 @@ public class RiderOrderViewController implements Initializable {
         orderDeliveredBtn.setVisible(false);
         orderDelivered.setVisible(true);
         OrderModel.updateOrderStatus(orderNumber, "Delivered");
+        OrderModel.completeOrder(orderNumber);
     }
 
     @FXML

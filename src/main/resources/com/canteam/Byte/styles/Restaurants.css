@@ -9,6 +9,10 @@
     -fx-font-size: 17;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .topbar-text{
     -fx-font-family: Poppins;
     -fx-text-fill: white;

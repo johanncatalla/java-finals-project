@@ -87,7 +87,11 @@ public class OrderModel {
 
         if (cartCopy != null) {
             // Add order status and order number fields to the order
-            cartCopy.append("Order Status", "Ordered").append("Order Number", getOrderNumberCount("Number"));
+            cartCopy.append("Order Status", "Ordered")
+                    .append("Order Number", getOrderNumberCount("Number"))
+                    .append("Full Name", UserModel.getFullName())
+                    .append("Address", UserModel.getLandmark()+", "+UserModel.getAddressDetails())
+                    .append("Contact", UserModel.getUserContact());
             orderCollection.insertOne(cartCopy);
 
             incrementOrderNumberCount("Number");
@@ -119,11 +123,7 @@ public class OrderModel {
     }
 
     public static void main(String[] args) {
-        ArrayList<Document> ordered = OrderModel.getUserOrders("admin");
-        System.out.println(ordered);
-        OrderModel.updateOrderStatus(12, "Delivered");
-        ArrayList<Document> ordered1 = OrderModel.getUserOrders("admin");
-        System.out.println(ordered1);
+        placeOrder("admin");
 
     }
 }

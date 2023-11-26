@@ -1,0 +1,15 @@
+.exit-icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/exit_icon.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.reload-icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/reload_icon.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

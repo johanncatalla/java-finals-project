@@ -3,6 +3,10 @@
 -fx-background-radius: 30 30 0 0;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .title-text{
 -fx-font-family: Poppins;
 -fx-font-weight: bold;

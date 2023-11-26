@@ -33,12 +33,14 @@ public class ShopButtonController implements Initializable {
         buttonImage.setImage(image);
     }
 
+    public void onShopButtonClicked() {
+        ShopModel.setSelectedShopName(shopModel.getShopName());
+        pageNavigator.makeForwardNavigator(shopButton, "Restaurants", "RestaurantMenu");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        shopButton.setOnMouseClicked(mouseEvent -> {
-            ShopModel.setSelectedShopName(shopModel.getShopName());
-            pageNavigator.makeForwardNavigator(shopButton, "Restaurants", "RestaurantMenu");
-        });
+
     }
 }
 

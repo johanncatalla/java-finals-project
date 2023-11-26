@@ -58,15 +58,6 @@ public class LoginSignupController implements Initializable {
 
     Draggable draggable = new Draggable();
 
-    public static boolean newUser;
-
-    public static void setNewUser(boolean value) {
-        newUser = value;
-    }
-
-    public static boolean getNewUser() {
-    	return newUser;
-    }
 
     @FXML
     protected void onLogoClicked(){
@@ -100,8 +91,7 @@ public class LoginSignupController implements Initializable {
                 loginPane.setVisible(true);
 
                 // Set new user to true
-                LoginSignupController.setNewUser(true);
-                LocationController.setNewUser(true);
+                UserModel.setNewOldUser(true);
 
                 // Clear fields
                 signupNameField.setText(null);
@@ -145,9 +135,9 @@ public class LoginSignupController implements Initializable {
 
             if (user != null) {
                 if (user.getString("Password").equals(loginPassField.getText())) {
-                    UserModel.loginUser(user, username, user.getString("Password"));
+                    UserModel.loginUser(username);
                     if (UserModel.getUserType().equals("Customer")) {
-                        if (newUser){
+                        if (UserModel.isNewUser()){
                             pageNavigator.navigateToPage(loginButton, "Location");
                             return;
                         }

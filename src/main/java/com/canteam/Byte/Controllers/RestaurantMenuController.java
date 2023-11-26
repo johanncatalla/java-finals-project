@@ -1,31 +1,45 @@
 package com.canteam.Byte.Controllers;
-import com.canteam.Byte.Models.ItemModel;
-import com.canteam.Byte.Models.ShopModel;
+import com.canteam.Byte.Models.*;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class RestaurantMenuController {
 
     @FXML
     private Button addOnsButton;
+
+    @FXML
+    private Button addQtyBtn;
+
+    @FXML
+    private Button subtractQtyBtn;
+    @FXML
+    private Label qtyLabel;
 
     @FXML
     private Button backButton;
@@ -37,10 +51,10 @@ public class RestaurantMenuController {
     private ImageView cartIcon;
 
     @FXML
-    private AnchorPane gridPaneContainer;
+    private AnchorPane gridPaneContainer, itemViewPane, qtyAddSubPane, noTagsPositionPane ,scrollAnchorPane, specialInstructionsPane, extrasLabel;
 
     @FXML
-    private GridPane itemsGridPane;
+    private GridPane itemsGridPane, extrasGridPane;
 
     @FXML
     private Button koreanStreetFoodBtn;
@@ -67,113 +81,43 @@ public class RestaurantMenuController {
     private ImageView statusBar;
 
     @FXML
-    private GridPane sectionBar;
+    private ImageView mealImg;
+
+    @FXML
+    private Label mealName;
+
+    @FXML
+    private Label mealPrice;
+
+    @FXML
+    private TextField specialInstructionsTxt;
+
+    @FXML
+    private HBox tagsHBox;
 
     List<ItemModel> shopItems = new ArrayList<>();
 
     private Draggable draggable = new Draggable();
 
     private PageNavigator pageNavigator = new PageNavigator();
-
+    private HashMap<String, Integer> extrasMap = new HashMap<>();
     @FXML
     protected void onBackButtonClicked(){
         pageNavigator.backToPage(backButton);
     }
 
-    // onPopularButtonClicked() is a method that is called when the popularBtn is clicked
-    @FXML
-    protected void onPopularButtonClicked(){
-        sectionTitle.setText("Popular");
-        sectionDescription.setText("These are the most popular items in " + ShopModel.getSelectedShopName());
-
-        // clear the grid pane
-        itemsGridPane.getChildren().clear();
-
-        // Add the items to the grid pane
-        int column = 0;
-        int row = 1;
-        try {
-            for (int i = 0; i < shopItems.size(); i++) {
-                // Get the fxml file for the cuisine button
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
-                AnchorPane item = fxmlLoader.load();
-
-                // Set the data for the cuisine button
-                ItemController itemController = fxmlLoader.getController();
-                // Check if itemTags contains "Rice Meal"
-
-
-                if (shopItems.get(i).isItemPopular()) {
-                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
-                    // Place the cuisine button in the gridPane
-                    if (column == 2) {
-                        row++;
-                        column = 0;
-                    }
-                    itemsGridPane.add(item, column++, row);
-                }
-
-                // Set the margin for the cuisine button
-                GridPane.setMargin(item, new Insets(20));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        @FXML
+    void onAddQty(ActionEvent event) {
+        if (Integer.parseInt(qtyLabel.getText()) < 10) {
+            qtyLabel.setText(Integer.toString(Integer.parseInt(qtyLabel.getText()) + 1));
         }
     }
 
-    // onKoreanStreetFoodButtonClicked() is a method that is called when the koreanStreetFoodBtn is clicked
     @FXML
-    protected void onKoreanStreetFoodButtonClicked(){
-        sectionTitle.setText("Korean Street Food");
-        sectionDescription.setText("These are the Korean Street Food items in " + ShopModel.getSelectedShopName());
-
-        conditionShopTags("Korean Street Food");
-    }
-
-    // onRiceBowlButtonClicked() is a method that is called when the riceBowlBtn is clicked
-    @FXML
-    protected void onRiceBowlButtonClicked(){
-        sectionTitle.setText("Rice Bowl");
-        sectionDescription.setText("These are the Rice Bowl items in " + ShopModel.getSelectedShopName());
-
-        conditionShopTags("Rice Bowl");
-    }
-
-    // onRiceToppingsButtonClicked() is a method that is called when the riceToppingsBtn is clicked
-    @FXML
-    protected void onRiceToppingsButtonClicked(){
-        sectionTitle.setText("Rice Toppings");
-        sectionDescription.setText("These are the Rice Toppings items in " + ShopModel.getSelectedShopName());
-
-        conditionShopTags("Rice Toppings");
-    }
-
-    // onSizzlingButtonClicked() is a method that is called when the sizzlingBtn is clicked
-    @FXML
-    protected void onSizzlingButtonClicked(){
-        sectionTitle.setText("Sizzling");
-        sectionDescription.setText("These are the Sizzling items in " + ShopModel.getSelectedShopName());
-
-        conditionShopTags("Sizzling");
-    }
-
-    // onBeveragesButtonClicked() is a method that is called when the beveragesButton is clicked
-    @FXML
-    protected void onBeveragesButtonClicked(){
-        sectionTitle.setText("Beverages");
-        sectionDescription.setText("These are the Beverages items in " + ShopModel.getSelectedShopName());
-
-        conditionShopTags("Beverages");
-    }
-
-    // onAddOnsButtonClicked() is a method that is called when the addOnsButton is clicked
-    @FXML
-    protected void onAddOnsButtonClicked(){
-        sectionTitle.setText("Add-Ons");
-        sectionDescription.setText("These are the Add-Ons items in " + ShopModel.getSelectedShopName());
-
-        conditionShopTags("Add-Ons");
+    void onSubtractQty(ActionEvent event) {
+        if (Integer.parseInt(qtyLabel.getText()) > 1) {
+            qtyLabel.setText(Integer.toString(Integer.parseInt(qtyLabel.getText()) - 1));
+        }
     }
 
     private void conditionShopTags(String shopTag){
@@ -185,28 +129,37 @@ public class RestaurantMenuController {
         int row = 1;
         try {
             for (int i = 0; i < shopItems.size(); i++) {
+                ItemModel itemModel = shopItems.get(i);
+
                 // Get the fxml file for the cuisine button
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
                 AnchorPane item = fxmlLoader.load();
+
+                // add event listener to the item button
+                item.setOnMouseClicked(mouseEvent -> {
+                    ItemModel.setSelectedItemInfo(itemModel.getItemInfo());
+                    showItem();
+                });
 
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
                 // Check if itemTags contains "Rice Meal"
 
 
-                if (shopItems.get(i).getItemShopTags().contains(shopTag)) {
-                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                if (itemModel.getItemShopTags().contains(shopTag)) {
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
                         column = 0;
                     }
+                    clipItem(item);
                     itemsGridPane.add(item, column++, row);
                 }
 
                 // Set the margin for the cuisine button
-                GridPane.setMargin(item, new Insets(20));
+                GridPane.setMargin(item, new Insets(0, 20, 10, 20));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -222,32 +175,169 @@ public class RestaurantMenuController {
         int row = 1;
         try {
             for (int i = 0; i < shopItems.size(); i++) {
+                ItemModel itemModel = shopItems.get(i);
+
                 // Get the fxml file for the cuisine button
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
                 AnchorPane item = fxmlLoader.load();
+
+                // add event listener to the item button
+                item.setOnMouseClicked(mouseEvent -> {
+                    ItemModel.setSelectedItemInfo(itemModel.getItemInfo());
+                    showItem();
+                });
 
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
                 // Check if itemTags contains "Rice Meal"
 
 
-                if (shopItems.get(i).getItemName().toLowerCase().contains(searchField.getText())) {
-                    itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
+                if (itemModel.getItemName().toLowerCase().contains(searchField.getText())) {
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/SampleItem.jpg");
                     // Place the cuisine button in the gridPane
                     if (column == 2) {
                         row++;
                         column = 0;
                     }
+                    clipItem(item);
                     itemsGridPane.add(item, column++, row);
                 }
 
                 // Set the margin for the cuisine button
-                GridPane.setMargin(item, new Insets(20));
+                GridPane.setMargin(item, new Insets(0, 20, 10, 20));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void showItem(){
+        HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
+        // Set the meal name and price
+        mealName.setText(selectedItem.get("Item_Name"));
+        mealPrice.setText("PHP " + selectedItem.get("Item_Price") + ".00");
+
+        // sample item image
+        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg")));
+        mealImg.setImage(imagePlaceHolder);
+
+        // Animation for the item view pane after clicking an item
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setNode(itemViewPane);
+        transition.setToY(-750);
+        transition.play();
+
+        // Set qtyAddSubPane to visible
+        qtyAddSubPane.setVisible(true);
+
+
+        // add checkbox for extra
+        int row = 0;
+        if (!selectedItem.get("Item_Sizes").isEmpty()){
+            noTagsPositionPane.setVisible(false);
+            extrasLabel.setVisible(true);
+            HashMap<String, Integer> sizesMap = ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes"));
+
+            // clear the children of the grid pane
+            extrasGridPane.getChildren().clear();
+
+            // Create a checkbox
+            for (String key : sizesMap.keySet()){
+                CheckBox checkBox = new CheckBox(key);
+                Label label = new Label("PHP " + sizesMap.get(key) + ".00");
+
+                // Add event listener to the checkbox
+                checkBox.setOnAction(actionEvent -> {
+                    if (checkBox.isSelected()){
+                        extrasMap.put(key, sizesMap.get(key));
+                        System.out.println(extrasMap);
+                    } else {
+                        extrasMap.remove(key);
+                        System.out.println(extrasMap);
+                    }
+                });
+
+                // Add the checkbox to the grid pane
+                extrasGridPane.add(checkBox, 0, row);
+                extrasGridPane.add(label , 1, row++);
+
+                // Move the special instructions pane to the last row of the grid pane
+                extrasGridPane.add(specialInstructionsPane, 0, row);
+
+                //span the special instructions pane to the whole row
+                GridPane.setColumnSpan(specialInstructionsPane, 2);
+
+
+                // Style the checkbox and label with 'details' class
+                checkBox.getStyleClass().add("details");
+                label.getStyleClass().add("details");
+
+                // checkbox left margin = 30
+                GridPane.setMargin(checkBox, new Insets(0, 0, 10, 20));
+
+
+            }
+        } else {
+            noTagsPositionPane.setVisible(true);
+            extrasLabel.setVisible(false);
+            // remove the children of the grid pane
+            extrasGridPane.getChildren().clear();
+            // move the special instructions pane back to noTagsPositionPane
+            noTagsPositionPane.getChildren().clear();
+            noTagsPositionPane.getChildren().add(specialInstructionsPane);
+        }
+    }
+
+    @FXML
+    public void hideItem(){
+        // Animation for the item view pane after clicking an item
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setNode(itemViewPane);
+        transition.setToY(0);
+        transition.play();
+
+        // Set qtyAddSubPane to visible
+        qtyAddSubPane.setVisible(false);
+        qtyLabel.setText("1");
+
+        // clear the special instructions text field
+        specialInstructionsTxt.clear();
+
+        // put the scrollAnchorPane back to the top
+        scrollAnchorPane.setLayoutY(0);
+    }
+
+    @FXML
+    private void onAddtoCartBtnClicked(){
+        // TODO: Change behavior when extra is checked
+        HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
+
+        System.out.println(selectedItem);
+        if (selectedItem.get("Item_Sizes").isEmpty()) {
+            CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
+                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+                    selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
+        } else {
+            HashMap<String, Integer> sizesMap = ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes"));
+            CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
+                    Double.parseDouble(selectedItem.get("Item_Price")), Integer.parseInt(qtyLabel.getText()),
+                    selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+        }
+
+    }
+
+    //Clip item to round corners
+    private void clipItem(AnchorPane item) {
+        Rectangle clip = new Rectangle(
+                item.getPrefWidth(), item.getPrefHeight()
+        );
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+
+        item.setClip(clip);
     }
 
 
@@ -297,15 +387,44 @@ public class RestaurantMenuController {
         // Get the data from the database
         shopItems.addAll(getData());
 
+        // Set shop tags
+        ArrayList<String> shopTags = TagsModel.getShopTagArray(ShopModel.getSelectedShopName());
+        System.out.println(ShopModel.getSelectedShopName());
+        for (String tag : shopTags){
+            Hyperlink tagLink = new Hyperlink(tag);
+            tagLink.setOnAction(actionEvent -> {
+                sectionTitle.setText(tag);
+                sectionDescription.setText("These are the " + tag + " items in " + ShopModel.getSelectedShopName());
+
+                conditionShopTags(tag);
+            });
+            // Set the style of the tag remove the underline
+            tagLink.setStyle(
+                    "-fx-text-fill: black;" +
+                    "-fx-font-size: 14px;" +
+                    "-fx-underline: false;" +
+                    "-fx-font-family: Poppins"
+            );
+            tagsHBox.getChildren().add(tagLink);
+        }
+
         // Add the items to the grid pane
         int column = 0;
         int row = 1;
         try {
             for (int i = 0; i < shopItems.size(); i++) {
+                ItemModel itemModel = shopItems.get(i);
+
                 // Get the fxml file for the cuisine button
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Item.fxml"));
                 AnchorPane item = fxmlLoader.load();
+
+                // add event listener to the item button
+                item.setOnMouseClicked(mouseEvent -> {
+                    ItemModel.setSelectedItemInfo(itemModel.getItemInfo());
+                    showItem();
+                });
 
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
@@ -315,10 +434,14 @@ public class RestaurantMenuController {
                     row++;
                     column = 0;
                 }
+
+                // Clip the item to round corners
+                clipItem(item);
+
                 itemsGridPane.add(item, column++, row);
 
                 // Set the margin for the cuisine button
-                GridPane.setMargin(item, new Insets(20));
+                GridPane.setMargin(item, new Insets(0, 20, 10, 20));
             }
             draggable.makeScrollableY(gridPaneContainer);
         } catch (Exception e) {
@@ -327,15 +450,9 @@ public class RestaurantMenuController {
 
         restaurantName.setText(ShopModel.getSelectedShopName());
         draggable.makeWindowDraggable(statusBar);
+        draggable.makeScrollableY(scrollAnchorPane);
+        draggable.makeScrollableX(tagsHBox);
 
-        // Make scrollable all the buttons in the section bar
-        draggable.makeParentDraggableX(popularBtn);
-        draggable.makeParentDraggableX(koreanStreetFoodBtn);
-        draggable.makeParentDraggableX(riceBowlBtn);
-        draggable.makeParentDraggableX(riceToppingsBtn);
-        draggable.makeParentDraggableX(sizzlingBtn);
-        draggable.makeParentDraggableX(beveragesButton);
-        draggable.makeParentDraggableX(addOnsButton);
 
         // Make the search field on enter pressed
         searchField.setOnKeyPressed(keyEvent -> {
@@ -345,6 +462,15 @@ public class RestaurantMenuController {
                     break;
             }
         });
+
+        //Clip the scrollAnchorPane to ItemViewPane
+        Rectangle clip = new Rectangle(
+                itemViewPane.getPrefWidth(), itemViewPane.getPrefHeight()
+        );
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+
+        itemViewPane.setClip(clip);
     }
 
 }

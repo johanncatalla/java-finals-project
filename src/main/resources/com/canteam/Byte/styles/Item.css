@@ -3,6 +3,10 @@
     -fx-font-weight: bold;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 #itemPrice{
     -fx-font-size: 10px;
     -fx-font-weight: bold;

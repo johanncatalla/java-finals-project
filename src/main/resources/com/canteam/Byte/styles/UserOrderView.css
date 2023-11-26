@@ -16,7 +16,23 @@
     -fx-text-fill: #5A0B0C;
 }
 
+.bold-text {
+    -fx-font-weight: bold;
+}
+
 .title-text{
+    -fx-font-family: Poppins;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.large-text {
+    -fx-font-family: Poppins;
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.subtitle-text{
     -fx-font-family: Poppins;
     -fx-font-size: 17;
     -fx-font-weight: bold;

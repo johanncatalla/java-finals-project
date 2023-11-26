@@ -25,26 +25,25 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <ImageView fitHeight="190.0" fitWidth="190.0" layoutX="44.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="190.0" fitWidth="190.0" layoutX="13.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../assets/OrderConfirmed.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="63.0" text="Estimated delivery time" />
-                              <Label layoutX="110.0" layoutY="18.0" text="5 Mins">
+                              <Label layoutX="52.0" text="Estimated delivery time" />
+                              <Label layoutX="81.0" layoutY="15.0" text="5 Mins">
                                  <styleClass>
                                     <String fx:value="maroon-text" />
-                                    <String fx:value="title-text" />
+                                    <String fx:value="subtitle-text" />
                                  </styleClass>
                               </Label>
-                              <Label layoutX="74.0" layoutY="222.0" text="Order confirmed by " />
-                              <Label fx:id="confirmedByLabel" alignment="CENTER" layoutY="238.0" prefHeight="24.0" prefWidth="278.0" text="Mangyupsal" textAlignment="CENTER">
-                                 <styleClass>
-                                    <String fx:value="maroon-text" />
-                                    <String fx:value="title-text" />
-                                 </styleClass>
-                              </Label>
-                              <Label layoutX="9.0" layoutY="262.0" text="Your food will be delivered once ready." />
+                              <AnchorPane layoutX="8.0" layoutY="221.0" prefHeight="30.0" prefWidth="238.0">
+                                 <children>
+                                    <Label layoutX="4.0" layoutY="7.0" text="Order confirmed by " />
+                                    <Label fx:id="confirmedByLabel" layoutX="142.0" layoutY="4.0" prefHeight="24.0" prefWidth="101.0" styleClass="bold-text" text="Mangyupsal" textAlignment="CENTER" />
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="7.0" layoutY="248.0" text="Your food will be delivered once ready." />
                            </children>
                            <FlowPane.margin>
                               <Insets top="10.0" />
@@ -57,7 +56,7 @@
                               <Label layoutX="26.0" layoutY="70.0" styleClass="text" text="Your order number" />
                               <Label fx:id="orderNumberLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="70.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
                               <Label layoutX="26.0" layoutY="90.0" styleClass="text" text="Delivery address" />
-                              <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" layoutX="173.0" layoutY="90.0" prefHeight="70.0" prefWidth="190.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
+                              <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" layoutX="173.0" layoutY="90.0" maxHeight="300.0" prefHeight="27.0" prefWidth="190.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
                               <Label layoutX="25.0" layoutY="20.0" text="Order Details">
                                  <font>
                                     <Font name="Poppins Regular" size="12.0" />
@@ -75,11 +74,10 @@
                         </AnchorPane>
                         <AnchorPane prefWidth="390.0">
                            <children>
-                              <GridPane fx:id="ordersGridPane" layoutX="27.2" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="355.0" AnchorPane.leftAnchor="30.0">
+                              <GridPane fx:id="ordersGridPane" alignment="BOTTOM_LEFT" layoutX="25.333333333333332" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="337.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.0" minWidth="225.0" prefWidth="225.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+                                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="300.0" minWidth="179.33335367838544" prefWidth="189.33331298828125" />
+                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="95.33331298828122" minWidth="-Infinity" prefWidth="90.66668701171872" />
                                 </columnConstraints>
                                 <rowConstraints>
                                   <RowConstraints vgrow="SOMETIMES" />
@@ -100,7 +98,7 @@
                               <Line endX="390.0" layoutX="1.5" layoutY="4.0" stroke="#eaeaea" strokeWidth="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                               <Label fx:id="modePaymentLabel" alignment="CENTER_RIGHT" layoutX="239.0" layoutY="46.0" prefHeight="20.0" prefWidth="120.0" styleClass="text" text="Cash On Delivery" />
                               <Label layoutX="27.0" layoutY="110.0" text="Total" />
-                              <Label fx:id="totalLabel" alignment="CENTER_RIGHT" layoutX="209.0" layoutY="110.0" prefHeight="18.0" prefWidth="151.0" text="PHP 94.00" textAlignment="RIGHT" />
+                              <Label fx:id="totalLabel" alignment="CENTER_RIGHT" layoutX="209.0" layoutY="110.0" prefHeight="18.0" prefWidth="151.0" styleClass="bold-text" text="PHP 94.00" textAlignment="RIGHT" />
                               <Label layoutX="26.0" layoutY="15.0" text="Payment Details">
                                  <font>
                                     <Font name="Poppins Regular" size="12.0" />
@@ -129,7 +127,7 @@
                   <Label layoutX="65.0" layoutY="50.0" text="Your Order">
                      <styleClass>
                         <String fx:value="maroon-text" />
-                        <String fx:value="title-text" />
+                        <String fx:value="large-text" />
                      </styleClass>
                   </Label>
                   <Button id="closeButton" fx:id="closeBtn" layoutX="16.0" layoutY="49.0" maxHeight="22.0" maxWidth="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#onCloseBtnClicked" prefHeight="22.0" prefWidth="32.0" />

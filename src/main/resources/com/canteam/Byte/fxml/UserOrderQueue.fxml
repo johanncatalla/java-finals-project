@@ -3,30 +3,25 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
 
-<AnchorPane fx:id="orderContainer" prefHeight="125.0" prefWidth="330.0" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.UserOrderQueueController">
-   <effect>
-      <DropShadow blurType="GAUSSIAN" height="5.0" offsetX="1.0" offsetY="1.0" radius="2.0" width="5.0">
-         <color>
-            <Color opacity="0.6259542107582092" />
-         </color>
-      </DropShadow>
-   </effect>
+<AnchorPane fx:id="orderContainer" prefHeight="125.0" prefWidth="330.0" styleClass="anchorStyle" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.UserOrderQueueController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <children>
-      <Label layoutX="15.0" layoutY="15.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order:" />
-      <Label fx:id="txtOrderItems" layoutX="73.0" layoutY="16.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Soy Garlic Chicken, Iced Coffee" />
-      <Label layoutX="15.0" layoutY="39.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Shop:" />
-      <Label fx:id="txtOrderShop" layoutX="73.0" layoutY="40.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Mangyupsal" />
-      <Label layoutX="15.0" layoutY="64.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Status:" />
-      <Label fx:id="txtOrderStatus" layoutX="73.0" layoutY="64.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Ordered" />
-      <Button fx:id="btnViewOrder" layoutX="219.0" layoutY="85.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="View Order" />
-      <Label layoutX="15.0" layoutY="86.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
-      <Label fx:id="txtOderNumber" layoutX="73.0" layoutY="86.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="1" />
+      <AnchorPane layoutX="15.0" layoutY="15.0">
+         <children>
+            <Label styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order:" />
+            <Label fx:id="txtOrderItems" layoutX="58.0" layoutY="1.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Soy Garlic Chicken, Iced Coffee" />
+            <Label layoutY="24.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Shop:" />
+            <Label fx:id="txtOrderShop" layoutX="58.0" layoutY="25.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Mangyupsal" />
+            <Label layoutY="49.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Status:" />
+            <Label fx:id="txtOrderStatus" layoutX="58.0" layoutY="49.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="Ordered" />
+            <Label fx:id="txtOderNumber" layoutX="58.0" layoutY="71.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="1" />
+            <Label layoutY="71.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
+            <Button fx:id="btnViewOrder" layoutX="206.0" layoutY="65.0" mnemonicParsing="false" onAction="#onViewOrder" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="View Order" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

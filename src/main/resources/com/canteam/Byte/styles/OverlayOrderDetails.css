@@ -5,6 +5,10 @@
     -fx-text-fill:  #5A0B0C;
 }
 
+.text{
+    -fx-font-family: Poppins;
+}
+
 .left{
     -fx-font: Poppins;
     -fx-font-weight: 300;
@@ -37,4 +41,12 @@
 
 .text{
     -fx-font-family: Poppins;
+}
+
+.exit-icon{
+    -fx-background-color: transparent;
+    -fx-background-image: url("../assets/images/location/ButtonClose.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }

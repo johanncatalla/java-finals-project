@@ -1,6 +1,11 @@
 .anchorStyle{
     -fx-background-color: #e8e8e8;
-    -fx-background-radius: 10;
+    -fx-background-radius: 5;
+
+}
+
+.text{
+    -fx-font-family: Poppins;
 }
 
 .left{
@@ -37,6 +42,7 @@
     -fx-cursor: hand;
     -fx-pref-height: 20;
     -fx-pref-width: 94;
+    -fx-border-radius: 15px;
 }
 
 .text{

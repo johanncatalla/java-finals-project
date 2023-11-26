@@ -68,7 +68,7 @@
                   <ComboBox id="paymentDropDown" fx:id="paymentModeCmb" layoutX="192.0" layoutY="16.0" prefHeight="27.0" prefWidth="168.0" promptText="Please choose mode of payment" visibleRowCount="3" />
                   <Label fx:id="subtotalLabel" alignment="CENTER_RIGHT" layoutX="209.0" layoutY="51.0" prefHeight="18.0" prefWidth="151.0" text="PHP 94.00" textAlignment="RIGHT" />
                   <Label fx:id="deliveryFeeLabel" alignment="CENTER_RIGHT" layoutX="209.0" layoutY="70.0" prefHeight="18.0" prefWidth="151.0" text="PHP 94.00" textAlignment="RIGHT" />
-                  <Button id="placeOrderBtn" fx:id="placeOrderBtn" layoutX="30.0" layoutY="151.0" mnemonicParsing="false" text="Place Order" />
+                  <Button id="placeOrderBtn" fx:id="placeOrderBtn" layoutX="30.0" layoutY="151.0" mnemonicParsing="false" onAction="#onPlaceOrderBtnClicked" text="Place Order" />
                   <Label layoutX="30.0" layoutY="115.0" style="-fx-font-weight: bold;" text="Total">
                      <styleClass>
                         <String fx:value="text" />

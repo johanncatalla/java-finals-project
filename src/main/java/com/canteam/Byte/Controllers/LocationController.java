@@ -41,19 +41,9 @@ public class LocationController implements Initializable {
 
     private Draggable draggable = new Draggable();
 
-    public static boolean newUser;
-
-    public static void setNewUser(boolean value) {
-        newUser = value;
-    }
-
-    public static boolean getNewUser() {
-    	return newUser;
-    }
-
     @FXML
     void onBackButton(ActionEvent event) {
-        if (newUser){
+        if (UserModel.isNewUser()){
             newUserAlert.setVisible(true);
         } else {
             pageNavigator.backToPage(backButton);
@@ -78,8 +68,8 @@ public class LocationController implements Initializable {
         newUserAlert.setText("Changes saved successfully");
         newUserAlert.setVisible(true);
 
-        if (newUser){
-            setNewUser(false);
+        if (UserModel.isNewUser()){
+            UserModel.setNewOldUser(false);
             pageNavigator.navigateToPage(saveChangesButton, "Home");
         }
     }

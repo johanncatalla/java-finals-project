@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" style="-fx-background-color: white;" stylesheets="@../styles/RestaurantMenu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RestaurantMenuController">
     <children>
@@ -18,18 +20,18 @@
             <children>
                 <AnchorPane fx:id="gridPaneContainer" layoutY="199.0" prefHeight="665.0" prefWidth="390.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <GridPane fx:id="itemsGridPane" alignment="TOP_CENTER" layoutX="11.2" layoutY="78.0" prefHeight="576.0" prefWidth="368.0" AnchorPane.leftAnchor="11.2" AnchorPane.rightAnchor="11.199999999999989">
+                        <GridPane fx:id="itemsGridPane" alignment="TOP_CENTER" hgap="20.0" layoutX="11.2" layoutY="62.0" prefHeight="578.0" prefWidth="356.0" vgap="10.0" AnchorPane.leftAnchor="11.2" AnchorPane.rightAnchor="11.199999999999989">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             </columnConstraints>
                         </GridPane>
-                        <ImageView fitHeight="150.0" fitWidth="18.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="18.0" layoutX="25.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../assets/Fire.png" />
                             </image>
                         </ImageView>
-                        <Label id="menuSectionTitle" fx:id="sectionTitle" layoutX="49.0" layoutY="18.0" prefHeight="32.0" prefWidth="319.0" text="Food Items" />
-                        <Label fx:id="sectionDescription" layoutX="52.0" layoutY="53.0" text="Food that you love" />
+                        <Label id="menuSectionTitle" fx:id="sectionTitle" layoutX="49.0" layoutY="11.0" prefHeight="32.0" prefWidth="319.0" text="Food Items" />
+                        <Label fx:id="sectionDescription" layoutX="51.0" layoutY="41.0" text="Food that you love" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="161.0" prefWidth="390.0" style="-fx-background-color: #5A0B0C;">
@@ -63,33 +65,94 @@
                     </children>
                 </AnchorPane>
                 <AnchorPane layoutY="161.0" prefHeight="40.0" prefWidth="779.0" styleClass="Selection-Bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                    <children>
-                        <GridPane fx:id="sectionBar" styleClass="Selection-buttons" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.20001220703125" minWidth="10.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.00000000000001" minWidth="10.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <Button fx:id="popularBtn" mnemonicParsing="false" onAction="#onPopularButtonClicked" prefHeight="39.0" prefWidth="91.0" text="Populars" />
-                                <Button fx:id="riceBowlBtn" mnemonicParsing="false" onAction="#onRiceBowlButtonClicked" prefHeight="39.0" prefWidth="110.0" text="Rice Bowl" GridPane.columnIndex="1" />
-                                <Button fx:id="riceToppingsBtn" mnemonicParsing="false" onAction="#onRiceToppingsButtonClicked" prefHeight="39.0" prefWidth="121.0" text="Rice Toppings" GridPane.columnIndex="2" />
-                                <Button fx:id="sizzlingBtn" mnemonicParsing="false" onAction="#onSizzlingButtonClicked" prefHeight="39.0" prefWidth="90.0" text="Sizzling" GridPane.columnIndex="3" />
-                                <Button fx:id="koreanStreetFoodBtn" mnemonicParsing="false" onAction="#onKoreanStreetFoodButtonClicked" prefHeight="39.0" prefWidth="152.0" text="Korean Street Food" GridPane.columnIndex="4" />
-                                <Button fx:id="addOnsButton" mnemonicParsing="false" onAction="#onAddOnsButtonClicked" prefHeight="39.0" prefWidth="98.0" text="Add-Ons" GridPane.columnIndex="5" />
-                                <Button fx:id="beveragesButton" mnemonicParsing="false" onAction="#onBeveragesButtonClicked" prefHeight="39.0" prefWidth="106.0" text="Beverages" GridPane.columnIndex="6" />
-                            </children>
-                        </GridPane>
-                    </children>
+               <children>
+                  <HBox fx:id="tagsHBox" alignment="CENTER_LEFT" layoutX="25.0" prefHeight="38.0" prefWidth="994.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
                 </AnchorPane>
             </children>
         </AnchorPane>
+      <AnchorPane fx:id="itemViewPane" layoutY="848.0" maxWidth="390.0" prefHeight="750.0" prefWidth="390.0" style="-fx-background-radius: 20 20 0 0;" styleClass="background" stylesheets="@../styles/Meals.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="scrollAnchorPane" layoutX="-5.0" prefHeight="732.0" prefWidth="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <AnchorPane layoutX="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="mealImg" fitHeight="300.0" fitWidth="390.0" layoutX="60.0" layoutY="75.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <HBox layoutX="20.0" layoutY="310.0" maxHeight="70.0" minHeight="70.0" prefHeight="70.0" prefWidth="354.0">
+                     <children>
+                        <Label fx:id="mealName" alignment="TOP_LEFT" maxHeight="70.0" maxWidth="240.0" minHeight="70.0" minWidth="10.0" prefHeight="70.0" prefWidth="238.0" styleClass="title" stylesheets="@../styles/Meals.css" text="Soy Garlic Chicken Test" wrapText="true" />
+                        <Label fx:id="mealPrice" alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="116.0" styleClass="price" stylesheets="@../styles/Meals.css" text="PHP 69.00" />
+                     </children>
+                  </HBox>
+                  <AnchorPane fx:id="extrasLabel" layoutY="380.3999938964844" visible="false">
+                     <children>
+                        <Label styleClass="extra" stylesheets="@../styles/Meals.css" text="Extra">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                        <Label layoutY="19.0" styleClass="details" stylesheets="@../styles/Meals.css" text="Select up to 4">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <GridPane fx:id="extrasGridPane" layoutY="427.0" maxWidth="390.0" minWidth="390.0" prefHeight="26.0" prefWidth="390.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="260.0" minHeight="31.199939727783203" prefHeight="31.199939727783203" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <AnchorPane fx:id="noTagsPositionPane" layoutY="376.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="specialInstructionsPane" layoutX="-105.0" layoutY="-58.0" prefHeight="257.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="28.0" layoutY="12.0" styleClass="extra" stylesheets="@../styles/Meals.css" text="Special Instructions" />
+                              <Label layoutX="28.0" layoutY="37.0" prefHeight="48.0" prefWidth="335.0" styleClass="details" stylesheets="@../styles/Meals.css" text="(Please let us know if you are allergic to anything or if we need to avoid anything.)" wrapText="true" />
+                              <TextField fx:id="specialInstructionsTxt" layoutX="29.0" layoutY="100.0" prefWidth="362.0" styleClass="text-field-longer" />
+                              <ImageView fitHeight="150.0" fitWidth="390.0" layoutX="-5.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/Meals/line.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 100;">
+               <children>
+                  <Button fx:id="btnClose" maxHeight="25.0" maxWidth="25.0" minHeight="20.0" minWidth="1.0" mnemonicParsing="false" onAction="#hideItem" prefHeight="20.0" prefWidth="20.0" styleClass="backMenu-Icon" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.30775076150894165" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="qtyAddSubPane" layoutX="10.0" layoutY="10.0" prefHeight="86.0" prefWidth="390.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="addToCartBtn" layoutX="165.0" layoutY="18.0" mnemonicParsing="false" onAction="#onAddtoCartBtnClicked" styleClass="button-styled" text="Add to cart" />
+            <Button fx:id="subtractQtyBtn" layoutX="15.0" layoutY="24.0" mnemonicParsing="false" onAction="#onSubtractQty" prefHeight="40.0" prefWidth="40.0" styleClass="minus-Icon" />
+            <Label fx:id="qtyLabel" alignment="CENTER" layoutX="58.0" layoutY="30.0" prefHeight="28.0" prefWidth="39.0" styleClass="quantity" text="1" />
+            <Button fx:id="addQtyBtn" layoutX="99.0" layoutY="24.0" maxHeight="49.0" mnemonicParsing="false" onAction="#onAddQty" prefHeight="40.0" prefWidth="40.0" styleClass="add-Icon" />
+            <ImageView fitHeight="150.0" fitWidth="390.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/Meals/line.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

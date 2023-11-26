@@ -64,30 +64,20 @@ public class HomeController implements Initializable {
       CuisineModel cuisine;
 
       MongoClient client = Connection.getInstance();
-      MongoDatabase database = client.getDatabase("Stores");
-      MongoCollection<Document> collection = database.getCollection("Mangyupsal");
+      MongoDatabase database = client.getDatabase("Byte");
+      MongoCollection<Document> collection = database.getCollection("Tags");
 
-        FindIterable<Document> documents = collection.find();
-
-        HashMap<String, HashMap<String, Object>> finalMap = new HashMap<>();
-
-        int num = 0;
-        for (Document document : documents) {
-            HashMap<String, Object> dbMap = new HashMap<>();
-            for (String key : document.keySet()) {
-                Object value = document.get(key);
-                dbMap.put(key, value);
-            }
-            finalMap.put((String) dbMap.get("Item_Name"), dbMap);
-        }
-        System.out.println(finalMap);
-
-        String arrTags = (String) finalMap.get("Soy Garlic Chicken Rice Bowl").get("Item_Name");
+      // find the document with Category = "Cuisine Tags"
+        Document query = new Document("Category", "Cuisine Tags");
+        FindIterable<Document> documents = collection.find(query);
+        Document document = documents.first();
+        ArrayList<String> arrTags = (ArrayList<String>) document.get("Tags");
 
       // Just a demo/placeholder data for now
-      for (int i = 0; i < 12; i++){
+      for (String tag : arrTags) {
           cuisine = new CuisineModel();
-          cuisine.setCuisineName(arrTags +" "+ i);
+          cuisine.setCuisineName(tag);
+          // TODO: Change this to the actual image of the cuisine
           cuisine.setCuisineImageSrc("/com/canteam/Byte/assets/images/CuisineType/Milktea.png");
           cuisineList.add(cuisine);
       }
@@ -155,6 +145,7 @@ public class HomeController implements Initializable {
                 shopButton.setPrefSize(126, 162);
 
                 // Create image for the shop image
+                // TODO: Change this to the actual image of the shop
                 Image imagePlaceholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/ShopImgPlaceholder.png")));
 
                 // Create an image view for the shop image
@@ -173,6 +164,8 @@ public class HomeController implements Initializable {
                     // Navigate to the restaurant page
                     pageNavigator.forwardToPage(shopButton, "Home", "RestaurantMenu");
                 });
+
+                shopButton.setStyle("-fx-cursor: hand;");
 
                 // Set the margin for the shop button
                 GridPane.setMargin(shopButton, new Insets(0, 10, 0, 0));

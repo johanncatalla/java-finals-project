@@ -142,7 +142,7 @@ public class LoginSignupController implements Initializable {
                             pageNavigator.navigateToPage(loginButton, "Location");
                             return;
                         }
-                        MainApplication.changeScene("Home");
+                        pageNavigator.forwardToPage(loginButton, "Login", "Home");
                     } else if (UserModel.getUserType().equals("Store")) {
                         pageNavigator.forwardToPage(loginButton, "login", "ShopOrderList");
                     } else {

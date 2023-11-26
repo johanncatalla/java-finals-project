@@ -1,5 +1,6 @@
 package com.canteam.Byte.Controllers;
 
+import com.canteam.Byte.MainApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -38,13 +39,7 @@ class PageNavigator {
      */
     public void navigateToPage(Node node, String pageName){
             try{
-                Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/canteam/Byte/fxml/"+pageName+".fxml")));
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.setScene(scene);
-                stage.show();
-                node.getScene().getWindow().hide();
+                MainApplication.changeScene(pageName);
             } catch (Exception e){
                 e.printStackTrace();
             }

@@ -1,5 +1,6 @@
 package com.canteam.Byte.Controllers;
 import com.canteam.Byte.Models.CuisineModel;
+import com.canteam.Byte.Models.ShopModel;
 import com.canteam.Byte.Models.UserModel;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -47,7 +49,7 @@ public class HomeController implements Initializable {
     protected ImageView toRestaurantButton, statusBar;
 
     @FXML
-    private GridPane cuisinesGridPane;
+    private GridPane cuisinesGridPane, dailyDealsGridPane;
 
     @FXML
     private Hyperlink logoutLink, ordersLink, profileLink, addressLink;
@@ -125,6 +127,11 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Get datas
+        RestaurantsController.shopList = RestaurantsController.getData();
+        cuisineList.addAll(getData());
+
+        // Set up user icon and name
         userNameLabel.setText(UserModel.getFullName());
         userIcon.setText(String.valueOf(UserModel.getUserName().toUpperCase().charAt(0)));
 
@@ -134,27 +141,52 @@ public class HomeController implements Initializable {
         // Set up enter on search field
         searchField.setOnKeyReleased(keyEvent -> {
             if (keyEvent.getCode().toString().equals("ENTER")){
-
-                // get the fxml controller of the RestaurantFXML
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/Restaurants.fxml"));
-                AnchorPane restaurantsPane = null;
-                try {
-                    restaurantsPane = fxmlLoader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                RestaurantsController restaurantsController = fxmlLoader.getController();
-                restaurantsController.setInitialSearch(searchField.getText());
-
+                RestaurantsController.setInitialSearch(searchField.getText());
                 pageNavigator.forwardToPage(searchField, "Home", "Restaurants");
-
             }
         });
 
-        // Will create an error at start but will be ok when you open the home page
-        cuisineList.addAll(getData());
-        int column = 1;
+        // Set up data for the shops
+        int column = 0;
+        try {
+            for (int i = 0; i < RestaurantsController.shopList.size(); i++){
+                // Create an achor pane with the size of 126x162 (WxH)
+                AnchorPane shopButton = new AnchorPane();
+                shopButton.setPrefSize(126, 162);
+
+                // Create image for the shop image
+                Image imagePlaceholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/ShopImgPlaceholder.png")));
+
+                // Create an image view for the shop image
+                ImageView shopImage = new ImageView(imagePlaceholder);
+                shopImage.setFitWidth(126);
+                shopImage.setFitHeight(162);
+
+                // Place the imageview in the anchor pane
+                shopButton.getChildren().add(shopImage);
+
+                // Add listener for the shop button
+                int finalI = i;
+                shopButton.setOnMousePressed(mouseEvent -> {
+                    // Set selected shop name
+                    ShopModel.setSelectedShopName(RestaurantsController.shopList.get(finalI).getShopName());
+                    // Navigate to the restaurant page
+                    pageNavigator.forwardToPage(shopButton, "Home", "RestaurantMenu");
+                });
+
+                // Set the margin for the shop button
+                GridPane.setMargin(shopButton, new Insets(0, 10, 0, 0));
+
+                // Place the shop button in the gridPane
+                dailyDealsGridPane.add(shopButton, column++, 0);
+                RestaurantsController.disableIfHasCart(shopButton, i);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Set up data for the cuisines
+        column = 1;
         int row = 0;
         try {
             for (int i = 0; i < cuisineList.size(); i++){
@@ -178,8 +210,9 @@ public class HomeController implements Initializable {
                 GridPane.setMargin(cuisineButton, new Insets(10));
             }
 
-            // Make cuisine pane draggable
+            // Make cuisine pane and dailyDealsGrid draggable
             draggable.makeScrollableX(cuisinesGridPane);
+            draggable.makeScrollableX(dailyDealsGridPane);
 
             // Make navigators
             pageNavigator.makeForwardNavigator(toRestaurantButton, "Home","Restaurants");

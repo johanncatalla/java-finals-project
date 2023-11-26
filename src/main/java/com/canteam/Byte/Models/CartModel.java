@@ -129,7 +129,7 @@ public class CartModel {
             int subtotalIt = 0;
             for (String key : cartDocument.keySet()) {
                 Document itemDocument = (Document) cartDocument.get(key);
-                subtotalIt += itemDocument.getDouble("Total Price");
+                subtotalIt += itemDocument.getInteger("Total Price");
             }
 
             // Calculate the total price of order

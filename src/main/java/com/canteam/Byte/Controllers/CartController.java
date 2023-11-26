@@ -7,10 +7,7 @@ import com.canteam.Byte.Models.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -49,6 +46,18 @@ public class CartController implements Initializable {
     @FXML
     private ImageView statusBar;
 
+    @FXML
+    private AnchorPane payPane;
+
+    @FXML
+    private Label payUserName, payTotal, payAlert;
+
+    @FXML
+    private TextField payField;
+
+    @FXML
+    private Button cancelPay, confirmPay;
+
     private HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
 
     private PageNavigator pageNavigator = new PageNavigator();
@@ -68,10 +77,68 @@ public class CartController implements Initializable {
 
     @FXML
     public void onPlaceOrderBtnClicked() throws IOException {
-        // TODO: show input dialog box when payment method is digital currency
-        CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
-        OrderModel.placeOrder(UserModel.getUserName());
-        pageNavigator.navigateToPage(placeOrderBtn, "Cart");
+        // if payment mode is digital currency
+        if (paymentModeCmb.getValue().equals("Credit card")){
+            payUserName.setText(UserModel.getUserName());
+            payTotal.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
+            payAlert.setText("");
+            confirmPay.setDisable(true);
+            payPane.setVisible(true);
+        } else {
+                CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
+                OrderModel.placeOrder(UserModel.getUserName());
+                pageNavigator.navigateToPage(placeOrderBtn, "Cart");
+            }
+
+    }
+
+    @FXML
+    private void onConfirmPayClicked(){
+        // check if payfield is all numbers
+        if (payField.getText().matches("[0-9]+")){
+            if (Double.parseDouble(payField.getText()) >= CartModel.getTotalPriceOfOrder()){
+                payAlert.setText("");
+                payPane.setVisible(false);
+                CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
+                OrderModel.placeOrder(UserModel.getUserName());
+                pageNavigator.navigateToPage(placeOrderBtn, "Cart");
+            } else {
+                payAlert.setText("Insufficient");
+                payAlert.setVisible(true);
+                payAlert.setStyle("-fx-text-fill: red;");
+                payField.setStyle("-fx-border-color: red;");
+            }
+        } else {
+            payAlert.setVisible(true);
+            payAlert.setText("Invalid");
+            payAlert.setStyle("-fx-text-fill: red;");
+            payField.setStyle("-fx-border-color: red;");
+        }
+    }
+
+    @FXML
+    private void payFieldListener(){
+        if (!payField.getText().isEmpty()){
+            if (!payField.getText().matches("[0-9]+")){
+                confirmPay.setDisable(true);
+                payAlert.setVisible(true);
+                payAlert.setText("Invalid");
+                payAlert.setStyle("-fx-text-fill: red;");
+                payField.setStyle("-fx-border-color: red;");
+                return;
+            }
+            payAlert.setVisible(false);
+            payField.setStyle("-fx-border-color: grey;");
+            confirmPay.setDisable(false);
+        } else {
+            confirmPay.setDisable(true);
+        }
+    }
+
+    @FXML
+    private void onCancelPayClicked(){
+        payPane.setVisible(false);
+        payField.setText("");
     }
 
 
@@ -156,6 +223,5 @@ public class CartController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

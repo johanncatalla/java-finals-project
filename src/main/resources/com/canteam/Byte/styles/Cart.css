@@ -62,3 +62,13 @@
     -fx-pref-height: 38;
     -fx-pref-width: 330;
 }
+
+.ConfirmShadow{
+    -fx-background-color: rgba(128, 128, 128, 0.42);
+}
+
+.poppins-black{
+    -fx-font-family: Poppins;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}

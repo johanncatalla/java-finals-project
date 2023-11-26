@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,6 +17,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/Cart.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.CartController">
    <children>
@@ -133,6 +135,45 @@
                </styleClass>
             </Label>
             <Button id="closeButton" fx:id="closeBtn" layoutX="45.0" layoutY="52.0" mnemonicParsing="false" onAction="#onCloseBtnClicked" prefHeight="18.0" prefWidth="18.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="payPane" prefHeight="200.0" prefWidth="200.0" styleClass="ConfirmShadow" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="10.4" layoutY="272.4" prefHeight="250.0" prefWidth="370.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="10.4" AnchorPane.rightAnchor="10.399999999999977" AnchorPane.topAnchor="272.4">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.13069909811019897" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <AnchorPane layoutX="14.0" layoutY="-9.0" prefHeight="51.0" prefWidth="374.0" style="-fx-background-color: maroon; -fx-background-radius: 20 20 0 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label layoutX="17.0" layoutY="13.0" style="-fx-font-size: 20;" styleClass="poppins-black" text="Confirm Order" textFill="WHITE">
+                           <font>
+                              <Font name="Poppins Black" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="cancelPay" layoutX="152.0" layoutY="201.0" mnemonicParsing="false" onAction="#onCancelPayClicked" prefHeight="32.0" prefWidth="98.0" style="-fx-background-color: transparent; -fx-border-color: maroon; -fx-text-fill: maroon; -fx-font-weight: bold; -fx-border-radius: 10;" text="Cancel" />
+                  <Button fx:id="confirmPay" layoutX="260.0" layoutY="201.0" mnemonicParsing="false" onAction="#onConfirmPayClicked" prefHeight="32.0" prefWidth="98.0" style="-fx-border-radius: 10; -fx-background-color: transparent; -fx-text-fill: #5BC745FF; -fx-font-weight: bold; -fx-border-color: #5BC745FF;" text="Confirm" />
+                  <ImageView fitHeight="171.0" fitWidth="168.0" layoutX="12.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/images/debit-card.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="152.0" layoutY="66.0" text="Payment Method: Card" />
+                  <Label layoutX="152.0" layoutY="86.0" text="User Name:" />
+                  <Label layoutX="152.0" layoutY="106.0" text="Product Total:" />
+                  <Label layoutX="152.0" layoutY="137.0" style="-fx-font-weight: bold;" text="Enter Payment:" />
+                  <TextField fx:id="payField" layoutX="152.0" layoutY="159.0" onKeyTyped="#payFieldListener" prefHeight="32.0" prefWidth="206.0" promptText="PHP 0.00" />
+                  <Label fx:id="payUserName" layoutX="226.0" layoutY="86.0" prefHeight="18.0" prefWidth="126.0" text="User Name" />
+                  <Label fx:id="payTotal" layoutX="238.0" layoutY="106.0" prefHeight="18.0" prefWidth="119.0" style="-fx-font-weight: bold;" text="PHP 1000.00" />
+                  <Label fx:id="payAlert" alignment="CENTER_RIGHT" layoutX="251.0" layoutY="137.0" prefHeight="18.0" prefWidth="106.0" text="Insufficient" visible="false" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

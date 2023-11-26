@@ -63,7 +63,7 @@ public class CartController implements Initializable {
     @FXML
     public void onAddItemLinkClicked() {
         ShopModel.setSelectedShopName(CartModel.getStore());
-        pageNavigator.forwardToPage(addItemLink, "Cart", "RestaurantMenu");
+        pageNavigator.forwardToPage(addItemLink,"Cart", "RestaurantMenu");
     }
 
     @FXML
@@ -76,7 +76,9 @@ public class CartController implements Initializable {
 
 
     public void loadOrders() throws IOException {
-
+        // Clear the gridpane
+        ordersGridPane.getChildren().clear();
+        System.out.println(userCart);
         if (userCart.isEmpty()) {
             // Set the add item link
             addItemLink.setText("+ Add an item to your cart");
@@ -102,6 +104,18 @@ public class CartController implements Initializable {
 
             // Set the data for the cuisine button
             OrderItemCardController orderItemCardController = fxmlLoader.getController();
+            orderItemCardController.removeBtn.setOnAction(actionEvent -> {
+                // remove from userCart
+                userCart.remove(itemName);
+                // reload the orders
+                try {
+                    loadOrders();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                // delete the item from the cart
+                CartModel.deleteItemFromCart(UserModel.getUserName(), itemName);
+            });
 
             HashMap<String, String> itemDetails = userCart.get(itemName);
             String itemQuantity = itemDetails.get("Quantity");
@@ -119,7 +133,6 @@ public class CartController implements Initializable {
         // Set subtotal and total price
         subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
         totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
-
         // Set delivery fee
         deliveryFeeLabel.setText("PHP " + "20.00");
     }

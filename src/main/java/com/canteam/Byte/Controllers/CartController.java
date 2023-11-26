@@ -64,14 +64,19 @@ public class CartController implements Initializable {
 
     private Draggable draggable = new Draggable();
 
+    public static boolean addItemClicked = false;
+
     @FXML
     public void onCloseBtnClicked() {
+        // Enable the cart button in the restaurant page and restaurant menu page
+        addItemClicked = false;
         pageNavigator.backToPage(closeBtn);
     }
 
     @FXML
     public void onAddItemLinkClicked() {
         ShopModel.setSelectedShopName(CartModel.getStore());
+        addItemClicked = true;
         pageNavigator.forwardToPage(addItemLink,"Cart", "RestaurantMenu");
     }
 
@@ -87,6 +92,10 @@ public class CartController implements Initializable {
         } else {
                 CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
                 OrderModel.placeOrder(UserModel.getUserName());
+
+                // Enable the cart button in the restaurant page and restaurant menu page
+                addItemClicked = false;
+
                 pageNavigator.navigateToPage(placeOrderBtn, "Cart");
             }
 
@@ -101,6 +110,10 @@ public class CartController implements Initializable {
                 payPane.setVisible(false);
                 CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
                 OrderModel.placeOrder(UserModel.getUserName());
+
+                // Enable the cart button in the restaurant page and restaurant menu page
+                addItemClicked = false;
+
                 pageNavigator.navigateToPage(placeOrderBtn, "Cart");
             } else {
                 payAlert.setText("Insufficient");
@@ -150,6 +163,8 @@ public class CartController implements Initializable {
             // Set the add item link
             addItemLink.setText("+ Add an item to your cart");
             addItemLink.setOnAction(actionEvent -> {
+                // Disable the cart button in the restaurant page and restaurant menu page
+                addItemClicked = true;
                 pageNavigator.forwardToPage(addItemLink, "Cart", "Restaurants");
             });
 

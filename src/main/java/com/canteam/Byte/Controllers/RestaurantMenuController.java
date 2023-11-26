@@ -315,6 +315,11 @@ public class RestaurantMenuController {
     }
 
     @FXML
+    private void onCartIconClicked(){
+        pageNavigator.forwardToPage(cartIcon, "RestaurantMenu", "Cart");
+    }
+
+    @FXML
     private void onAddtoCartBtnClicked(){
         // TODO: Change behavior when extra is checked
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
@@ -393,6 +398,13 @@ public class RestaurantMenuController {
 
     @FXML
     void initialize() {
+        // if CartController.addItemClicked is true, disable the add to cart button
+        if (CartController.addItemClicked){
+            cartIcon.setVisible(false);
+        } else {
+            cartIcon.setVisible(true);
+        }
+
         // clear the grid pane
         itemsGridPane.getChildren().clear();
 

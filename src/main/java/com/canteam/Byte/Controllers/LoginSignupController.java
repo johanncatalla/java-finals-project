@@ -1,5 +1,6 @@
 package com.canteam.Byte.Controllers;
 
+import com.canteam.Byte.MainApplication;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -141,7 +142,7 @@ public class LoginSignupController implements Initializable {
                             pageNavigator.navigateToPage(loginButton, "Location");
                             return;
                         }
-                        pageNavigator.forwardToPage(loginButton, "login", "Home");
+                        MainApplication.changeScene("Home");
                     } else if (UserModel.getUserType().equals("Store")) {
                         pageNavigator.forwardToPage(loginButton, "login", "ShopOrderList");
                     } else {

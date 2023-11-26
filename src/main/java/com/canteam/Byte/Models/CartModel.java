@@ -1,18 +1,18 @@
 package com.canteam.Byte.Models;
 
-import java.nio.file.DirectoryStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.canteam.Byte.MongoDB.Connection;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 
 public class CartModel {
@@ -39,38 +39,38 @@ public class CartModel {
     }
 
     public static void addToCart(String username, String name, int price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
+        int itemTotalPrice = (price * quantity);
+
+        // Create item document containing item details
+        Document itemDB = new Document("Name", name)
+                .append("Price", price)
+                .append("Quantity", quantity)
+                .append("Instructions", instructions)
+                .append("Total Price", itemTotalPrice)
+                .append("Size", size)
+                .append("Image", imageName);
+
         if (cart.containsKey(name)) {
             // Update item quantity if item is already in cart
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity));
+            itemDB.append("Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity);
             // Update item total price accordingly
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Total Price", CartModel.getItemTotalPriceFromCart(username, name)));
-
-            System.out.println("Successfully updated");
-        } else {
-            int itemTotalPrice = (price * quantity);
-
-            // Create item document containing item details
-            Document itemDB = new Document("Name", name)
-                    .append("Price", price)
-                    .append("Quantity", quantity)
-                    .append("Instructions", instructions)
-                    .append("Total Price", itemTotalPrice)
-                    .append("Size", size)
-                    .append("Image", imageName);
-
-            // update store
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", store));
-
-            // Append item document to cart
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name, itemDB));
-            // Update item total price in cart
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Total Price", CartModel.getItemTotalPriceFromCart(username, name)));
-
-            System.out.println("Successfully added");
+            itemDB.append("Total Price", CartModel.getItemTotalPriceFromCart(username, name)+(price*quantity));
         }
+
+        // Prepare updates
+        List<Bson> updates = new ArrayList<>();
+        updates.add(Updates.set("Store", store));
+        updates.add(Updates.set("Cart."+name, itemDB));
+
+        // Apply updates
+        collection.updateOne(Filters.eq("UserName", username), Updates.combine(updates));
+
+        System.out.println("Successfully updated");
+
         // Fetch cart from database to local cart
         CartModel.defineCart(username);
     }
+
 
     private static int getItemQuantityFromCart(String username, String itemName) {
         Document userDocument = collection.find(Filters.eq("UserName", username)).first();

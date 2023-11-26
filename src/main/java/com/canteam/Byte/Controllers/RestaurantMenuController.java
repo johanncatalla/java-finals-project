@@ -280,8 +280,6 @@ public class RestaurantMenuController {
 
                 // checkbox left margin = 30
                 GridPane.setMargin(checkBox, new Insets(0, 0, 10, 20));
-
-
             }
         } else {
             noTagsPositionPane.setVisible(true);

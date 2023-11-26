@@ -1,5 +1,6 @@
 package com.canteam.Byte.Controllers;
 
+import com.canteam.Byte.Models.CartModel;
 import com.canteam.Byte.Models.ShopModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
@@ -102,6 +103,9 @@ public class RestaurantsController implements Initializable {
 
                     // Set the margin for the cuisine button
                     GridPane.setMargin(cuisineButton, new Insets(0, 20, 15, 20));
+
+                    // Disable other shops not matching the shop in the cart
+                    disableIfHasCart(cuisineButton, i);
                 }
             }
         } catch (Exception e) {
@@ -116,6 +120,20 @@ public class RestaurantsController implements Initializable {
     @FXML
     private void onCartIconClicked(){
         pageNavigator.forwardToPage(cartIcon, "Restaurants", "Cart");
+    }
+
+    private void disableIfHasCart(AnchorPane shopButton, int i){
+        String hasCart = CartModel.getStore();
+        System.out.println(hasCart);
+        if (hasCart != null){
+            if (hasCart.equals(shopList.get(i).getShopName())){
+                shopButton.setOpacity(1);
+                shopButton.setDisable(false);
+            } else {
+                shopButton.setOpacity(0.5);
+                shopButton.setDisable(true);
+            }
+        }
     }
 
     @Override
@@ -144,6 +162,7 @@ public class RestaurantsController implements Initializable {
         if (initialSearch != null){
             onSearchEntered(initialSearch);
         } else {
+            String hasCart = CartModel.getStore();
             int column = 0;
             int row = 1;
             try {
@@ -151,7 +170,7 @@ public class RestaurantsController implements Initializable {
                     // Get the fxml file for the cuisine button
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/ShopButton.fxml"));
-                    AnchorPane cuisineButton = fxmlLoader.load();
+                    AnchorPane shopButton = fxmlLoader.load();
 
                     // Set the data for the cuisine button
                     ShopButtonController shopButtonController = fxmlLoader.getController();
@@ -162,10 +181,13 @@ public class RestaurantsController implements Initializable {
                         row++;
                         column = 0;
                     }
-                    shopsGridPane.add(cuisineButton, column++, row);
+                    shopsGridPane.add(shopButton, column++, row);
 
                     // Set the margin for the cuisine button
-                    GridPane.setMargin(cuisineButton, new Insets(0, 20, 15, 20));
+                    GridPane.setMargin(shopButton, new Insets(0, 20, 15, 20));
+
+                    // Disable other shops not matching the shop in the cart
+                    disableIfHasCart(shopButton, i);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

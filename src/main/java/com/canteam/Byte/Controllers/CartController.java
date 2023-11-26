@@ -182,6 +182,8 @@ public class CartController implements Initializable {
                 }
                 // delete the item from the cart
                 CartModel.deleteItemFromCart(UserModel.getUserName(), itemName);
+                subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
+                totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
             });
 
             HashMap<String, String> itemDetails = userCart.get(itemName);

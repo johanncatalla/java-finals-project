@@ -106,11 +106,13 @@ public class ItemModel {
     }
 
     public static HashMap<String, Integer> convertDocumentStrToHashMap(String str) {
-        str = str.substring(10, str.length()-2); // remove "Document{{" and "}}"
-        String[] keyValuePairs = str.split("="); // split the string to create key-value pairs
         HashMap<String, Integer> map = new HashMap<>();
 
-        map.put(keyValuePairs[0].trim(), Integer.parseInt(keyValuePairs[1].trim())); // add them to the hashmap and trim whitespaces
+        if (str.length() > 0) {
+            str = str.substring(10, str.length()-2); // remove "Document{{" and "}}"
+            String[] keyValuePairs = str.split("="); // split the string to create key-value pairs
+            map.put(keyValuePairs[0].trim(), Integer.parseInt(keyValuePairs[1].trim())); // add them to the hashmap and trim whitespaces
+        }
 
         return map;
     }

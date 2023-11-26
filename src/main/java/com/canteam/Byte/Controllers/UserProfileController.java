@@ -41,35 +41,51 @@ public class UserProfileController implements Initializable {
     private Draggable draggable = new Draggable();
 
     @FXML
+    private Label alertLabel;
+
+    @FXML
     void onCloseButton(ActionEvent event) {
+        alertLabel.setVisible(false);
         pageNavigator.backToPage(closeProfileButton);
     }
 
     @FXML
-    void onSaveButton(ActionEvent event) {
+    void onSaveButton(ActionEvent event) {;
+        // check if there is an empty field
+        if (emailField.getText().isEmpty() || fullNameField.getText().isEmpty() || passwordField.getText().isEmpty()){
+            alertLabel.setText("Please fill in all fields");
+            alertLabel.setStyle(
+                    "-fx-text-fill: red;" +
+                    "-fx-font-weight: bold;" +
+                    "-fx-font-size: 15px;");
+            alertLabel.setVisible(true);
+            return;
+        }
+        alertLabel.setVisible(true);
+        alertLabel.setText("Changes saved");
+        alertLabel.setStyle(
+                "-fx-text-fill: green;" +
+                "-fx-font-weight: bold;" +
+                "-fx-font-size: 15px;");
         // Get new user info
         String newEmail = emailField.getText();
         String newFullName = fullNameField.getText();
         String newPassword = passwordField.getText();
 
-        // TODO: Update user info in database
+        UserModel.setEmail(newEmail);
+        UserModel.setFullName(newFullName);
+        UserModel.setUserPassword(newPassword);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        alertLabel.setVisible(false);
         // Make draggable
         draggable.makeWindowDraggable(statusBar);
 
         // Set text for fields
-        profileIcon.setText(UserModel.getFullName().substring(0, 1));
+        profileIcon.setText(UserModel.getFullName().substring(0, 1).toUpperCase());
         emailField.setText(UserModel.getEmail());
         fullNameField.setText(UserModel.getFullName());
-
-        // Set the prompt text for the text fields by current user info
-        profileIcon.setText(UserModel.getFullName().substring(0, 1));
-
-        emailField.setPromptText(UserModel.getEmail());
-        fullNameField.setPromptText(UserModel.getFullName());
-        passwordField.setPromptText(UserModel.getUserPassword());
     }
 }

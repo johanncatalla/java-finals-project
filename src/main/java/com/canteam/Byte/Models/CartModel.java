@@ -95,6 +95,10 @@ public class CartModel {
         collection.updateOne(Filters.eq("UserName", username), Updates.unset("Cart."+itemName));
         // update order subtotal and total price
         updateSubtotalAndTotalPrice(username);
+        // If cart is empty, set store to null
+        if (cart.isEmpty()) {
+            collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", null));
+        }
         // Fetch cart from database to local cart
         CartModel.defineCart(username);
     }

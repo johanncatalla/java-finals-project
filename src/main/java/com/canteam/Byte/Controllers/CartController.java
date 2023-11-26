@@ -163,6 +163,9 @@ public class CartController implements Initializable {
             // Set the add item link
             addItemLink.setText("+ Add an item to your cart");
             addItemLink.setOnAction(actionEvent -> {
+                // Set the selected shop name
+                ShopModel.setSelectedShopName(CartModel.getStore());
+
                 // Disable the cart button in the restaurant page and restaurant menu page
                 addItemClicked = true;
                 pageNavigator.forwardToPage(addItemLink, "Cart", "Restaurants");

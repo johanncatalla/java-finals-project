@@ -1,11 +1,19 @@
 package com.canteam.Byte.Controllers;
 
+import com.canteam.Byte.Models.OrderModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class ShopOrderQueueController {
+import com.canteam.Byte.Controllers.PageNavigator;
+
+import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+public class ShopOrderQueueController implements Initializable {
 
     @FXML
     private Label txtAddress;
@@ -23,15 +31,29 @@ public class ShopOrderQueueController {
     private Button viewOrderBtn;
 
     @FXML
-    void onViewOrder(ActionEvent event) {
+    private Label orderConfirmed;
 
+    private PageNavigator pageNavigator = new PageNavigator();
+
+    @FXML
+    void onViewOrder(ActionEvent event) {
+        ShopOrderViewController.setOrderNumber(Integer.parseInt(txtOrderNum.getText()));
+        pageNavigator.navigateToPage(viewOrderBtn, "ShopOrderView");
     }
+
 
     public void setData(String name, String address, String contact, String orderNum) {
         txtCustomerName.setText(name);
         txtAddress.setText(address);
         txtContact.setText(contact);
         txtOrderNum.setText(orderNum);
+        if (Objects.equals(OrderModel.getOrderStatus(Integer.valueOf(txtOrderNum.getText())), "Confirmed")) {
+            orderConfirmed.setVisible(true);
+        }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

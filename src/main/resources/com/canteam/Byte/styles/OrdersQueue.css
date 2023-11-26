@@ -9,15 +9,24 @@
 }
 
 .left{
-    -fx-font: Poppins;
+    -fx-font: 12pt Poppins;
     -fx-font-weight: 700;
     -fx-font-size: 12;
 }
 
 .right{
-    -fx-font: Poppins;
+    -fx-font: 12pt Poppins;
     -fx-font-weight: 400;
     -fx-font-size: 12;
+}
+
+.confirmed-text{
+    -fx-font-family: Poppins;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill:  #5A0B0C;
+    -fx-border-color: #5A0B0C;
+    -fx-border-radius: 2px;
 }
 
 .button-styled{

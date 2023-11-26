@@ -23,5 +23,6 @@
          </cursor></Button>
       <Label layoutX="15.0" layoutY="88.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
       <Label fx:id="txtOrderNum" layoutX="73.0" layoutY="88.0" prefHeight="17.0" prefWidth="117.0" styleClass="right" text="1" />
+      <Label fx:id="orderConfirmed" layoutX="209.0" layoutY="9.0" styleClass="confirmed-text" stylesheets="@../styles/OrdersQueue.css" text=" CONFIRMED " visible="false" />
    </children>
 </AnchorPane>

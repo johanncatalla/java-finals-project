@@ -3,6 +3,8 @@ package com.canteam.Byte.Models;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Objects;
+
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -69,6 +71,10 @@ public class OrderModel {
 
     public static void updateOrderStatus(Integer orderNumber, String status) {
         orderCollection.updateOne(Filters.eq("Order Number", orderNumber), Updates.set("Order Status", status));
+    }
+
+    public static String getOrderStatus(Integer orderNumber) {
+        return Objects.requireNonNull(orderCollection.find(Filters.eq("Order Number", orderNumber)).first()).getString("Order Status");
     }
 
     public static void placeOrder(String username) {

@@ -41,13 +41,13 @@ public class RestaurantsController implements Initializable {
 
     private Draggable draggable = new Draggable();
 
-    private List<ShopModel> shopList = new ArrayList<>();
+    public static List<ShopModel> shopList = new ArrayList<>();
 
     PageNavigator pageNavigator = new PageNavigator();
 
     private static String initialSearch = null;
 
-    private List<ShopModel> getData(){
+    public static List<ShopModel> getData(){
         List<ShopModel> shopList = new ArrayList<>();
         ShopModel shop;
 
@@ -122,7 +122,7 @@ public class RestaurantsController implements Initializable {
         pageNavigator.forwardToPage(cartIcon, "Restaurants", "Cart");
     }
 
-    private void disableIfHasCart(AnchorPane shopButton, int i){
+    public static void disableIfHasCart(AnchorPane shopButton, int i){
         String hasCart = CartModel.getStore();
         System.out.println(hasCart);
         if (hasCart != null){
@@ -156,8 +156,6 @@ public class RestaurantsController implements Initializable {
         });
 
         // Set up data for the shops
-        // Will create an error at start but will be ok when you open the home page
-        shopList.addAll(getData());
 
         if (initialSearch != null){
             onSearchEntered(initialSearch);

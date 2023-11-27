@@ -122,7 +122,6 @@ public class OrderModel {
         }
 
         CartModel.emptyCart(username);
-        System.out.println("Successfully placed order");
     }
 
     private static int getOrderNumberCount(String code) {

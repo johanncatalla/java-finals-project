@@ -36,7 +36,7 @@ public class OrderItemCardController {
         this.itemQty.setText("X"+itemQty);
 
         // get image resource as stream
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/SampleItem.jpg")));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+itemStore+"/"+itemName+".jpg")));
         // set image to image view
         itemImage.setImage(image);
         // clip the image to rounded rectangle

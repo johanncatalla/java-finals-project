@@ -19,37 +19,41 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/Cart.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.CartController">
+<AnchorPane maxWidth="390.0" minWidth="390.0" prefHeight="844.0" prefWidth="380.0" stylesheets="@../styles/Cart.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.CartController">
    <children>
-      <AnchorPane layoutX="22.0" layoutY="146.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutY="146.0" maxWidth="390.0" prefHeight="844.0" prefWidth="369.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane fx:id="ordersGridPane" layoutX="8.0" layoutY="257.0" prefHeight="51.0" prefWidth="379.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-               </columnConstraints>
-            </GridPane>
-            <Line endX="390.0" layoutX="1.5" layoutY="95.0999984741211" stroke="#eaeaea" strokeWidth="3.0" />
-            <Rectangle height="46.0" layoutY="219.0" stroke="TRANSPARENT" strokeType="INSIDE" width="395.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <fill>
-                  <LinearGradient endX="0.497159090909091" endY="1.0" startX="0.4962121582392491" startY="0.3446969118985263">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
-            <AnchorPane layoutY="97.0" prefHeight="138.0" prefWidth="394.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="3.0" layoutY="97.0" maxWidth="386.0" minWidth="386.0" prefHeight="215.0" prefWidth="386.0">
                <children>
-                  <AnchorPane layoutX="30.4" layoutY="13.0" prefHeight="113.0" prefWidth="334.0" styleClass="card" AnchorPane.leftAnchor="30.4" AnchorPane.rightAnchor="30.399999999999977">
+                  <GridPane fx:id="ordersGridPane" layoutX="12.0" layoutY="163.4000015258789" maxWidth="370.0" prefHeight="51.0" prefWidth="370.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                  </GridPane>
+                  <Line endX="390.0" stroke="#eaeaea" strokeWidth="3.0" />
+                  <Rectangle height="46.0" layoutX="8.0" layoutY="125.4000015258789" stroke="TRANSPARENT" strokeType="INSIDE" width="380.0">
+                     <fill>
+                        <LinearGradient endX="0.497159090909091" endY="1.0" startX="0.4962121582392491" startY="0.3446969118985263">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Rectangle>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="97.0" maxWidth="390.0" prefHeight="138.0" prefWidth="390.0" style="-fx-background-color: white;">
+               <children>
+                  <AnchorPane layoutX="30.4" layoutY="13.0" prefHeight="113.0" prefWidth="334.0" styleClass="card">
                      <children>
                         <ImageView fitHeight="81.0" fitWidth="66.0" layoutX="30.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -62,7 +66,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="32.0" layoutY="370.0" prefHeight="212.0" prefWidth="395.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <AnchorPane layoutY="632.0" maxWidth="390.0" minWidth="390.0" prefHeight="212.0" prefWidth="390.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0">
                <children>
                   <Label layoutX="27.0" layoutY="21.0" styleClass="text" text="Mode of Payment" />
                   <Label layoutX="27.0" layoutY="50.0" text="Subtotal" />
@@ -97,33 +101,37 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Rectangle height="81.0" layoutY="552.0" stroke="TRANSPARENT" strokeType="INSIDE" width="395.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <fill>
-            <LinearGradient endX="0.497159090909091" endY="0.8257575703389717" startX="0.4962121582392491">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </fill>
-      </Rectangle>
-      <Hyperlink fx:id="addItemLink" alignment="CENTER" layoutX="24.0" layoutY="588.0" onAction="#onAddItemLinkClicked" prefHeight="32.0" prefWidth="345.0" style="-fx-font-weight: bold;" text="+ Add more items">
-         <styleClass>
-            <String fx:value="maroon-text" />
-            <String fx:value="title-text" />
-         </styleClass>
-      </Hyperlink>
-      <AnchorPane prefHeight="95.0" prefWidth="394.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="-0.6666666865348816" layoutY="552.0" maxWidth="390.0" minWidth="390.0" prefWidth="390.0">
          <children>
-            <ImageView fx:id="statusBar" fitHeight="47.0" fitWidth="386.0" layoutX="4.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
+            <Rectangle height="81.0" stroke="TRANSPARENT" strokeType="INSIDE" width="390.0">
+               <fill>
+                  <LinearGradient endX="0.497159090909091" endY="0.8257575703389717" startX="0.4962121582392491">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Hyperlink fx:id="addItemLink" alignment="CENTER" layoutX="24.66666668653488" layoutY="36.0" onAction="#onAddItemLinkClicked" prefHeight="32.0" prefWidth="345.0" style="-fx-font-weight: bold;" text="+ Add more items">
+               <styleClass>
+                  <String fx:value="maroon-text" />
+                  <String fx:value="title-text" />
+               </styleClass>
+            </Hyperlink>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="390.0" minWidth="390.0" prefHeight="95.0" prefWidth="390.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fx:id="statusBar" fitHeight="47.0" fitWidth="386.0" layoutX="1.6666666666666665" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="1.6666666666666665" AnchorPane.rightAnchor="12.333333333333314" AnchorPane.topAnchor="0.0">
                <image>
                   <Image url="@../assets/images/Meals/status-bar-black.png" />
                </image>
@@ -137,9 +145,9 @@
             <Button id="closeButton" fx:id="closeBtn" layoutX="45.0" layoutY="52.0" mnemonicParsing="false" onAction="#onCloseBtnClicked" prefHeight="18.0" prefWidth="18.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="payPane" prefHeight="200.0" prefWidth="200.0" styleClass="ConfirmShadow" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="payPane" maxWidth="390.0" prefHeight="200.0" prefWidth="390.0" styleClass="ConfirmShadow" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane layoutX="10.4" layoutY="272.4" prefHeight="250.0" prefWidth="370.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="10.4" AnchorPane.rightAnchor="10.399999999999977" AnchorPane.topAnchor="272.4">
+            <AnchorPane layoutX="10.4" layoutY="272.4" maxWidth="374.0" prefHeight="250.0" prefWidth="374.0" style="-fx-background-color: white; -fx-background-radius: 20;" AnchorPane.leftAnchor="10.4" AnchorPane.rightAnchor="10.399999999999977" AnchorPane.topAnchor="272.4">
                <effect>
                   <DropShadow>
                      <color>
@@ -148,7 +156,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AnchorPane layoutX="14.0" layoutY="-9.0" prefHeight="51.0" prefWidth="374.0" style="-fx-background-color: maroon; -fx-background-radius: 20 20 0 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="14.0" layoutY="-9.0" maxWidth="374.0" prefHeight="51.0" prefWidth="345.0" style="-fx-background-color: maroon; -fx-background-radius: 20 20 0 0;" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label layoutX="17.0" layoutY="13.0" style="-fx-font-size: 20;" styleClass="poppins-black" text="Confirm Order" textFill="WHITE">
                            <font>

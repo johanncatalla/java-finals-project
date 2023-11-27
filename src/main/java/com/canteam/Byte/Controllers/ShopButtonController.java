@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ShopButtonController implements Initializable {
+public class ShopButtonController {
     @FXML
     private ImageView buttonImage;
 
@@ -29,18 +29,12 @@ public class ShopButtonController implements Initializable {
     public void setData(ShopModel shopModel){
         this.shopModel = shopModel;
         shopName.setText(shopModel.getShopName());
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(shopModel.getShopImageSrc())));
-        buttonImage.setImage(image);
+        buttonImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(shopModel.getShopImageSrc()))));
     }
 
     public void onShopButtonClicked() {
         ShopModel.setSelectedShopName(shopModel.getShopName());
         pageNavigator.makeForwardNavigator(shopButton, "Restaurants", "RestaurantMenu");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
 

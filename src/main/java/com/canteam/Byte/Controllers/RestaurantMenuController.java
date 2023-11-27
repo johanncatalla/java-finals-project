@@ -219,13 +219,12 @@ public class RestaurantMenuController {
         mealName.setText(selectedItem.get("Item_Name"));
         mealPrice.setText("PHP " + selectedItem.get("Item_Price") + ".00");
 
-        // sample item image
-        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg")));
-        mealImg.setImage(imagePlaceHolder);
+        // item image
+        mealImg.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg"))));
 
         // Animation for the item view pane after clicking an item
         TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setDuration(javafx.util.Duration.seconds(0.3));
         transition.setNode(itemViewPane);
         transition.setToY(-750);
         transition.play();
@@ -324,13 +323,10 @@ public class RestaurantMenuController {
         Thread thread = new Thread(() -> {
             try {
                 addSuccessAlert.setVisible(true);
-                Thread.sleep(2000);
+                Thread.sleep(500);
                 // fade out the alert
                 addSuccessAlert.setOpacity(1);
-                for (int i = 0; i < 10; i++){
-                    Thread.sleep(100);
-                    addSuccessAlert.setOpacity(addSuccessAlert.getOpacity() - 0.1);
-                }
+
                 addSuccessAlert.setVisible(false);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -366,17 +362,6 @@ public class RestaurantMenuController {
         // reset the qty label to 1
         qtyLabel.setText("1");
 
-        //hide the item view pane
-        Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-                hideItem();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        thread.start();
-
         // show the alert
         alertSuccess();
 
@@ -394,7 +379,7 @@ public class RestaurantMenuController {
     }
 
 
-    private List<ItemModel> getData(){
+    private List<ItemModel> getData() {
         MongoClient client = Connection.getInstance();
         MongoDatabase database = client.getDatabase("Stores");
         MongoCollection<Document> collection = database.getCollection(ShopModel.getSelectedShopName());

@@ -89,14 +89,13 @@ public class CartModel {
     public static void deleteItemFromCart(String username, String itemName) {
         // Delete item from cart
         collection.updateOne(Filters.eq("UserName", username), Updates.unset("Cart."+itemName));
-        // update order subtotal and total price
-        updateSubtotalAndTotalPrice(username);
         // If cart is empty, set store to null
-        if (cart.isEmpty()) {
+        if (CartModel.getCart().isEmpty()) {
+            System.out.println("Cart is empty");
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", null));
         }
-        // Fetch cart from database to local cart
         CartModel.defineCart(username);
+
     }
 
     private static int getItemTotalPriceFromCart(String username, String itemName) {

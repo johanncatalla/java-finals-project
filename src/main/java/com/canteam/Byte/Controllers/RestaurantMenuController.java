@@ -51,7 +51,8 @@ public class RestaurantMenuController {
     private ImageView cartIcon;
 
     @FXML
-    private AnchorPane gridPaneContainer, itemViewPane, qtyAddSubPane, noTagsPositionPane ,scrollAnchorPane, specialInstructionsPane, extrasLabel;
+    private AnchorPane gridPaneContainer, itemViewPane, qtyAddSubPane, noTagsPositionPane ,
+            scrollAnchorPane, specialInstructionsPane, extrasLabel, addSuccessAlert;
 
     @FXML
     private GridPane itemsGridPane, extrasGridPane;
@@ -106,7 +107,7 @@ public class RestaurantMenuController {
         pageNavigator.backToPage(backButton);
     }
 
-        @FXML
+    @FXML
     void onAddQty(ActionEvent event) {
         if (Integer.parseInt(qtyLabel.getText()) < 10) {
             qtyLabel.setText(Integer.toString(Integer.parseInt(qtyLabel.getText()) + 1));
@@ -218,13 +219,12 @@ public class RestaurantMenuController {
         mealName.setText(selectedItem.get("Item_Name"));
         mealPrice.setText("PHP " + selectedItem.get("Item_Price") + ".00");
 
-        // sample item image
-        Image imagePlaceHolder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg")));
-        mealImg.setImage(imagePlaceHolder);
+        // item image
+        mealImg.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg"))));
 
         // Animation for the item view pane after clicking an item
         TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setDuration(javafx.util.Duration.seconds(0.3));
         transition.setNode(itemViewPane);
         transition.setToY(-750);
         transition.play();
@@ -280,8 +280,6 @@ public class RestaurantMenuController {
 
                 // checkbox left margin = 30
                 GridPane.setMargin(checkBox, new Insets(0, 0, 10, 20));
-
-
             }
         } else {
             noTagsPositionPane.setVisible(true);
@@ -319,8 +317,27 @@ public class RestaurantMenuController {
         pageNavigator.forwardToPage(cartIcon, "RestaurantMenu", "Cart");
     }
 
+
+    // add exception handling for the alert
+    public void alertSuccess() {
+        Thread thread = new Thread(() -> {
+            try {
+                addSuccessAlert.setVisible(true);
+                Thread.sleep(500);
+                // fade out the alert
+                addSuccessAlert.setOpacity(1);
+
+                addSuccessAlert.setVisible(false);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+    }
+
     @FXML
     private void onAddtoCartBtnClicked(){
+
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
         String txtPrice = mealPrice.getText();
         int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
@@ -342,6 +359,11 @@ public class RestaurantMenuController {
             }
 
         }
+        // reset the qty label to 1
+        qtyLabel.setText("1");
+
+        // show the alert
+        alertSuccess();
 
     }
 
@@ -357,7 +379,7 @@ public class RestaurantMenuController {
     }
 
 
-    private List<ItemModel> getData(){
+    private List<ItemModel> getData() {
         MongoClient client = Connection.getInstance();
         MongoDatabase database = client.getDatabase("Stores");
         MongoCollection<Document> collection = database.getCollection(ShopModel.getSelectedShopName());
@@ -424,9 +446,9 @@ public class RestaurantMenuController {
             // Set the style of the tag remove the underline
             tagLink.setStyle(
                     "-fx-text-fill: black;" +
-                    "-fx-font-size: 14px;" +
-                    "-fx-underline: false;" +
-                    "-fx-font-family: Poppins"
+                            "-fx-font-size: 14px;" +
+                            "-fx-underline: false;" +
+                            "-fx-font-family: Poppins"
             );
             tagsHBox.getChildren().add(tagLink);
         }

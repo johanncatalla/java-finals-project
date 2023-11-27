@@ -180,48 +180,54 @@ public class CartController implements Initializable {
             placeOrderBtn.setDisable(true);
 
             return;
+        } else {
+            int row = 1;
+            String itemStore = CartModel.getStore();
+            for (String itemName : userCart.keySet()) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/OrderItemCard.fxml"));
+                AnchorPane orderItemCard = fxmlLoader.load();
+
+                // Set the data for the cuisine button
+                OrderItemCardController orderItemCardController = fxmlLoader.getController();
+                orderItemCardController.removeBtn.setOnAction(actionEvent -> {
+                    // remove from userCart
+                    userCart.remove(itemName);
+                    // reload the orders
+                    try {
+                        loadOrders();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    // delete the item from the cart
+                    CartModel.deleteItemFromCart(UserModel.getUserName(), itemName);
+                    subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
+                    if (CartModel.getCart().isEmpty()) {
+                        totalLabel.setText("PHP 0.00");
+                        // Set delivery fee
+                        deliveryFeeLabel.setText("PHP 0.00");
+                        CartModel.emptyCart(UserModel.getUserName());
+                    } else {
+                        totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
+                        // Set delivery fee
+                        deliveryFeeLabel.setText("PHP " + "20.00");
+                    }
+                });
+
+                HashMap<String, String> itemDetails = userCart.get(itemName);
+                String itemQuantity = itemDetails.get("Quantity");
+                String itemTotalPrice = itemDetails.get("Total Price");
+                System.out.println("Store: "+itemStore);
+                System.out.println("Name: "+itemName);
+
+                orderItemCardController.setData(itemStore, itemName ,itemTotalPrice, itemQuantity);
+
+                ordersGridPane.add(orderItemCard, 0, row);
+                // Set margin bottom to 5
+                GridPane.setMargin(orderItemCard, new javafx.geometry.Insets(0, 0, 5, 0));
+                row++;
+            }
         }
-        int row = 1;
-        for (String itemName : userCart.keySet()) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/OrderItemCard.fxml"));
-            AnchorPane orderItemCard = fxmlLoader.load();
-
-            // Set the data for the cuisine button
-            OrderItemCardController orderItemCardController = fxmlLoader.getController();
-            orderItemCardController.removeBtn.setOnAction(actionEvent -> {
-                // remove from userCart
-                userCart.remove(itemName);
-                // reload the orders
-                try {
-                    loadOrders();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                // delete the item from the cart
-                CartModel.deleteItemFromCart(UserModel.getUserName(), itemName);
-                subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
-                totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
-            });
-
-            HashMap<String, String> itemDetails = userCart.get(itemName);
-            String itemQuantity = itemDetails.get("Quantity");
-            String itemTotalPrice = itemDetails.get("Total Price");
-            String itemInstructions = itemDetails.get("Instructions");
-            String itemStore = itemDetails.get("Store");
-
-            orderItemCardController.setData(itemStore, itemName ,itemTotalPrice, itemQuantity);
-
-            ordersGridPane.add(orderItemCard, 0, row);
-            // Set margin bottom to 5
-            GridPane.setMargin(orderItemCard, new javafx.geometry.Insets(0, 0, 5, 0));
-            row++;
-        }
-        // Set subtotal and total price
-        subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
-        totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
-        // Set delivery fee
-        deliveryFeeLabel.setText("PHP " + "20.00");
     }
 
 

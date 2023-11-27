@@ -2,23 +2,17 @@ package com.canteam.Byte.Models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Objects;
 
 import com.canteam.Byte.MongoDB.Connection;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Aggregates;
-import com.mongodb.client.model.BsonField;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 
 
-import com.canteam.Byte.Models.CartModel;
 import org.bson.conversions.Bson;
 
 public class OrderModel {
@@ -68,6 +62,29 @@ public class OrderModel {
         return userOrders;
     }
 
+    public static void completeOrder(Integer orderNumber) {
+        Bson filter = Filters.eq("Order Number", orderNumber);
+        MongoCollection<Document> historyCollection = database.getCollection("History");
+        Document order = orderCollection.find(filter).first();
+
+        // Copy the document to another document except the id
+        Document orderCopy = new Document();
+        assert order != null;
+        for (String key : order.keySet()) {
+            if (!key.equals("_id")) {
+                orderCopy.append(key, order.get(key));
+            }
+        }
+
+        // transfers the completed order to history
+        if (orderCopy != null) {
+            historyCollection.insertOne(orderCopy);
+            orderCollection.deleteOne(filter);
+            System.out.println("Order Ended");
+        }
+
+    }
+
 
     public static void updateOrderStatus(Integer orderNumber, String status) {
         orderCollection.updateOne(Filters.eq("Order Number", orderNumber), Updates.set("Order Status", status));
@@ -105,7 +122,6 @@ public class OrderModel {
         }
 
         CartModel.emptyCart(username);
-        System.out.println("Successfully placed order");
     }
 
     private static int getOrderNumberCount(String code) {

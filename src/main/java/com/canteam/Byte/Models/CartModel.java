@@ -1,18 +1,18 @@
 package com.canteam.Byte.Models;
 
-import java.nio.file.DirectoryStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.canteam.Byte.MongoDB.Connection;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 
 public class CartModel {
@@ -38,43 +38,39 @@ public class CartModel {
         collection.insertOne(newUser);
     }
 
-    public static void addToCart(String username, String name, double price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
-        CartModel.defineCart(username);
+    public static void addToCart(String username, String name, int price, int quantity, String store, String instructions, HashMap<String, Integer> size, String imageName) {
+        int itemTotalPrice = (price * quantity);
+
+        // Create item document containing item details
+        Document itemDB = new Document("Name", name)
+                .append("Price", price)
+                .append("Quantity", quantity)
+                .append("Instructions", instructions)
+                .append("Total Price", itemTotalPrice)
+                .append("Size", size)
+                .append("Image", imageName);
+
         if (cart.containsKey(name)) {
-
             // Update item quantity if item is already in cart
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity));
+            itemDB.append("Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity);
             // Update item total price accordingly
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Total Price", CartModel.getItemTotalPriceFromCart(username, name)));
-
-            System.out.println("Successfully updated");
-        } else {
-            int itemTotalPrice = (int) (price * quantity);;
-
-            // Create item document containing item details
-            Document itemDB = new Document("Name", name)
-                    .append("Price", price)
-                    .append("Quantity", quantity)
-                    .append("Instructions", instructions)
-                    .append("Total Price", itemTotalPrice)
-                    .append("Size", size)
-                    .append("Image", imageName);
-
-            // update store
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", store));
-
-            // Append item document to cart
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name, itemDB));
-            // Update item total price in cart
-            collection.updateOne(Filters.eq("UserName", username), Updates.set("Cart."+name+".Total Price", CartModel.getItemTotalPriceFromCart(username, name)));
-
-            System.out.println("Successfully added");
+            itemDB.append("Total Price", CartModel.getItemTotalPriceFromCart(username, name)+(price*quantity));
         }
-        // update order subtotal and total price
-        updateSubtotalAndTotalPrice(username);
+
+        // Prepare updates
+        List<Bson> updates = new ArrayList<>();
+        updates.add(Updates.set("Store", store));
+        updates.add(Updates.set("Cart."+name, itemDB));
+
+        // Apply updates
+        collection.updateOne(Filters.eq("UserName", username), Updates.combine(updates));
+
+        System.out.println("Successfully updated");
+
         // Fetch cart from database to local cart
         CartModel.defineCart(username);
     }
+
 
     private static int getItemQuantityFromCart(String username, String itemName) {
         Document userDocument = collection.find(Filters.eq("UserName", username)).first();
@@ -93,14 +89,13 @@ public class CartModel {
     public static void deleteItemFromCart(String username, String itemName) {
         // Delete item from cart
         collection.updateOne(Filters.eq("UserName", username), Updates.unset("Cart."+itemName));
-        // update order subtotal and total price
-        updateSubtotalAndTotalPrice(username);
         // If cart is empty, set store to null
-        if (cart.isEmpty()) {
+        if (CartModel.getCart().isEmpty()) {
+            System.out.println("Cart is empty");
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", null));
         }
-        // Fetch cart from database to local cart
         CartModel.defineCart(username);
+
     }
 
     private static int getItemTotalPriceFromCart(String username, String itemName) {
@@ -110,9 +105,9 @@ public class CartModel {
             Document cartDocument = (Document) userDocument.get("Cart");
             Document itemDocument = (Document) cartDocument.get(itemName);
             int quantity = itemDocument.getInteger("Quantity");
-            double price = itemDocument.getDouble("Price");
+            int price = itemDocument.getInteger("Price");
 
-            return (int) (quantity * price);
+            return (quantity * price);
         }
         return 0;
     }

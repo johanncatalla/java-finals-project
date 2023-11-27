@@ -102,6 +102,7 @@ public class ShopOrderViewController implements Initializable {
         confirmOrderBtn.setVisible(false);
         orderCancelled.setVisible(true);
         OrderModel.updateOrderStatus(orderNumber, "Cancelled");
+        OrderModel.completeOrder(orderNumber);
     }
 
     @Override

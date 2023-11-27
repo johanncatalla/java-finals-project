@@ -27,6 +27,7 @@
          <children>
             <Label layoutX="134.0" layoutY="57.0" prefHeight="27.0" prefWidth="122.0" styleClass="byte-Rider" stylesheets="@../styles/Meals.css" text="Byte Rider" />
             <Button fx:id="closeOrdersButton" layoutX="30.0" layoutY="59.0" maxHeight="68.0" maxWidth="50.0" mnemonicParsing="false" onAction="#onCloseOrdersButtonClick" prefHeight="21.0" prefWidth="23.0" styleClass="exit-icon" />
+            <Button fx:id="reloadBtn" layoutX="315.0" layoutY="55.0" mnemonicParsing="false" onAction="#onReload" prefHeight="27.0" prefWidth="37.0" styleClass="reload-icon" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="statusBar">
@@ -38,6 +39,5 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="reloadBtn" layoutX="309.0" layoutY="104.0" mnemonicParsing="false" onAction="#onReload" prefHeight="27.0" prefWidth="37.0" styleClass="reload-icon" />
    </children>
 </AnchorPane>

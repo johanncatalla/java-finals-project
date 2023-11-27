@@ -77,5 +77,10 @@ public class LocationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         draggable.makeWindowDraggable(statusBar);
+        if (!UserModel.isNewUser()) {
+            contactField.setText(UserModel.getUserContact());
+            landmarkField.setText(UserModel.getLandmark());
+            moreDetailsField.setText(UserModel.getAddressDetails());
+        }
     }
 }

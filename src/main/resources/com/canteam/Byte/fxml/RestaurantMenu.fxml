@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" style="-fx-background-color: white;" stylesheets="@../styles/RestaurantMenu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RestaurantMenuController">
     <children>
@@ -152,6 +153,25 @@
                   <Image url="@../assets/images/Meals/line.png" />
                </image>
             </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addSuccessAlert" layoutX="58.0" layoutY="22.0" style="-fx-background-color: rgba(128, 128, 128, 0.42);" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="61.0" layoutY="746.0" prefHeight="44.0" prefWidth="268.0" style="-fx-font-size: 15; -fx-font-weight: bold; -fx-text-fill: white; -fx-background-color: green; -fx-padding: 10 15; -fx-background-radius: 80;" text="✔  Successfully added to cart">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color opacity="0.18617020547389984" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <opaqueInsets>
+                  <Insets top="-60.0" />
+               </opaqueInsets>
+               <font>
+                  <Font name="Poppins Regular" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
     </children>

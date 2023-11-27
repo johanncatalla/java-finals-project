@@ -51,7 +51,8 @@ public class RestaurantMenuController {
     private ImageView cartIcon;
 
     @FXML
-    private AnchorPane gridPaneContainer, itemViewPane, qtyAddSubPane, noTagsPositionPane ,scrollAnchorPane, specialInstructionsPane, extrasLabel;
+    private AnchorPane gridPaneContainer, itemViewPane, qtyAddSubPane, noTagsPositionPane ,
+            scrollAnchorPane, specialInstructionsPane, extrasLabel, addSuccessAlert;
 
     @FXML
     private GridPane itemsGridPane, extrasGridPane;
@@ -106,7 +107,7 @@ public class RestaurantMenuController {
         pageNavigator.backToPage(backButton);
     }
 
-        @FXML
+    @FXML
     void onAddQty(ActionEvent event) {
         if (Integer.parseInt(qtyLabel.getText()) < 10) {
             qtyLabel.setText(Integer.toString(Integer.parseInt(qtyLabel.getText()) + 1));
@@ -317,8 +318,30 @@ public class RestaurantMenuController {
         pageNavigator.forwardToPage(cartIcon, "RestaurantMenu", "Cart");
     }
 
+
+    // add exception handling for the alert
+    public void alertSuccess() {
+        Thread thread = new Thread(() -> {
+            try {
+                addSuccessAlert.setVisible(true);
+                Thread.sleep(2000);
+                // fade out the alert
+                addSuccessAlert.setOpacity(1);
+                for (int i = 0; i < 10; i++){
+                    Thread.sleep(100);
+                    addSuccessAlert.setOpacity(addSuccessAlert.getOpacity() - 0.1);
+                }
+                addSuccessAlert.setVisible(false);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+    }
+
     @FXML
     private void onAddtoCartBtnClicked(){
+
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
         String txtPrice = mealPrice.getText();
         int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
@@ -340,6 +363,22 @@ public class RestaurantMenuController {
             }
 
         }
+        // reset the qty label to 1
+        qtyLabel.setText("1");
+
+        //hide the item view pane
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                hideItem();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+
+        // show the alert
+        alertSuccess();
 
     }
 
@@ -422,9 +461,9 @@ public class RestaurantMenuController {
             // Set the style of the tag remove the underline
             tagLink.setStyle(
                     "-fx-text-fill: black;" +
-                    "-fx-font-size: 14px;" +
-                    "-fx-underline: false;" +
-                    "-fx-font-family: Poppins"
+                            "-fx-font-size: 14px;" +
+                            "-fx-underline: false;" +
+                            "-fx-font-family: Poppins"
             );
             tagsHBox.getChildren().add(tagLink);
         }

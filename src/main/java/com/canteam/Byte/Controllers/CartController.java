@@ -1,9 +1,9 @@
 package com.canteam.Byte.Controllers;
 
 import com.canteam.Byte.Models.CartModel;
-import com.canteam.Byte.Models.OrderModel;
+import com.canteam.Byte.Models.AbstractFolder.OrderModel;
 import com.canteam.Byte.Models.ShopModel;
-import com.canteam.Byte.Models.UserModel;
+import com.canteam.Byte.Models.AbstractFolder.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

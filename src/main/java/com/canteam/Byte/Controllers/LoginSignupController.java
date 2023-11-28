@@ -1,6 +1,5 @@
 package com.canteam.Byte.Controllers;
 
-import com.canteam.Byte.MainApplication;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -17,11 +16,10 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.canteam.Byte.MongoDB.Connection;
-import com.canteam.Byte.Models.UserModel;
+import com.canteam.Byte.Models.AbstractFolder.UserModel;
 import org.bson.Document;
 
 public class LoginSignupController implements Initializable {

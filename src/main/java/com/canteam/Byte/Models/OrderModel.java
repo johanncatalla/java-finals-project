@@ -1,10 +1,9 @@
-package com.canteam.Byte.Models.AbstractFolder;
+package com.canteam.Byte.Models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-import com.canteam.Byte.Models.CartModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;

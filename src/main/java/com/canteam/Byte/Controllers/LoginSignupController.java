@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.canteam.Byte.MongoDB.Connection;
-import com.canteam.Byte.Models.AbstractFolder.UserModel;
+import com.canteam.Byte.Models.UserModel;
 import org.bson.Document;
 
 public class LoginSignupController implements Initializable {

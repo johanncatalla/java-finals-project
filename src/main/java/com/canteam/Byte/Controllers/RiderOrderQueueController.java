@@ -1,6 +1,6 @@
 package com.canteam.Byte.Controllers;
 
-import com.canteam.Byte.Models.AbstractFolder.OrderModel;
+import com.canteam.Byte.Models.OrderModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

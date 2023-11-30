@@ -2,7 +2,6 @@ package com.canteam.Byte.Controllers;
 
 import com.canteam.Byte.Models.CartModel;
 import com.canteam.Byte.Models.ShopModel;
-import com.canteam.Byte.Models.UserModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;

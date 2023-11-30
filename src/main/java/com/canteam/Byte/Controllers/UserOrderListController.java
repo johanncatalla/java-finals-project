@@ -12,14 +12,10 @@ import javafx.scene.layout.GridPane;
 import org.bson.Document;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
-import com.canteam.Byte.Models.UserModel;
 import com.canteam.Byte.Models.OrderModel;
 
 public class UserOrderListController implements Initializable {

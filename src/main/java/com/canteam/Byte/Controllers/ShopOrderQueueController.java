@@ -7,8 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import com.canteam.Byte.Controllers.PageNavigator;
-
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;

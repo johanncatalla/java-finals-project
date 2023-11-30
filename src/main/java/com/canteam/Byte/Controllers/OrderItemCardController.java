@@ -1,13 +1,10 @@
 package com.canteam.Byte.Controllers;
 
-import com.canteam.Byte.Models.CartModel;
-import com.canteam.Byte.Models.UserModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Objects;

@@ -12,10 +12,9 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 
-
 import org.bson.conversions.Bson;
 
-public class OrderModel {
+public abstract class OrderModel {
     private OrderModel() {}
     private static MongoClient client = Connection.getInstance();
     private static MongoDatabase database = client.getDatabase("Byte");

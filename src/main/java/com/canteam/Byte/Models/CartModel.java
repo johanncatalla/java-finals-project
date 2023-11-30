@@ -50,7 +50,7 @@ public class CartModel {
                 .append("Size", size)
                 .append("Image", imageName);
 
-        if (cart.containsKey(name)) {
+        if (cart.containsKey(name) && cart.get(name).get("Instructions") != instructions) {
             // Update item quantity if item is already in cart
             itemDB.append("Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity);
             // Update item total price accordingly

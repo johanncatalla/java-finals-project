@@ -23,8 +23,8 @@
                <children>
                   <AnchorPane prefHeight="161.0" prefWidth="390.0" style="-fx-background-color: #5A0B0C;">
                      <children>
-                        <Label layoutX="61.0" layoutY="48.0" styleClass="topbar-title" text="CCMS Department" />
-                        <Label layoutX="61.0" layoutY="70.0" styleClass="topbar-text" text="Manuel S. Enverga University Foundation" />
+                        <Label fx:id="landmarkLabel" layoutX="61.0" layoutY="48.0" styleClass="topbar-title" text="CCMS Department" />
+                        <Label fx:id="addressDetails" layoutX="61.0" layoutY="70.0" styleClass="topbar-text" text="Manuel S. Enverga University Foundation" />
                         <HBox alignment="CENTER" layoutX="29.0" layoutY="106.0" prefHeight="34.0" prefWidth="331.0" styleClass="topbar-searchfield">
                            <children>
                               <ImageView fitHeight="16.25" fitWidth="16.25" pickOnBounds="true" preserveRatio="true">

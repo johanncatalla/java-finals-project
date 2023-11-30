@@ -1,5 +1,6 @@
 package com.canteam.Byte.Controllers;
 import com.canteam.Byte.Models.*;
+import com.canteam.Byte.Models.UserModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -10,16 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import org.bson.Document;
 
@@ -222,13 +219,6 @@ public class RestaurantMenuController {
         // item image
         mealImg.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg"))));
 
-        // Animation for the item view pane after clicking an item
-        TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(javafx.util.Duration.seconds(0.3));
-        transition.setNode(itemViewPane);
-        transition.setToY(-750);
-        transition.play();
-
         // Set qtyAddSubPane to visible
         qtyAddSubPane.setVisible(true);
 
@@ -290,6 +280,12 @@ public class RestaurantMenuController {
             noTagsPositionPane.getChildren().clear();
             noTagsPositionPane.getChildren().add(specialInstructionsPane);
         }
+        // Animation for the item view pane after clicking an item
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setNode(itemViewPane);
+        transition.setToY(-750);
+        transition.play();
     }
 
     @FXML
@@ -344,26 +340,32 @@ public class RestaurantMenuController {
 
         System.out.println(selectedItem);
         if (ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes")).isEmpty()) {
+
             CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
                     price, Integer.parseInt(qtyLabel.getText()),
                     selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
+            // show the alert
+            alertSuccess();
         } else {
             if (extraChecked) {
                 CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [22oz]",
                         price, Integer.parseInt(qtyLabel.getText()),
                         selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+                // show the alert
+                alertSuccess();
             } else {
                 CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [Regular]",
                         price, Integer.parseInt(qtyLabel.getText()),
                         selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+                // show the alert
+                alertSuccess();
             }
 
         }
         // reset the qty label to 1
         qtyLabel.setText("1");
+        specialInstructionsTxt.setText("");
 
-        // show the alert
-        alertSuccess();
 
     }
 

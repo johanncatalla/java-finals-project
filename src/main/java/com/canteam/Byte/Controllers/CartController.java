@@ -218,7 +218,7 @@ public class CartController implements Initializable {
                 });
 
                 subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
-                deliveryFeeLabel.setText("PHP 0.00");
+                deliveryFeeLabel.setText("PHP 20.00");
                 totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
 
                 HashMap<String, String> itemDetails = userCart.get(itemName);

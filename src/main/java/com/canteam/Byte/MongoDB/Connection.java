@@ -17,7 +17,7 @@ public class Connection {
     private Connection() {}
     public static MongoClient getInstance() {
         if (mongoClient == null) {
-            String uri = "mongodb+srv://catallajohann:9mACHW1Wt9v3LdZ8@cluster0.19yjlvb.mongodb.net/";
+            String uri = "mongodb+srv://user:BRObR82T1CpcbZVB@cluster0.d6b9qyq.mongodb.net/";
             mongoClient = MongoClients.create(uri);
         }
         return mongoClient;

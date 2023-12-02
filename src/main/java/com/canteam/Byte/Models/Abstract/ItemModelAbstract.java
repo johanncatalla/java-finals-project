@@ -3,11 +3,11 @@ package com.canteam.Byte.Models.Abstract;
 import java.util.HashMap;
 
 public abstract class ItemModelAbstract {
-    private String itemName, itemImageSrc, itemStore, itemSizes;
-    private String itemPrice;
-    private String itemShopTags, itemCuisineTags;
-    private boolean itemAvailable, itemPopular;
-    private HashMap<String, String> itemInfo = new HashMap<>();
+    protected String itemName, itemImageSrc, itemStore;
+    protected String itemPrice;
+    protected String itemShopTags, itemCuisineTags;
+    protected boolean itemAvailable, itemPopular;
+    protected HashMap<String, String> itemInfo = new HashMap<>();
 
     public abstract void setItemInfo(HashMap<String, String> itemInfo);
     public abstract HashMap<String, String> getItemInfo();

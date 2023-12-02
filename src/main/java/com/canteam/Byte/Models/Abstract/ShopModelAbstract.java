@@ -1,7 +1,7 @@
 package com.canteam.Byte.Models.Abstract;
 
 public abstract class ShopModelAbstract {
-    private String shopName, shopImageSrc;
+    protected String shopName, shopImageSrc;
 
     public abstract String getShopName();
     public abstract void setShopName(String shopName);

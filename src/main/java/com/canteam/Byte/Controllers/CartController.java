@@ -62,6 +62,8 @@ public class CartController implements Initializable {
     private PageNavigator pageNavigator = new PageNavigator();
 
     private Draggable draggable = new Draggable();
+    private HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
+
 
     public static boolean addItemClicked = false;
 
@@ -153,10 +155,7 @@ public class CartController implements Initializable {
         payField.setText("");
     }
 
-
     public void loadOrders() throws IOException {
-        HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
-
         // Clear the gridpane
         ordersGridPane.getChildren().clear();
         if (userCart.isEmpty()) {

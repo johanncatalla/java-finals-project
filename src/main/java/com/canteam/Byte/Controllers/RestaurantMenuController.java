@@ -219,13 +219,6 @@ public class RestaurantMenuController {
         // item image
         mealImg.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+selectedItem.get("Item_Store")+"/"+selectedItem.get("Item_Name")+".jpg"))));
 
-        // Animation for the item view pane after clicking an item
-        TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(javafx.util.Duration.seconds(0.3));
-        transition.setNode(itemViewPane);
-        transition.setToY(-750);
-        transition.play();
-
         // Set qtyAddSubPane to visible
         qtyAddSubPane.setVisible(true);
 
@@ -251,12 +244,10 @@ public class RestaurantMenuController {
                         extrasMap.put(key, sizesMap.get(key));
                         mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price"))+sizesMap.get(key))+".00");
                         extraChecked = true;
-                        System.out.println(extrasMap);
                     } else {
                         extrasMap.remove(key);
                         mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price")))+".00");
                         extraChecked = false;
-                        System.out.println(extrasMap);
                     }
                 });
 
@@ -287,6 +278,12 @@ public class RestaurantMenuController {
             noTagsPositionPane.getChildren().clear();
             noTagsPositionPane.getChildren().add(specialInstructionsPane);
         }
+        // Animation for the item view pane after clicking an item
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(javafx.util.Duration.seconds(0.5));
+        transition.setNode(itemViewPane);
+        transition.setToY(-750);
+        transition.play();
     }
 
     @FXML
@@ -334,33 +331,37 @@ public class RestaurantMenuController {
 
     @FXML
     private void onAddtoCartBtnClicked(){
-
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
         String txtPrice = mealPrice.getText();
         int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
 
-        System.out.println(selectedItem);
         if (ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes")).isEmpty()) {
+
             CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
                     price, Integer.parseInt(qtyLabel.getText()),
                     selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), null, selectedItem.get("Item_Image"));
+            // show the alert
+            alertSuccess();
         } else {
             if (extraChecked) {
                 CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [22oz]",
                         price, Integer.parseInt(qtyLabel.getText()),
                         selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+                // show the alert
+                alertSuccess();
             } else {
                 CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name")+" [Regular]",
                         price, Integer.parseInt(qtyLabel.getText()),
                         selectedItem.get("Item_Store"), specialInstructionsTxt.getText(), extrasMap, selectedItem.get("Item_Image"));
+                // show the alert
+                alertSuccess();
             }
 
         }
         // reset the qty label to 1
         qtyLabel.setText("1");
+        specialInstructionsTxt.setText("");
 
-        // show the alert
-        alertSuccess();
 
     }
 
@@ -407,7 +408,6 @@ public class RestaurantMenuController {
         for (int i = 0; i < finalArray.size(); i++){
             item = new ItemModel();
             item.setData(finalArray.get(i));
-            System.out.println(item.getItemName());
             itemList.add(item);
         }
         return itemList;
@@ -431,7 +431,6 @@ public class RestaurantMenuController {
 
         // Set shop tags
         ArrayList<String> shopTags = TagsModel.getShopTagArray(ShopModel.getSelectedShopName());
-        System.out.println(ShopModel.getSelectedShopName());
         for (String tag : shopTags){
             Hyperlink tagLink = new Hyperlink(tag);
             tagLink.setOnAction(actionEvent -> {
@@ -494,7 +493,6 @@ public class RestaurantMenuController {
         draggable.makeWindowDraggable(statusBar);
         draggable.makeScrollableY(scrollAnchorPane);
         draggable.makeScrollableX(tagsHBox);
-
 
         // Make the search field on enter pressed
         searchField.setOnKeyPressed(keyEvent -> {

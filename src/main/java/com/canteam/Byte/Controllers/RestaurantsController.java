@@ -124,7 +124,6 @@ public class RestaurantsController implements Initializable {
 
     public static void disableIfHasCart(AnchorPane shopButton, int i){
         String hasCart = CartModel.getStore();
-        System.out.println(hasCart);
         if (hasCart != null){
             if (hasCart.equals(shopList.get(i).getShopName())){
                 shopButton.setOpacity(1);

@@ -54,7 +54,6 @@ public class RiderOrderListController implements Initializable {
         draggable.makeScrollableY(scrollAnchor);
         draggable.makeWindowDraggable(statusBar);
         ArrayList<Document> riderOrders = OrderModel.getRiderOrders();
-        System.out.println(riderOrders);
 
         int column = 0;
         int row = 1;

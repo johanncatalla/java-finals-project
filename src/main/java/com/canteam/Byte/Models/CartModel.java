@@ -50,7 +50,7 @@ public class CartModel {
                 .append("Size", size)
                 .append("Image", imageName);
 
-        if (cart.containsKey(name)) {
+        if (cart.containsKey(name) && cart.get(name).get("Instructions") != instructions) {
             // Update item quantity if item is already in cart
             itemDB.append("Quantity", CartModel.getItemQuantityFromCart(username, name)+quantity);
             // Update item total price accordingly
@@ -64,8 +64,6 @@ public class CartModel {
 
         // Apply updates
         collection.updateOne(Filters.eq("UserName", username), Updates.combine(updates));
-
-        System.out.println("Successfully updated");
 
         // Fetch cart from database to local cart
         CartModel.defineCart(username);
@@ -91,7 +89,6 @@ public class CartModel {
         collection.updateOne(Filters.eq("UserName", username), Updates.unset("Cart."+itemName));
         // If cart is empty, set store to null
         if (CartModel.getCart().isEmpty()) {
-            System.out.println("Cart is empty");
             collection.updateOne(Filters.eq("UserName", username), Updates.set("Store", null));
         }
         CartModel.defineCart(username);
@@ -210,9 +207,7 @@ public class CartModel {
         // adding to cart already syncs cart in database to local cart
         // if item's size is null, set size param to null
         CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SampleItem");
-        System.out.println(cart);
         CartModel.addToCart("admin", "order2", 100, 2, "Mangyupsal", "Instructions", null, "SamopleItem");
-        System.out.println(cart);
 
         // If order's size upgrade button is selected, concatenate the size with the order name with space in the middle, then add extra to price:
         HashMap<String, Integer> size = new HashMap<>();

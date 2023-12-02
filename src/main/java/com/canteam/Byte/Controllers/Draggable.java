@@ -11,14 +11,11 @@ public class Draggable {
      * @param node The node to be made draggable
      */
     public void makeDraggableX(Node node){
-//        System.out.println(node.toString());
         node.setOnMousePressed(mouseEvent -> {
-//            System.out.println("Pressed");
             mouseAnchorX = mouseEvent.getSceneX();
         });
 
         node.setOnMouseDragged(mouseEvent -> {
-//            System.out.println("Dragging");
             node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
         });
     }

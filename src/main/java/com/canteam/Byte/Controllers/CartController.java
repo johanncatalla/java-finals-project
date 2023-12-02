@@ -58,7 +58,6 @@ public class CartController implements Initializable {
     @FXML
     private Button cancelPay, confirmPay;
 
-    private HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
 
     private PageNavigator pageNavigator = new PageNavigator();
 
@@ -156,9 +155,10 @@ public class CartController implements Initializable {
 
 
     public void loadOrders() throws IOException {
+        HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
+
         // Clear the gridpane
         ordersGridPane.getChildren().clear();
-        System.out.println(userCart);
         if (userCart.isEmpty()) {
             // Set the add item link
             addItemLink.setText("+ Add an item to your cart");
@@ -202,6 +202,7 @@ public class CartController implements Initializable {
                     // delete the item from the cart
                     CartModel.deleteItemFromCart(UserModel.getUserName(), itemName);
                     subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
+
                     if (CartModel.getCart().isEmpty()) {
                         totalLabel.setText("PHP 0.00");
                         // Set delivery fee
@@ -214,11 +215,13 @@ public class CartController implements Initializable {
                     }
                 });
 
+                subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
+                deliveryFeeLabel.setText("PHP 20.00");
+                totalLabel.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
+
                 HashMap<String, String> itemDetails = userCart.get(itemName);
                 String itemQuantity = itemDetails.get("Quantity");
                 String itemTotalPrice = itemDetails.get("Total Price");
-                System.out.println("Store: "+itemStore);
-                System.out.println("Name: "+itemName);
 
                 orderItemCardController.setData(itemStore, itemName ,itemTotalPrice, itemQuantity);
 

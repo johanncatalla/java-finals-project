@@ -31,6 +31,12 @@ public class HomeController implements Initializable {
     private Button burgerCloseIcon, burgerOpenIcon;
 
     @FXML
+    private Label addressDetails;
+
+    @FXML
+    private Label landmarkLabel;
+
+    @FXML
     private AnchorPane burgerMenuPane;
 
     @FXML
@@ -117,7 +123,10 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Get datas
+        landmarkLabel.setText(UserModel.getLandmark());
+        addressDetails.setText(UserModel.getAddressDetails());
+
+        // Get data
         RestaurantsController.shopList = RestaurantsController.getData();
         cuisineList.addAll(getData());
 

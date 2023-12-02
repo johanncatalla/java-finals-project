@@ -1,4 +1,4 @@
-package com.canteam.Byte.Models;
+package com.canteam.Byte.Models.AbstractFolder;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -11,7 +11,9 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
 
-public class UserModel {
+import com.canteam.Byte.Models.CartModel;
+
+public abstract class UserModel {
 
     // private constructor to prevent instantiation
     private UserModel() {}

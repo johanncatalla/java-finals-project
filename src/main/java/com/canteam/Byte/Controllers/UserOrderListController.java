@@ -1,6 +1,6 @@
 package com.canteam.Byte.Controllers;
 
-import com.canteam.Byte.Models.AbstractFolder.UserModel;
+import com.canteam.Byte.Models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.canteam.Byte.Models.AbstractFolder.OrderModel;
+import com.canteam.Byte.Models.OrderModel;
 
 public class UserOrderListController implements Initializable {
 

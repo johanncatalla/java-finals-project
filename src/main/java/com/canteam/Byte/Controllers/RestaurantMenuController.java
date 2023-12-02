@@ -1,6 +1,6 @@
 package com.canteam.Byte.Controllers;
 import com.canteam.Byte.Models.*;
-import com.canteam.Byte.Models.AbstractFolder.UserModel;
+import com.canteam.Byte.Models.UserModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;

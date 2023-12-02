@@ -1,10 +1,9 @@
-package com.canteam.Byte.Models.AbstractFolder;
+package com.canteam.Byte.Models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
-import com.canteam.Byte.Models.CartModel;
 import com.canteam.Byte.MongoDB.Connection;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -15,7 +14,7 @@ import org.bson.Document;
 
 import org.bson.conversions.Bson;
 
-public abstract class OrderModel {
+public class OrderModel {
     private OrderModel() {}
     private static MongoClient client = Connection.getInstance();
     private static MongoDatabase database = client.getDatabase("Byte");

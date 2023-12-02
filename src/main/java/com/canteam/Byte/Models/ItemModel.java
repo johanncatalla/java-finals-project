@@ -1,5 +1,7 @@
 package com.canteam.Byte.Models;
 
+import com.canteam.Byte.Models.AbstractFolder.ItemModelAbstract;
+
 import java.util.HashMap;
 
 public class ItemModel {

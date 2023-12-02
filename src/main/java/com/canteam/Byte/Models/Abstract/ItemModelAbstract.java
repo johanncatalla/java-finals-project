@@ -1,4 +1,4 @@
-package com.canteam.Byte.Models.AbstractFolder;
+package com.canteam.Byte.Models.Abstract;
 
 import java.util.HashMap;
 

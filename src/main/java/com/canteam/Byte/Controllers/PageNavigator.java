@@ -1,15 +1,9 @@
 package com.canteam.Byte.Controllers;
 
-import com.canteam.Byte.MainApplication;
-import javafx.fxml.FXMLLoader;
+import com.canteam.Byte.Application;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 class PageNavigator {
 
@@ -18,13 +12,11 @@ class PageNavigator {
 
     public static void push(String pageName){
         navigationHistory.add(pageName);
-        System.out.println(navigationHistory.toString());
     }
 
     public static String pop(){
         String destination = navigationHistory.get(navigationHistory.size() - 1);
         navigationHistory.remove(navigationHistory.size()-1);
-        System.out.println(navigationHistory.toString());
         return destination;
     }
 
@@ -39,7 +31,7 @@ class PageNavigator {
      */
     public void navigateToPage(Node node, String pageName){
             try{
-                MainApplication.changeScene(pageName);
+                Application.changeScene(pageName);
             } catch (Exception e){
                 e.printStackTrace();
             }

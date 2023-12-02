@@ -18,12 +18,28 @@ public abstract class UserModel {
     private static MongoClient client = Connection.getInstance();
     private static MongoDatabase db = client.getDatabase("Byte");
     private static MongoCollection<Document> collection = db.getCollection("Users");
-    private static String username;
+    private static String username, fullName, email, password, userType, contact;
+    private static ArrayList<String> address;
 
-    public static void signOut() { username = null; }
+    public static void signOut() {
+        username = null;
+        fullName = null;
+        email = null;
+        password = null;
+        userType = null;
+        contact = null;
+        address = null;
+    }
 
     public static void loginUser(String inputUsername) {
         username = inputUsername;
+        Document user = collection.find(Filters.eq("Username", inputUsername)).first();
+        fullName = user.getString("FullName");
+        password = user.getString("Password");
+        address = user.get("Address", ArrayList.class);
+        contact = user.getString("Contact");
+        userType = user.getString("UserType");
+        email = user.getString("Email");
 
         // fetch user cart from database
         if (Objects.equals(getUserType(), "Customer")) {
@@ -80,38 +96,42 @@ public abstract class UserModel {
 
     public static void setFullName(String inputFullName) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("FullName", inputFullName));
+        fullName = inputFullName;
     }
     public static void setUserName(String inputUserName) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Username", inputUserName));
+        username = inputUserName;
     }
     public static void setUserPassword(String inputPassword) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Password", inputPassword));
+        password = inputPassword;
     }
     public static void setUserAddress(ArrayList<String> inputAddress) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Address", inputAddress));
+        address = inputAddress;
     }
     public static void setEmail(String inputEmail) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Email", inputEmail));
+        email = inputEmail;
     }
     public static void setUserContact(String inputContact) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("Contact", inputContact));
+        contact = inputContact;
     }
     public static void setUserType(String inputUserType) {
         collection.updateOne(Filters.eq("Username", username), Updates.set("UserType", inputUserType));
+        userType = inputUserType;
     }
 
     public static String getFullName() {
-        Document user = collection.find(Filters.eq("Username", username)).first();
-        return user.getString("FullName");
+        return fullName;
     }
     public static String getUserName() { return username; }
     public static String getUserPassword() {
-        Document user = collection.find(Filters.eq("Username", username)).first();
-        return user.getString("Password");
+        return password;
     }
     public static ArrayList<String> getUserAddress() {
-        Document user = collection.find(Filters.eq("Username", username)).first();
-        return user.get("Address", ArrayList.class);
+        return address;
     }
     public static String getLandmark() {
         return getUserAddress().get(0);
@@ -120,19 +140,12 @@ public abstract class UserModel {
         return getUserAddress().get(1);
     }
     public static String getUserContact() {
-        Document user = collection.find(Filters.eq("Username", username)).first();
-        return user.getString("Contact");
+        return contact;
     }
     public static String getUserType() {
-        Document user = collection.find(Filters.eq("Username", username)).first();
-        return user.getString("UserType");
+        return userType;
     }
     public static String getEmail() {
-        Document user = collection.find(Filters.eq("Username", username)).first();
-        return user.getString("Email");
-    }
-
-    public static void main(String[] args) {
-        UserModel.createUser("Hehefull","Johann", "hehe", null, "contact", "Customer", "email");
+        return email;
     }
 }

@@ -53,7 +53,6 @@ public class UserOrderListController implements Initializable {
 
                 // Get the current item's data
                 Document orderData = userOrderList.get(i);
-                System.out.println(orderData);
                 Document cartData = (Document) orderData.get("Cart");
                 String orderItemString = "";
                 String orderStore = orderData.getString("Store");

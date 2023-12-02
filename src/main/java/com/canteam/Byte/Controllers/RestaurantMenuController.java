@@ -244,12 +244,10 @@ public class RestaurantMenuController {
                         extrasMap.put(key, sizesMap.get(key));
                         mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price"))+sizesMap.get(key))+".00");
                         extraChecked = true;
-                        System.out.println(extrasMap);
                     } else {
                         extrasMap.remove(key);
                         mealPrice.setText("PHP "+String.valueOf(Integer.parseInt(selectedItem.get("Item_Price")))+".00");
                         extraChecked = false;
-                        System.out.println(extrasMap);
                     }
                 });
 
@@ -333,12 +331,10 @@ public class RestaurantMenuController {
 
     @FXML
     private void onAddtoCartBtnClicked(){
-
         HashMap<String, String> selectedItem = ItemModel.getSelectedItemInfo();
         String txtPrice = mealPrice.getText();
         int price = Integer.parseInt(txtPrice.substring(4, txtPrice.length()-3));
 
-        System.out.println(selectedItem);
         if (ItemModel.convertDocumentStrToHashMap(selectedItem.get("Item_Sizes")).isEmpty()) {
 
             CartModel.addToCart(UserModel.getUserName(), selectedItem.get("Item_Name"),
@@ -412,7 +408,6 @@ public class RestaurantMenuController {
         for (int i = 0; i < finalArray.size(); i++){
             item = new ItemModel();
             item.setData(finalArray.get(i));
-            System.out.println(item.getItemName());
             itemList.add(item);
         }
         return itemList;
@@ -436,7 +431,6 @@ public class RestaurantMenuController {
 
         // Set shop tags
         ArrayList<String> shopTags = TagsModel.getShopTagArray(ShopModel.getSelectedShopName());
-        System.out.println(ShopModel.getSelectedShopName());
         for (String tag : shopTags){
             Hyperlink tagLink = new Hyperlink(tag);
             tagLink.setOnAction(actionEvent -> {
@@ -499,7 +493,6 @@ public class RestaurantMenuController {
         draggable.makeWindowDraggable(statusBar);
         draggable.makeScrollableY(scrollAnchorPane);
         draggable.makeScrollableX(tagsHBox);
-
 
         // Make the search field on enter pressed
         searchField.setOnKeyPressed(keyEvent -> {

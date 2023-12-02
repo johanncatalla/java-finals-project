@@ -30,11 +30,6 @@ public class TagsModel {
         Document tags = tagsCollection.find(Filters.eq("Category", "Cuisine Tags")).first();
         return (ArrayList<String>) tags.get("Tags");
     }
-
-    public static void main(String[] args) {
-        ArrayList<String> hehe = TagsModel.getCuisineTagsArray();
-        System.out.println(hehe);
-    }
 }
 
 

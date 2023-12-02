@@ -1,6 +1,5 @@
 package com.canteam.Byte.MongoDB;
 
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.*;
 import org.bson.Document;
 
@@ -18,14 +17,8 @@ public class Connection {
     private Connection() {}
     public static MongoClient getInstance() {
         if (mongoClient == null) {
-            Properties properties = new Properties();
-            try {
-                properties.load(new FileInputStream(".properties"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            MongoClientURI uri = new MongoClientURI(properties.getProperty("mongodb.uri"));
-            mongoClient = MongoClients.create(String.valueOf(uri));
+            String uri = "mongodb+srv://catallajohann:9mACHW1Wt9v3LdZ8@cluster0.19yjlvb.mongodb.net/";
+            mongoClient = MongoClients.create(uri);
         }
         return mongoClient;
     }

@@ -61,7 +61,7 @@
       </AnchorPane>
       <ScrollPane fx:id="itemScrollPane" layoutX="18.0" layoutY="260.0" prefHeight="153.0" prefWidth="353.0">
          <content>
-            <GridPane fx:id="orderItemGrid" alignment="CENTER_LEFT" maxWidth="347.0" minWidth="347.0" prefHeight="0.0" prefWidth="347.0">
+            <GridPane fx:id="orderItemGrid" alignment="CENTER_LEFT" maxWidth="347.0" minWidth="347.0" prefWidth="347.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.66665649414062" minWidth="10.0" prefWidth="54.33334732055664" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.99998601277673" minWidth="10.0" prefWidth="229.33331298828128" />
@@ -75,7 +75,7 @@
       </ScrollPane>
       <ScrollPane fx:id="instructionScrollPane" layoutX="18.0" layoutY="442.0" prefHeight="171.0" prefWidth="353.0">
          <content>
-            <GridPane fx:id="orderInstructions" alignment="CENTER_LEFT" maxWidth="347.0" minWidth="347.0" prefHeight="0.0" prefWidth="347.0">
+            <GridPane fx:id="orderInstructions" alignment="CENTER_LEFT" maxWidth="347.0" minWidth="347.0" prefWidth="347.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.33333587646484" minWidth="10.0" prefWidth="119.33333587646484" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.99998601277673" minWidth="10.0" prefWidth="216.66666412353516" />

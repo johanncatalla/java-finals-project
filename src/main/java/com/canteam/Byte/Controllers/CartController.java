@@ -156,7 +156,6 @@ public class CartController implements Initializable {
 
     public void loadOrders() throws IOException {
         HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
-        System.out.println(userCart);
 
         // Clear the gridpane
         ordersGridPane.getChildren().clear();
@@ -203,7 +202,6 @@ public class CartController implements Initializable {
                     // delete the item from the cart
                     CartModel.deleteItemFromCart(UserModel.getUserName(), itemName);
                     subtotalLabel.setText("PHP " + CartModel.getSubtotal() + ".00");
-                    System.out.println(CartModel.getSubtotal());
 
                     if (CartModel.getCart().isEmpty()) {
                         totalLabel.setText("PHP 0.00");
@@ -224,8 +222,6 @@ public class CartController implements Initializable {
                 HashMap<String, String> itemDetails = userCart.get(itemName);
                 String itemQuantity = itemDetails.get("Quantity");
                 String itemTotalPrice = itemDetails.get("Total Price");
-                System.out.println("Store: "+itemStore);
-                System.out.println("Name: "+itemName);
 
                 orderItemCardController.setData(itemStore, itemName ,itemTotalPrice, itemQuantity);
 

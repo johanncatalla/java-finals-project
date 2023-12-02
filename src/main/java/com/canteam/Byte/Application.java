@@ -1,31 +1,27 @@
 package com.canteam.Byte;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class MainApplication extends Application {
+public class Application extends javafx.application.Application {
     public static Stage window;
     public static Scene scene;
     @Override
     public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/login.fxml"));
+        Scene home = new Scene(fxmlLoader.load());
         window = stage;
-        changeScene("Login");
         // stage.initStyle(StageStyle.UNDECORATED); // Remove the titleBar
-        stage.setScene(scene);
+        window.setScene(home);
         stage.setResizable(false);
         stage.show();
     }
 
     public static void changeScene(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/canteam/Byte/fxml/"+fxml+".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("/com/canteam/Byte/fxml/"+fxml+".fxml"));
         scene = new Scene(fxmlLoader.load());
         window.setScene(scene);
     }

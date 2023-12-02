@@ -79,7 +79,6 @@ public abstract class OrderModel {
         if (orderCopy != null) {
             historyCollection.insertOne(orderCopy);
             orderCollection.deleteOne(filter);
-            System.out.println("Order Ended");
         }
 
     }
@@ -117,7 +116,6 @@ public abstract class OrderModel {
             orderCollection.insertOne(cartCopy);
 
             incrementOrderNumberCount("Number");
-            System.out.println("Successfully placed order");
         }
 
         CartModel.emptyCart(username);
@@ -128,7 +126,6 @@ public abstract class OrderModel {
 
         if (userDocument!= null) {
             int orderNumberCount = userDocument.getInteger("Order Number Count");
-            System.out.println(orderNumberCount);
             return orderNumberCount;
         }
         return 0;

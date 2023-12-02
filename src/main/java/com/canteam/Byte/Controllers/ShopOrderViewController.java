@@ -129,7 +129,11 @@ public class ShopOrderViewController implements Initializable {
             Document itemInfo = (Document) cart.get(key);
             Label quantityLabel = new Label(itemInfo.get("Quantity").toString()+"×");
             Label itemNameLabel = new Label(itemInfo.get("Name").toString());
+            Label itemNameLabel1 = new Label(itemInfo.get("Name").toString());
             Label priceLabel = new Label("PHP "+itemInfo.get("Total Price").toString()+".00");
+
+            itemNameLabel.setWrapText(true);
+            itemNameLabel1.setWrapText(true);
 
             orderItemGrid.add(quantityLabel, 0, i);
             orderItemGrid.add(itemNameLabel, 1, i);
@@ -139,8 +143,9 @@ public class ShopOrderViewController implements Initializable {
             String itemInstruct = itemInfo.get("Instructions").toString();
             if (!itemInstruct.isEmpty()) {
                 Label itemInstructionsLabel = new Label(itemInfo.get("Instructions").toString());
-                orderInstructions.add(itemNameLabel, 0, i);
-                orderInstructions.add(quantityLabel, 1, i);
+                itemInstructionsLabel.setWrapText(true);
+                orderInstructions.add(itemNameLabel1, 0, i);
+                orderInstructions.add(itemInstructionsLabel, 1, i);
             }
             i++;
         }

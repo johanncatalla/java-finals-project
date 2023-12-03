@@ -25,7 +25,7 @@ public class Connection {
     public static MongoClient getInstance() {
         if (mongoClient == null) {
             // MongoDB connection URI
-            String uri = "mongodb+srv://byteUser:g2t5j456ROVCBhqu@cluster0.d6b9qyq.mongodb.net/";
+            String uri = "mongodb+srv://byteUser:g2t5j456ROVCBhqu@cluster0.d6b9qyq.mongodb.net/?retryWrites=true&w=majority";
 
             // Create a new MongoDB client instance
             mongoClient = MongoClients.create(uri);

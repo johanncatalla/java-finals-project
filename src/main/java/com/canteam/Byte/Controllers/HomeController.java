@@ -149,13 +149,15 @@ public class HomeController implements Initializable {
         int column = 0;
         try {
             for (int i = 0; i < RestaurantsController.shopList.size(); i++){
+                // Shop name
+                String shopName = RestaurantsController.shopList.get(i).getShopName();
+
                 // Create an achor pane with the size of 126x162 (WxH)
                 AnchorPane shopButton = new AnchorPane();
                 shopButton.setPrefSize(126, 162);
 
                 // Create image for the shop image
-                // TODO: Change this to the actual image of the shop
-                Image imagePlaceholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/ShopImgPlaceholder.png")));
+                Image imagePlaceholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/Daily Deals/"+shopName+".jpg")));
 
                 // Create an image view for the shop image
                 ImageView shopImage = new ImageView(imagePlaceholder);

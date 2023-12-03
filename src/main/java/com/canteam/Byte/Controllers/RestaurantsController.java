@@ -60,11 +60,10 @@ public class RestaurantsController implements Initializable {
             collectionNames.add(name);
         }
 
-        // Just a demo/placeholder data for now
         for (int i = 0; i < collectionNames.size(); i++){
             shop = new ShopModel();
             shop.setShopName(collectionNames.get(i));
-            shop.setShopImageSrc("/com/canteam/Byte/assets/images/ShopImgPlaceholder.png");
+            shop.setShopImageSrc("/com/canteam/Byte/assets/images/Store/"+shop.getShopName()+".jpg");
             shopList.add(shop);
         }
         return shopList;

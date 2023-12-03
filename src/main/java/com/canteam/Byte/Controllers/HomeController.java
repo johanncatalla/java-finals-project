@@ -66,6 +66,7 @@ public class HomeController implements Initializable {
     private Draggable draggable = new Draggable();
     private PageNavigator pageNavigator = new PageNavigator();
 
+    // Get data from the database and return a list of cuisine models
     private List<CuisineModel> getData(){
       List<CuisineModel> cuisineList = new ArrayList<>();
       CuisineModel cuisine;
@@ -80,7 +81,7 @@ public class HomeController implements Initializable {
         Document document = documents.first();
         ArrayList<String> arrTags = (ArrayList<String>) document.get("Tags");
 
-      // Just a demo/placeholder data for now
+      // For each tag, create a cuisine model and add it to the list
       for (String tag : arrTags) {
           cuisine = new CuisineModel();
           cuisine.setCuisineName(tag);
@@ -91,20 +92,13 @@ public class HomeController implements Initializable {
       return cuisineList;
     }
 
+    // Navigates to the cart page
     @FXML
     protected void onCartIconClicked() throws IOException {
         pageNavigator.forwardToPage(cartIcon, "Home", "Cart");
     }
 
-    @FXML
-    protected void onBurgerOpenIconClicked() throws IOException {
-        TranslateTransition burgerMenuTransition = new TranslateTransition();
-        burgerMenuTransition.setNode(burgerMenuPane);
-        burgerMenuTransition.setToX(390);
-        burgerMenuTransition.setDuration(Duration.seconds(.5));
-        burgerMenuTransition.play();
-    }
-
+    // Signs out the user, clears the navigation history and navigates to the login page
     @FXML
     protected void onLogoutLinkClicked(){
         UserModel.signOut();
@@ -112,6 +106,17 @@ public class HomeController implements Initializable {
         PageNavigator.clearHistory();
     }
 
+    // Opens the burger menu
+    @FXML
+    protected void onBurgerOpenIconClicked() {
+        TranslateTransition burgerMenuTransition = new TranslateTransition();
+        burgerMenuTransition.setNode(burgerMenuPane);
+        burgerMenuTransition.setToX(390);
+        burgerMenuTransition.setDuration(Duration.seconds(.5));
+        burgerMenuTransition.play();
+    }
+
+    // Closes the burger menu
     @FXML
     protected void onBurgerCloseIconClicked(){
         TranslateTransition burgerMenuTransition = new TranslateTransition();
@@ -124,6 +129,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set up address details
         landmarkLabel.setText(UserModel.getLandmark());
         addressDetails.setText(UserModel.getAddressDetails());
 

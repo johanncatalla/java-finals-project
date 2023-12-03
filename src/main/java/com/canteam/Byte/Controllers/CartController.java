@@ -259,8 +259,6 @@ public class CartController implements Initializable {
             }
         }
     }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set payment mode combobox - Cash on delivery and Credit card

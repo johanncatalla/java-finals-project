@@ -23,6 +23,7 @@ public class Draggable {
     public void makeScrollableX(Node node){
         node.setOnScroll(scrollEvent -> {
             node.setLayoutX(node.getLayoutX() + scrollEvent.getDeltaY());
+            node.setLayoutX(node.getLayoutX() + scrollEvent.getDeltaX());
         });
     }
     /**

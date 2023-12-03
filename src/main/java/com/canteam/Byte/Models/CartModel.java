@@ -173,7 +173,6 @@ public class CartModel {
         return 0;
     }
 
-
     /**
      * Updates the subtotal and total price of order for a user's cart.
      *

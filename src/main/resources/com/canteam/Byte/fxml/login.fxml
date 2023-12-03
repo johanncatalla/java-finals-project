@@ -22,11 +22,10 @@
                         <Label layoutX="30.0" layoutY="64.0" styleClass="title-text" text="Log in to your account" />
                         <TextField fx:id="loginUsernameField" layoutX="30.0" layoutY="110.0" prefHeight="26.0" prefWidth="338.0" promptText="Username" />
                         <PasswordField fx:id="loginPassField" layoutX="30.0" layoutY="165.0" promptText="Password" />
-                        <Button fx:id="loginButton" layoutX="30.0" layoutY="277.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" prefHeight="38.0" prefWidth="330.0" styleClass="button-styled" text="Log In" />
-                        <Label layoutX="87.0" layoutY="326.0" text="Don't have an account?" />
-                        <Hyperlink fx:id="forgotPassLink" layoutX="210.0" layoutY="216.0" text="Forgot your password?" />
-                        <Hyperlink fx:id="toSignupLink" layoutX="228.0" layoutY="323.0" onAction="#onToSignUpClicked" text="Sign up" />
-                        <Label fx:id="errorLabel" alignment="CENTER" layoutX="29.0" layoutY="245.0" prefHeight="18.0" prefWidth="330.0" style="-fx-font-weight: bold;" textFill="#e10000" />
+                        <Button fx:id="loginButton" layoutX="30.0" layoutY="246.0" mnemonicParsing="false" onAction="#onLoginButtonClicked" prefHeight="38.0" prefWidth="330.0" styleClass="button-styled" text="Log In" />
+                        <Label layoutX="97.0" layoutY="295.0" text="Don't have an account?" />
+                        <Hyperlink fx:id="toSignupLink" layoutX="224.0" layoutY="291.0" onAction="#onToSignUpClicked" text="Sign up" />
+                        <Label fx:id="errorLabel" alignment="CENTER" layoutX="29.0" layoutY="207.0" prefHeight="18.0" prefWidth="330.0" style="-fx-font-weight: bold;" textFill="#e10000" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="signupPane" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -37,8 +36,8 @@
                         <TextField fx:id="signupEmailField" layoutX="30.0" layoutY="171.0" prefHeight="26.0" prefWidth="338.0" promptText="Email Address" />
                         <PasswordField fx:id="signupPassField" layoutX="30.0" layoutY="217.0" promptText="Password" />
                         <Button fx:id="signUpButton" layoutX="30.0" layoutY="295.0" mnemonicParsing="false" onAction="#onSignUpClicked" prefHeight="38.0" prefWidth="330.0" styleClass="button-styled" text="Sign Up" />
-                        <Label layoutX="90.0" layoutY="338.0" text="Already have an account? " />
-                        <Hyperlink fx:id="toLoginLink" layoutX="249.0" layoutY="334.0" onAction="#onToLoginClicked" text="Log in" />
+                        <Label layoutX="100.0" layoutY="338.0" text="Already have an account? " />
+                        <Hyperlink fx:id="toLoginLink" layoutX="240.0" layoutY="334.0" onAction="#onToLoginClicked" text="Log in" />
                         <Label fx:id="errorLabel2" alignment="CENTER" layoutX="30.0" layoutY="266.0" prefHeight="18.0" prefWidth="330.0" style="-fx-font-weight: bold;" textFill="#e10000" />
                      </children>
                   </AnchorPane>

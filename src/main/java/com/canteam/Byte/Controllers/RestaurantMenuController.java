@@ -491,7 +491,6 @@ public class RestaurantMenuController {
         restaurantName.setText(ShopModel.getSelectedShopName());
         draggable.makeWindowDraggable(statusBar);
         draggable.makeScrollableY(scrollAnchorPane);
-        draggable.makeScrollableX(tagsHBox);
 
         // Make the search field on enter pressed
         searchField.setOnKeyPressed(keyEvent -> {

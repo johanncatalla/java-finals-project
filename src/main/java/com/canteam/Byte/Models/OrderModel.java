@@ -49,7 +49,6 @@ public class OrderModel {
         return userOrders;
     }
 
-
     /**
      * Retrieves a list of orders for a specific store with statuses "Ordered" or "Confirmed".
      *
@@ -86,6 +85,24 @@ public class OrderModel {
         // Define the query to retrieve orders for the specified user with statuses "Ordered", "Confirmed", or "Picked-up"
         Document query = new Document("UserName", username)
                 .append("Order Status", new Document("$in", Arrays.asList("Ordered", "Confirmed", "Picked-up")));
+
+        // Retrieve and sort orders for the specified user from the collection
+        for (Document doc : orderCollection.find(query).sort(new Document("Order Number", 1))) {
+            if (doc != null) {
+                // Add retrieved documents to the list
+                userOrders.add(doc);
+            }
+        }
+
+        return userOrders;
+    }
+
+    public static ArrayList<Document> getUserOrdersHistory(String username) {
+        ArrayList<Document> userOrders = new ArrayList<>();
+
+        // Define the query to retrieve orders for the specified user with statuses "Delivered" and "Cancelled"
+        Document query = new Document("UserName", username)
+                .append("Order Status", new Document("$in", Arrays.asList("Delivered", "Cancelled")));
 
         // Retrieve and sort orders for the specified user from the collection
         for (Document doc : orderCollection.find(query).sort(new Document("Order Number", 1))) {

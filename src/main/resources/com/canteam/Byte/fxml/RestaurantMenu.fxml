@@ -82,7 +82,11 @@
                 </AnchorPane>
                 <AnchorPane layoutY="161.0" prefHeight="40.0" prefWidth="779.0" styleClass="Selection-Bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <HBox fx:id="tagsHBox" alignment="CENTER_LEFT" layoutX="25.0" prefHeight="38.0" prefWidth="994.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ScrollPane hbarPolicy="NEVER" layoutX="25.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <HBox fx:id="tagsHBox" alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="362.0" spacing="10.0" styleClass="scroll-pane" />
+                     </content>
+                  </ScrollPane>
                </children>
                 </AnchorPane>
             </children>

@@ -227,10 +227,6 @@ public class HomeController implements Initializable {
                 GridPane.setMargin(cuisineButton, new Insets(10));
             }
 
-            // Make cuisine pane and dailyDealsGrid draggable
-            draggable.makeScrollableX(cuisinesGridPane);
-            draggable.makeScrollableX(dailyDealsGridPane);
-
             // Make navigators
             pageNavigator.makeForwardNavigator(toRestaurantButton, "Home","Restaurants");
 

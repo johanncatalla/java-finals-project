@@ -484,7 +484,6 @@ public class RestaurantMenuController {
                 // Set the margin for the cuisine button
                 GridPane.setMargin(item, new Insets(0, 20, 10, 20));
             }
-            draggable.makeScrollableY(gridPaneContainer);
         } catch (Exception e) {
             e.printStackTrace();
         }

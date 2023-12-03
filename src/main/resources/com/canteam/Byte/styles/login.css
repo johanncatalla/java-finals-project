@@ -31,7 +31,7 @@
 
 .start-button{
 -fx-background-color: transparent;
--fx-background-image: url("../assets/Logo.png");
+-fx-background-image: url("../assets/byte_text.png");
 -fx-background-size: contain;
 -fx-cursor: hand;
 }

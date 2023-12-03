@@ -46,7 +46,7 @@
             </StackPane>
          </children>
       </AnchorPane>
-      <Button fx:id="startButton" layoutX="95.0" layoutY="312.0" mnemonicParsing="false" onAction="#onLogoClicked" prefHeight="220.0" prefWidth="199.0" styleClass="start-button">
+      <Button fx:id="startButton" layoutX="85.0" layoutY="312.0" mnemonicParsing="false" onAction="#onLogoClicked" prefHeight="254.0" prefWidth="223.0" styleClass="start-button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

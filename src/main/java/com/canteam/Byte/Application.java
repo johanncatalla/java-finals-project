@@ -16,6 +16,9 @@ public class Application extends javafx.application.Application {
         window = stage;
         // stage.initStyle(StageStyle.UNDECORATED); // Remove the titleBar
         window.setScene(home);
+        window.setTitle("Byte");
+        // set icon
+        window.getIcons().add(new javafx.scene.image.Image(Application.class.getResourceAsStream("assets/byte.png")));
         stage.setResizable(false);
         stage.show();
     }

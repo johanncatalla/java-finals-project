@@ -72,7 +72,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="208.0" prefWidth="200.0" style="-fx-background-color: #EAEAEA;">
+                  <AnchorPane prefHeight="208.0" prefWidth="200.0" style="-fx-background-color: #eef2f5;">
                      <children>
                         <ImageView fitHeight="177.67" fitWidth="161.0" layoutX="24.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>

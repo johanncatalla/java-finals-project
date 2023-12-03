@@ -29,81 +29,81 @@ public class ItemModel extends ItemModelAbstract {
     public String getItemName() {
         return itemName;
     }
-
     @Override
     public void setItemName(String itemName) {
         this.itemName = itemName;
     }
+    public void setItemName() { System.out.println("No parameter setItemName method called."); }
 
     @Override
     public String getItemPrice() {
         return String.valueOf(itemPrice);
     }
-
     @Override
     public void setItemPrice(String itemPrice) {
         this.itemPrice = itemPrice;
     }
+    public void setItemPrice() { System.out.println("No parameter setItemPrice method called."); }
 
     @Override
     public String getItemImageSrc() {
         return itemImageSrc;
     }
-
     @Override
     public void setItemImageSrc(String itemImageSrc) {
         this.itemImageSrc = itemImageSrc;
     }
+    public void setItemImageSrc() { System.out.println("No parameter setItemImageSrc method called."); }
 
     @Override
     public String getItemStore() {
         return itemStore;
     }
-
     @Override
     public void setItemStore(String itemStore) {
         this.itemStore = itemStore;
     }
+    public void setItemStore() { System.out.println("No parameter setItemStore method called."); }
 
     @Override
     public String getItemShopTags() {
         return itemShopTags;
     }
-
     @Override
     public void setItemShopTags(String itemShopTags) {
         this.itemShopTags = itemShopTags;
     }
+    public void setItemShopTags() { System.out.println("No parameter setItemShopTags method called."); }
 
     @Override
     public String getItemCuisineTags() {
         return itemCuisineTags;
     }
-
     @Override
     public void setItemCuisineTags(String itemCuisineTags) {
         this.itemCuisineTags = itemCuisineTags;
     }
+    public void setItemCuisineTags() { System.out.println("No parameter setItemCuisineTags method called."); }
 
     @Override
     public boolean isItemPopular() {
         return itemPopular;
     }
-
     @Override
     public void setItemPopular(boolean itemPopular) {
         this.itemPopular = itemPopular;
     }
+    public void setItemPopular() { System.out.println("No parameter setItemPopular method called."); }
 
     @Override
     public boolean isItemAvailable() {
         return itemAvailable;
     }
-
     @Override
     public void setItemAvailable(boolean itemAvailable) {
         this.itemAvailable = itemAvailable;
     }
+    public void setItemAvailable() { System.out.println("No parameter setItemAvailable method called."); }
 
     /**
      * Sets data for the item using a HashMap.

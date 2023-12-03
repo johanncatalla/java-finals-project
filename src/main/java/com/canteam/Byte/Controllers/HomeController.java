@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -166,6 +167,12 @@ public class HomeController implements Initializable {
 
                 // Place the imageview in the anchor pane
                 shopButton.getChildren().add(shopImage);
+
+                // Clip the anchor pane to rounded rectangle
+                Rectangle clip = new Rectangle(126, 162);
+                clip.setArcWidth(20);
+                clip.setArcHeight(20);
+                shopButton.setClip(clip);
 
                 // Add listener for the shop button
                 int finalI = i;

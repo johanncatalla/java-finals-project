@@ -144,7 +144,6 @@ public class RestaurantMenuController {
                 ItemController itemController = fxmlLoader.getController();
                 // Check if itemTags contains "Rice Meal"
 
-
                 if (itemModel.getItemShopTags().contains(shopTag)) {
                     itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
                     // Place the cuisine button in the gridPane
@@ -449,7 +448,10 @@ public class RestaurantMenuController {
             tagsHBox.getChildren().add(tagLink);
         }
 
-        // Add the items to the grid pane
+        itemsGridPane.getChildren().clear();
+        sectionTitle.setText(shopTags.get(0));
+        sectionDescription.setText("These are the " + shopTags.get(0) + " items in " + ShopModel.getSelectedShopName());
+
         int column = 0;
         int row = 1;
         try {
@@ -469,17 +471,18 @@ public class RestaurantMenuController {
 
                 // Set the data for the cuisine button
                 ItemController itemController = fxmlLoader.getController();
+                // Check if itemTags contains "Rice Meal"
 
-                itemController.setData(shopItems.get(i), "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
-                if (column == 2) {
-                    row++;
-                    column = 0;
+                if (itemModel.getItemShopTags().contains(shopTags.get(0))) {
+                    itemController.setData(itemModel, "/com/canteam/Byte/assets/images/Store/"+itemModel.getItemStore()+"/"+itemModel.getItemName()+".jpg");
+                    // Place the cuisine button in the gridPane
+                    if (column == 2) {
+                        row++;
+                        column = 0;
+                    }
+                    clipItem(item);
+                    itemsGridPane.add(item, column++, row);
                 }
-
-                // Clip the item to round corners
-                clipItem(item);
-
-                itemsGridPane.add(item, column++, row);
 
                 // Set the margin for the cuisine button
                 GridPane.setMargin(item, new Insets(0, 20, 10, 20));

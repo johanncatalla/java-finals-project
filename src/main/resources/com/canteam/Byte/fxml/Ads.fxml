@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="844.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.AdController">
+<AnchorPane maxHeight="844.0" maxWidth="390.0" minHeight="844.0" minWidth="390.0" prefHeight="844.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.AdController">
    <children>
-      <ImageView fx:id="AdOne" fitHeight="1125.0" fitWidth="463.0" layoutY="-59.0" onMousePressed="#onClickAdOne" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="AdOne" fitHeight="870.0" fitWidth="408.0" layoutX="-3.0" layoutY="-6.0" onMousePressed="#onClickAdOne" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/images/CuisineType/Ads_pg1.jpg" />
          </image>

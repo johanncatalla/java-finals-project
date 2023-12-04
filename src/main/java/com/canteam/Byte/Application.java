@@ -3,6 +3,7 @@ package com.canteam.Byte;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -14,8 +15,11 @@ public class Application extends javafx.application.Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("fxml/login.fxml"));
         Scene home = new Scene(fxmlLoader.load());
         window = stage;
-        // stage.initStyle(StageStyle.UNDECORATED); // Remove the titleBar
+        stage.initStyle(StageStyle.UNDECORATED); // Remove the titleBar
         window.setScene(home);
+        window.setTitle("Byte");
+        // set icon
+        window.getIcons().add(new javafx.scene.image.Image(Application.class.getResourceAsStream("assets/byte.png")));
         stage.setResizable(false);
         stage.show();
     }

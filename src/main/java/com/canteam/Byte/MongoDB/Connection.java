@@ -12,12 +12,22 @@ import java.util.ArrayList;
 
 public class Connection {
     private static MongoClient mongoClient;
-    private static List<String> collectionNames = new ArrayList<String>();
 
+    // Private constructor to prevent instantiation of Connection class
     private Connection() {}
+
+    /**
+     * Gets the instance of the MongoDB client.
+     * If the client is null, it creates a new instance and returns it.
+     *
+     * @return The instance of the MongoDB client.
+     */
     public static MongoClient getInstance() {
         if (mongoClient == null) {
+            // MongoDB connection URI
             String uri = "mongodb+srv://byteUser:g2t5j456ROVCBhqu@cluster0.d6b9qyq.mongodb.net/?retryWrites=true&w=majority";
+
+            // Create a new MongoDB client instance
             mongoClient = MongoClients.create(uri);
         }
         return mongoClient;
@@ -43,8 +53,6 @@ public class Connection {
             }
             finalMap.put((String) dbMap.get("Item_Name"), dbMap);
         }
-
-
 
         Integer arrTags = (Integer) finalMap.get("Spicy Chicken Rice Bowl").get("Item_Price");
         System.out.println(arrTags);

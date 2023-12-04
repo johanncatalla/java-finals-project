@@ -1,7 +1,8 @@
 package com.canteam.Byte.Models;
 
-public class ShopModel {
-    private String shopName, shopImageSrc;
+import com.canteam.Byte.Models.Abstract.ShopModelAbstract;
+
+public class ShopModel extends ShopModelAbstract {
     private static String selectedShopName;
 
     public static String getSelectedShopName() {
@@ -12,19 +13,23 @@ public class ShopModel {
         ShopModel.selectedShopName = selectedShop;
     }
 
+    @Override
     public String getShopName() {
         return shopName;
     }
-
+    @Override
     public void setShopName(String shopName) {
         this.shopName = shopName;
     }
+    public void setShopName() { System.out.println("No parameter setShopName method called."); }
 
+    @Override
     public String getShopImageSrc() {
         return shopImageSrc;
     }
-
+    @Override
     public void setShopImageSrc(String shopImageSrc) {
         this.shopImageSrc = shopImageSrc;
     }
+    public void setShopImageSrc() { System.out.println("No parameter setShopImageSrc method called."); }
 }

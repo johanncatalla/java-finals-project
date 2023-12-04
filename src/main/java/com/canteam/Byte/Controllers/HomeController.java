@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class HomeController implements Initializable {
     private Draggable draggable = new Draggable();
     private PageNavigator pageNavigator = new PageNavigator();
 
+    // Get data from the database and return a list of cuisine models
     private List<CuisineModel> getData(){
       List<CuisineModel> cuisineList = new ArrayList<>();
       CuisineModel cuisine;
@@ -79,31 +81,24 @@ public class HomeController implements Initializable {
         Document document = documents.first();
         ArrayList<String> arrTags = (ArrayList<String>) document.get("Tags");
 
-      // Just a demo/placeholder data for now
+      // For each tag, create a cuisine model and add it to the list
       for (String tag : arrTags) {
           cuisine = new CuisineModel();
           cuisine.setCuisineName(tag);
           // TODO: Change this to the actual image of the cuisine
-          cuisine.setCuisineImageSrc("/com/canteam/Byte/assets/images/CuisineType/Milktea.png");
+          cuisine.setCuisineImageSrc("/com/canteam/Byte/assets/images/CuisineType/"+tag+".jpg");
           cuisineList.add(cuisine);
       }
       return cuisineList;
     }
 
+    // Navigates to the cart page
     @FXML
     protected void onCartIconClicked() throws IOException {
         pageNavigator.forwardToPage(cartIcon, "Home", "Cart");
     }
 
-    @FXML
-    protected void onBurgerOpenIconClicked() throws IOException {
-        TranslateTransition burgerMenuTransition = new TranslateTransition();
-        burgerMenuTransition.setNode(burgerMenuPane);
-        burgerMenuTransition.setToX(390);
-        burgerMenuTransition.setDuration(Duration.seconds(.5));
-        burgerMenuTransition.play();
-    }
-
+    // Signs out the user, clears the navigation history and navigates to the login page
     @FXML
     protected void onLogoutLinkClicked(){
         UserModel.signOut();
@@ -111,6 +106,17 @@ public class HomeController implements Initializable {
         PageNavigator.clearHistory();
     }
 
+    // Opens the burger menu
+    @FXML
+    protected void onBurgerOpenIconClicked() {
+        TranslateTransition burgerMenuTransition = new TranslateTransition();
+        burgerMenuTransition.setNode(burgerMenuPane);
+        burgerMenuTransition.setToX(390);
+        burgerMenuTransition.setDuration(Duration.seconds(.5));
+        burgerMenuTransition.play();
+    }
+
+    // Closes the burger menu
     @FXML
     protected void onBurgerCloseIconClicked(){
         TranslateTransition burgerMenuTransition = new TranslateTransition();
@@ -123,6 +129,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Set up address details
         landmarkLabel.setText(UserModel.getLandmark());
         addressDetails.setText(UserModel.getAddressDetails());
 
@@ -149,13 +156,15 @@ public class HomeController implements Initializable {
         int column = 0;
         try {
             for (int i = 0; i < RestaurantsController.shopList.size(); i++){
+                // Shop name
+                String shopName = RestaurantsController.shopList.get(i).getShopName();
+
                 // Create an achor pane with the size of 126x162 (WxH)
                 AnchorPane shopButton = new AnchorPane();
                 shopButton.setPrefSize(126, 162);
 
                 // Create image for the shop image
-                // TODO: Change this to the actual image of the shop
-                Image imagePlaceholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/ShopImgPlaceholder.png")));
+                Image imagePlaceholder = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/Daily Deals/"+shopName+".jpg")));
 
                 // Create an image view for the shop image
                 ImageView shopImage = new ImageView(imagePlaceholder);
@@ -164,6 +173,12 @@ public class HomeController implements Initializable {
 
                 // Place the imageview in the anchor pane
                 shopButton.getChildren().add(shopImage);
+
+                // Clip the anchor pane to rounded rectangle
+                Rectangle clip = new Rectangle(126, 162);
+                clip.setArcWidth(20);
+                clip.setArcHeight(20);
+                shopButton.setClip(clip);
 
                 // Add listener for the shop button
                 int finalI = i;
@@ -211,10 +226,6 @@ public class HomeController implements Initializable {
                 // Set the margin for the cuisine button
                 GridPane.setMargin(cuisineButton, new Insets(10));
             }
-
-            // Make cuisine pane and dailyDealsGrid draggable
-            draggable.makeScrollableX(cuisinesGridPane);
-            draggable.makeScrollableX(dailyDealsGridPane);
 
             // Make navigators
             pageNavigator.makeForwardNavigator(toRestaurantButton, "Home","Restaurants");

@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -22,11 +23,15 @@
             <children>
                 <AnchorPane fx:id="gridPaneContainer" layoutY="199.0" prefHeight="665.0" prefWidth="390.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                        <GridPane fx:id="itemsGridPane" alignment="TOP_CENTER" hgap="20.0" layoutX="11.2" layoutY="62.0" prefHeight="578.0" prefWidth="356.0" vgap="10.0" AnchorPane.leftAnchor="11.2" AnchorPane.rightAnchor="11.199999999999989">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                        </GridPane>
+                  <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutX="11.333333333333334" layoutY="62.0" prefHeight="582.0" prefWidth="354.0" vbarPolicy="NEVER" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.199999999999989">
+                     <content>
+                              <GridPane fx:id="itemsGridPane" alignment="TOP_CENTER" hgap="20.0" prefHeight="578.0" prefWidth="365.0" styleClass="scroll-pane" vgap="10.0">
+                                  <columnConstraints>
+                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  </columnConstraints>
+                              </GridPane>
+                     </content>
+                  </ScrollPane>
                         <ImageView fitHeight="150.0" fitWidth="18.0" layoutX="25.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../assets/Fire.png" />
@@ -75,9 +80,13 @@
                      </cursor></Button>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutY="161.0" prefHeight="40.0" prefWidth="779.0" styleClass="Selection-Bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <AnchorPane layoutY="152.0" prefHeight="44.0" prefWidth="390.0" styleClass="Selection-Bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <HBox fx:id="tagsHBox" alignment="CENTER_LEFT" layoutX="25.0" prefHeight="38.0" prefWidth="994.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ScrollPane hbarPolicy="NEVER" layoutX="25.0" prefHeight="39.0" prefWidth="367.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <HBox fx:id="tagsHBox" alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="560.0" spacing="10.0" styleClass="scroll-pane" />
+                     </content>
+                  </ScrollPane>
                </children>
                 </AnchorPane>
             </children>

@@ -93,3 +93,8 @@
 -fx-max-height: 23;
 -fx-cursor: hand;
 }
+
+.scroll-pane{
+    -fx-background-color: white;
+    -fx-border-color: white;
+}

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.Objects;
@@ -30,6 +31,14 @@ public class ShopButtonController {
         this.shopModel = shopModel;
         shopName.setText(shopModel.getShopName());
         buttonImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(shopModel.getShopImageSrc()))));
+
+        // clip the image to make it round
+        Rectangle clip = new Rectangle(
+                buttonImage.getFitWidth(), buttonImage.getFitHeight()
+        );
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        buttonImage.setClip(clip);
     }
 
     public void onShopButtonClicked() {

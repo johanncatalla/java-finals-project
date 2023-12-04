@@ -62,65 +62,82 @@ public class CartController implements Initializable {
     private PageNavigator pageNavigator = new PageNavigator();
 
     private Draggable draggable = new Draggable();
+    private HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
+
 
     public static boolean addItemClicked = false;
 
+    /**
+     * Handles the action when the close button is clicked.
+     * Sets addItemClicked to false and navigates back to the previous page using pageNavigator.
+     */
     @FXML
     public void onCloseBtnClicked() {
-        // Enable the cart button in the restaurant page and restaurant menu page
         addItemClicked = false;
         pageNavigator.backToPage(closeBtn);
     }
 
+    /**
+     * Handles the action when the add item link is clicked.
+     * Sets the selected shop name, sets addItemClicked to true, and navigates to the cart page or restaurant menu using pageNavigator.
+     */
     @FXML
     public void onAddItemLinkClicked() {
         ShopModel.setSelectedShopName(CartModel.getStore());
         addItemClicked = true;
-        pageNavigator.forwardToPage(addItemLink,"Cart", "RestaurantMenu");
+        pageNavigator.forwardToPage(addItemLink, "Cart", "RestaurantMenu");
     }
 
+    /**
+     * Handles the action when the place order button is clicked.
+     * If the payment mode is set to "Credit card," it prepares payment details for confirmation.
+     * Otherwise, it changes the mode of payment, places the order, and navigates to the cart page.
+     *
+     * @throws IOException If an error occurs during the process of placing the order
+     */
     @FXML
     public void onPlaceOrderBtnClicked() throws IOException {
-        // if payment mode is digital currency
-        if (paymentModeCmb.getValue().equals("Credit card")){
+        if (paymentModeCmb.getValue().equals("Credit card")) {
+            // Prepare payment details for credit card payment
             payUserName.setText(UserModel.getUserName());
             payTotal.setText("PHP " + CartModel.getTotalPriceOfOrder() + ".00");
             payAlert.setText("");
             confirmPay.setDisable(true);
             payPane.setVisible(true);
         } else {
-                CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
-                OrderModel.placeOrder(UserModel.getUserName());
-
-                // Enable the cart button in the restaurant page and restaurant menu page
-                addItemClicked = false;
-
-                pageNavigator.navigateToPage(placeOrderBtn, "Cart");
-            }
-
+            // Change mode of payment, place order, and navigate to the cart page
+            CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
+            OrderModel.placeOrder(UserModel.getUserName());
+            addItemClicked = false;
+            pageNavigator.navigateToPage(placeOrderBtn, "Cart");
+        }
     }
 
+    /**
+     * Handles the action when the confirm payment button is clicked.
+     * Validates the payment amount entered and proceeds with the order placement if the amount is sufficient.
+     * Displays error messages for invalid or insufficient payment amounts.
+     */
     @FXML
-    private void onConfirmPayClicked(){
-        // check if payfield is all numbers
-        if (payField.getText().matches("[0-9]+")){
-            if (Double.parseDouble(payField.getText()) >= CartModel.getTotalPriceOfOrder()){
+    private void onConfirmPayClicked() {
+        if (payField.getText().matches("[0-9]+")) {
+            if (Double.parseDouble(payField.getText()) >= CartModel.getTotalPriceOfOrder()) {
+                // Sufficient payment: Change mode of payment, place order, and navigate to the cart page
                 payAlert.setText("");
                 payPane.setVisible(false);
                 CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
                 OrderModel.placeOrder(UserModel.getUserName());
-
-                // Enable the cart button in the restaurant page and restaurant menu page
                 addItemClicked = false;
-
                 pageNavigator.navigateToPage(placeOrderBtn, "Cart");
             } else {
+                // Insufficient payment: Display error message
                 payAlert.setText("Insufficient");
                 payAlert.setVisible(true);
                 payAlert.setStyle("-fx-text-fill: red;");
                 payField.setStyle("-fx-border-color: red;");
             }
         } else {
+            // Invalid input: Display error message
             payAlert.setVisible(true);
             payAlert.setText("Invalid");
             payAlert.setStyle("-fx-text-fill: red;");
@@ -128,10 +145,17 @@ public class CartController implements Initializable {
         }
     }
 
+    /**
+     * Listener for changes in the payField (payment amount input field).
+     * Enables/disables the confirm payment button based on the validity of the input.
+     * Updates UI to provide feedback on the validity of the entered payment amount.
+     */
     @FXML
-    private void payFieldListener(){
-        if (!payField.getText().isEmpty()){
-            if (!payField.getText().matches("[0-9]+")){
+    private void payFieldListener() {
+        if (!payField.getText().isEmpty()) {
+            // If the field is not empty
+            if (!payField.getText().matches("[0-9]+")) {
+                // If input is not numeric
                 confirmPay.setDisable(true);
                 payAlert.setVisible(true);
                 payAlert.setText("Invalid");
@@ -139,24 +163,27 @@ public class CartController implements Initializable {
                 payField.setStyle("-fx-border-color: red;");
                 return;
             }
+            // Valid numeric input
             payAlert.setVisible(false);
             payField.setStyle("-fx-border-color: grey;");
             confirmPay.setDisable(false);
         } else {
+            // If the field is empty
             confirmPay.setDisable(true);
         }
     }
 
+    /**
+     * Handles the action when the 'Cancel Pay' button is clicked.
+     * Hides the payment pane and clears the payment field.
+     */
     @FXML
     private void onCancelPayClicked(){
         payPane.setVisible(false);
         payField.setText("");
     }
 
-
     public void loadOrders() throws IOException {
-        HashMap<String, HashMap<String, String>> userCart = CartModel.getCart();
-
         // Clear the gridpane
         ordersGridPane.getChildren().clear();
         if (userCart.isEmpty()) {
@@ -232,8 +259,6 @@ public class CartController implements Initializable {
             }
         }
     }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set payment mode combobox - Cash on delivery and Credit card

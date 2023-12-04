@@ -119,15 +119,34 @@ public class CartController implements Initializable {
      * Displays error messages for invalid or insufficient payment amounts.
      */
     @FXML
-    private void onConfirmPayClicked() {
-        if (payField.getText().matches("[0-9]+")) {
-            if (Double.parseDouble(payField.getText()) >= CartModel.getTotalPriceOfOrder()) {
+    private void onConfirmPayClicked() throws InterruptedException {
+        String paymentText = payField.getText();
+        double totalPrice = CartModel.getTotalPriceOfOrder();
+        if (paymentText.matches("[0-9]+")) {
+            double pay = Double.parseDouble(paymentText);
+            if (pay >= totalPrice) {
                 // Sufficient payment: Change mode of payment, place order, and navigate to the cart page
                 payAlert.setText("");
                 payPane.setVisible(false);
                 CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
                 OrderModel.placeOrder(UserModel.getUserName());
                 addItemClicked = false;
+
+                // Create an ok dialog to display the payment details
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Card Payment");
+                alert.setHeaderText("Payment Successful");
+                alert.setContentText("Your payment has been successfully processed." +
+                        "\nThank you for using Byte!\n\n" +
+                        "Order Total: PHP " + totalPrice + "\n" +
+                        "Amount Paid: PHP " + pay + "\n" +
+                        "Change: PHP " + (pay - totalPrice) + "\n" +
+
+                        "\n\nYour cart will now be cleared...");
+
+                // Show the dialog
+                alert.showAndWait();
+
                 pageNavigator.navigateToPage(placeOrderBtn, "Cart");
             } else {
                 // Insufficient payment: Display error message

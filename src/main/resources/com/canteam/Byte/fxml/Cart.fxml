@@ -146,30 +146,34 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AnchorPane layoutX="14.0" layoutY="-9.0" maxWidth="374.0" prefHeight="51.0" prefWidth="345.0" style="-fx-background-color: maroon; -fx-background-radius: 20 20 0 0;" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="14.0" layoutY="-9.0" maxWidth="374.0" prefHeight="51.0" prefWidth="345.0" style="-fx-background-color: maroon; -fx-background-radius: 20 20 0 0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="17.0" layoutY="13.0" style="-fx-font-size: 20;" styleClass="poppins-black" text="Confirm Order" textFill="WHITE">
+                        <Label fx:id="popUpText" layoutX="17.0" layoutY="13.0" style="-fx-font-size: 20;" styleClass="poppins-black" text="Confirm Order" textFill="WHITE">
                            <font>
                               <Font name="Poppins Black" size="12.0" />
                            </font>
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Button fx:id="cancelPay" layoutX="152.0" layoutY="201.0" mnemonicParsing="false" onAction="#onCancelPayClicked" prefHeight="32.0" prefWidth="98.0" style="-fx-background-color: transparent; -fx-border-color: maroon; -fx-text-fill: maroon; -fx-font-weight: bold; -fx-border-radius: 10;" text="Cancel" />
-                  <Button fx:id="confirmPay" layoutX="260.0" layoutY="201.0" mnemonicParsing="false" onAction="#onConfirmPayClicked" prefHeight="32.0" prefWidth="98.0" style="-fx-border-radius: 10; -fx-background-color: transparent; -fx-text-fill: #5BC745FF; -fx-font-weight: bold; -fx-border-color: #5BC745FF;" text="Confirm" />
-                  <ImageView fitHeight="171.0" fitWidth="168.0" layoutX="12.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/images/debit-card.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="152.0" layoutY="66.0" text="Payment Method: Card" />
-                  <Label layoutX="152.0" layoutY="86.0" text="User Name:" />
-                  <Label layoutX="152.0" layoutY="106.0" text="Product Total:" />
-                  <Label layoutX="152.0" layoutY="137.0" style="-fx-font-weight: bold;" text="Enter Payment:" />
-                  <TextField fx:id="payField" layoutX="152.0" layoutY="159.0" onKeyTyped="#payFieldListener" prefHeight="32.0" prefWidth="206.0" promptText="PHP 0.00" />
-                  <Label fx:id="payUserName" layoutX="226.0" layoutY="86.0" prefHeight="18.0" prefWidth="126.0" text="User Name" />
-                  <Label fx:id="payTotal" layoutX="238.0" layoutY="106.0" prefHeight="18.0" prefWidth="119.0" style="-fx-font-weight: bold;" text="PHP 1000.00" />
-                  <Label fx:id="payAlert" alignment="CENTER_RIGHT" layoutX="251.0" layoutY="137.0" prefHeight="18.0" prefWidth="106.0" text="Insufficient" visible="false" />
+                  <AnchorPane fx:id="paymentPane" layoutX="12.0" layoutY="63.0">
+                     <children>
+                        <Button fx:id="cancelPay" layoutX="140.0" layoutY="138.0" mnemonicParsing="false" onAction="#onCancelPayClicked" prefHeight="32.0" prefWidth="98.0" style="-fx-background-color: transparent; -fx-border-color: maroon; -fx-text-fill: maroon; -fx-font-weight: bold; -fx-border-radius: 10;" text="Cancel" />
+                        <Button fx:id="confirmPay" layoutX="248.0" layoutY="138.0" mnemonicParsing="false" onAction="#onConfirmPayClicked" prefHeight="32.0" prefWidth="98.0" style="-fx-border-radius: 10; -fx-background-color: transparent; -fx-text-fill: #5BC745FF; -fx-font-weight: bold; -fx-border-color: #5BC745FF;" text="Confirm" />
+                        <ImageView fitHeight="171.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/images/debit-card.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="140.0" layoutY="3.0" text="Payment Method: Card" />
+                        <Label layoutX="140.0" layoutY="23.0" text="User Name:" />
+                        <Label layoutX="140.0" layoutY="43.0" text="Product Total:" />
+                        <Label layoutX="140.0" layoutY="74.0" style="-fx-font-weight: bold;" text="Enter Payment:" />
+                        <TextField fx:id="payField" layoutX="140.0" layoutY="96.0" onKeyTyped="#payFieldListener" prefHeight="32.0" prefWidth="206.0" promptText="PHP 0.00" />
+                        <Label fx:id="payUserName" layoutX="214.0" layoutY="23.0" prefHeight="18.0" prefWidth="126.0" text="User Name" />
+                        <Label fx:id="payTotal" layoutX="226.0" layoutY="43.0" prefHeight="18.0" prefWidth="119.0" style="-fx-font-weight: bold;" text="PHP 1000.00" />
+                        <Label fx:id="payAlert" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Insufficient" visible="false" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>

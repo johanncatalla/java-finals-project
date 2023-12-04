@@ -113,11 +113,6 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label layoutY="19.0" styleClass="details" stylesheets="@../styles/Meals.css" text="Select up to 4">
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <GridPane fx:id="extrasGridPane" layoutY="427.0" maxWidth="390.0" minWidth="390.0" prefHeight="26.0" prefWidth="390.0">

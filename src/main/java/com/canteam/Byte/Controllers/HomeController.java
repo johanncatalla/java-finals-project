@@ -86,7 +86,7 @@ public class HomeController implements Initializable {
           cuisine = new CuisineModel();
           cuisine.setCuisineName(tag);
           // TODO: Change this to the actual image of the cuisine
-          cuisine.setCuisineImageSrc("/com/canteam/Byte/assets/images/CuisineType/Milktea.png");
+          cuisine.setCuisineImageSrc("/com/canteam/Byte/assets/images/CuisineType/"+tag+".jpg");
           cuisineList.add(cuisine);
       }
       return cuisineList;

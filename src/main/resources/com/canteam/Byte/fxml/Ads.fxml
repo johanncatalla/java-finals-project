@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.canteam.Byte.fxml.Ads"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="844.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.AdController">
+   <children>
+      <ImageView fx:id="AdOne" fitHeight="1125.0" fitWidth="463.0" layoutY="-59.0" onMousePressed="#onClickAdOne" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/images/CuisineType/Ads_pg1.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

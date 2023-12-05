@@ -7,10 +7,13 @@ import com.canteam.Byte.Models.UserModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,7 +50,7 @@ public class CartController implements Initializable {
     private ImageView statusBar;
 
     @FXML
-    private AnchorPane payPane;
+    private AnchorPane payPane, shadow;
 
     @FXML
     private Label payUserName, payTotal, payAlert;
@@ -58,6 +61,7 @@ public class CartController implements Initializable {
     @FXML
     private Button cancelPay, confirmPay;
 
+    private double paidTotal, changeTotal;
 
     private PageNavigator pageNavigator = new PageNavigator();
 
@@ -106,6 +110,7 @@ public class CartController implements Initializable {
             payPane.setVisible(true);
         } else {
             // Change mode of payment, place order, and navigate to the cart page
+            onSuccessOrder("COD");
             CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
             OrderModel.placeOrder(UserModel.getUserName());
             addItemClicked = false;
@@ -128,25 +133,15 @@ public class CartController implements Initializable {
                 // Sufficient payment: Change mode of payment, place order, and navigate to the cart page
                 payAlert.setText("");
                 payPane.setVisible(false);
+
+                paidTotal = pay;
+                changeTotal = pay - totalPrice;
+
+                onSuccessOrder("Card");
+
                 CartModel.changeModeOfPayment(UserModel.getUserName(), paymentModeCmb.getValue());
                 OrderModel.placeOrder(UserModel.getUserName());
                 addItemClicked = false;
-
-                // Create an ok dialog to display the payment details
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Card Payment");
-                alert.setHeaderText("Payment Successful");
-                alert.setContentText("Your payment has been successfully processed." +
-                        "\nThank you for using Byte!\n\n" +
-                        "Order Total: PHP " + totalPrice + "\n" +
-                        "Amount Paid: PHP " + pay + "\n" +
-                        "Change: PHP " + (pay - totalPrice) + "\n" +
-
-                        "\n\nYour cart will now be cleared...");
-
-                // Show the dialog
-                alert.showAndWait();
-
                 pageNavigator.navigateToPage(placeOrderBtn, "Cart");
             } else {
                 // Insufficient payment: Display error message
@@ -296,5 +291,43 @@ public class CartController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void onSuccessOrder(String mode){
+
+        // shadow
+        shadow.setVisible(true);
+
+        // Load the payment successful page and wait for it to close
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/com/canteam/Byte/fxml/PaymentSuccessful.fxml"));
+        AnchorPane paymentSuccessful = null;
+        try {
+            paymentSuccessful = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        double priceOfOrder = (double) CartModel.getTotalPriceOfOrder();
+
+        PaymentSuccessfulController paymentSuccessfulController = fxmlLoader.getController();
+        if (mode.equals("COD")) {
+            paymentSuccessfulController.setData("PHP %.2f".formatted(priceOfOrder));
+        } else {
+            paymentSuccessfulController.setData("PHP %.2f".formatted(priceOfOrder), "PHP %.2f".formatted(paidTotal), "PHP %.2f".formatted(changeTotal));
+        }
+
+        // Create a new stage for the payment successful page
+        Stage paymentSuccessfulStage = new Stage();
+        paymentSuccessfulStage.setScene(new Scene(paymentSuccessful));
+
+        // remove title bar
+        paymentSuccessfulStage.initStyle(StageStyle.UNDECORATED);
+
+        // Show
+        paymentSuccessfulStage.showAndWait();
+
+        shadow.setVisible(false);
+
     }
 }

@@ -20,6 +20,8 @@ public class OrderModel {
     private static MongoDatabase database = client.getDatabase("Byte");
     private static MongoCollection<Document> cartCollection = database.getCollection("Carts");
     private static MongoCollection<Document> orderCollection = database.getCollection("Orders");
+    private static MongoCollection<Document> historyCollection = database.getCollection("History");
+
 
     // Get array list of orders based on user type
     // Customer: Ordered, Confirmed, Picked-up
@@ -105,7 +107,7 @@ public class OrderModel {
                 .append("Order Status", new Document("$in", Arrays.asList("Delivered", "Cancelled")));
 
         // Retrieve and sort orders for the specified user from the collection
-        for (Document doc : orderCollection.find(query).sort(new Document("Order Number", 1))) {
+        for (Document doc : historyCollection.find(query).sort(new Document("Order Number", 1))) {
             if (doc != null) {
                 // Add retrieved documents to the list
                 userOrders.add(doc);

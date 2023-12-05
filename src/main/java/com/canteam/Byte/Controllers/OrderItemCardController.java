@@ -33,7 +33,7 @@ public class OrderItemCardController {
         this.itemQty.setText("X"+itemQty);
 
         // get image resource as stream
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+itemStore+"/"+itemName+".jpg")));
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/canteam/Byte/assets/images/Store/"+itemStore+"/"+getName(itemName)+".jpg")));
         // set image to image view
         itemImage.setImage(image);
         // clip the image to rounded rectangle
@@ -43,6 +43,15 @@ public class OrderItemCardController {
         clip.setArcWidth(20);
         clip.setArcHeight(20);
         itemImage.setClip(clip);
+    }
+
+    public static String getName(String str) {
+        int bracketIndex = str.indexOf(" [");
+        if (bracketIndex != -1) {
+            return str.substring(0, bracketIndex);
+        } else {
+            return str;
+        }
     }
 
 }

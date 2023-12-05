@@ -43,12 +43,6 @@ public class RiderOrderViewController implements Initializable {
     private Label nameLabel;
 
     @FXML
-    private Label orderDelivered;
-
-    @FXML
-    private Label orderPickedUp;
-
-    @FXML
     private Button orderDeliveredBtn;
 
     @FXML
@@ -89,16 +83,16 @@ public class RiderOrderViewController implements Initializable {
 
     @FXML
     void onOrderedDelivered(ActionEvent event) {
-        orderDeliveredBtn.setVisible(false);
-        orderDelivered.setVisible(true);
+        orderDeliveredBtn.setDisable(true);
+        orderDeliveredBtn.setText("Order Delivered");
         OrderModel.updateOrderStatus(orderNumber, "Delivered");
         OrderModel.completeOrder(orderNumber);
     }
 
     @FXML
     void onPickUpOrder(ActionEvent event) {
-        pickUpOrderBtn.setVisible(false);
-        orderPickedUp.setVisible(true);
+        pickUpOrderBtn.setDisable(true);
+        pickUpOrderBtn.setText("Order Picked-up");
         orderDeliveredBtn.setDisable(false);
         OrderModel.updateOrderStatus(orderNumber, "Picked-up");
     }
@@ -106,10 +100,12 @@ public class RiderOrderViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (Objects.equals(OrderModel.getOrderStatus(orderNumber), "Picked-up")) {
-            pickUpOrderBtn.setVisible(false);
-            orderPickedUp.setVisible(true);
+            pickUpOrderBtn.setDisable(true);
+            pickUpOrderBtn.setText("Order Picked-up");
+            orderDeliveredBtn.setDisable(false);
         } else {
-            pickUpOrderBtn.setVisible(true);
+            pickUpOrderBtn.setDisable(false);
+            pickUpOrderBtn.setText("Pick-up Order");
             orderDeliveredBtn.setDisable(true);
         }
 

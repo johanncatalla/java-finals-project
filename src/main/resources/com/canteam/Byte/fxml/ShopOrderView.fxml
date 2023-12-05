@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="844.0" maxWidth="390.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" stylesheets="@../styles/UserOrderView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ShopOrderViewController">
+<AnchorPane maxHeight="844.0" maxWidth="390.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="844.0" prefWidth="390.0" style="-fx-background-color: white;" stylesheets="@../styles/UserOrderView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.ShopOrderViewController">
    <children>
       <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="390.0" style="-fx-background-color: white;">
          <children>
@@ -35,30 +35,26 @@
                </cursor></Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-2.0" layoutY="95.0" prefWidth="393.0">
-         <children>
-            <Label layoutX="26.0" layoutY="40.0" styleClass="text" text="Name" />
-            <Label fx:id="fullNameLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="40.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
-            <Label layoutX="26.0" layoutY="91.0" styleClass="text" text="Order #" />
-            <Label fx:id="orderNumLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="91.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
-            <Label layoutX="26.0" layoutY="109.0" styleClass="text" text="Delivery address" />
-            <Label fx:id="deliveryAddressLabel" alignment="TOP_CENTER" contentDisplay="RIGHT" layoutX="124.0" layoutY="109.0" maxHeight="300.0" prefHeight="58.0" prefWidth="239.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
-            <Label layoutX="25.0" layoutY="15.0" text="Order Details">
-               <font>
-                  <Font name="Poppins Regular" size="12.0" />
-               </font>
-               <styleClass>
-                  <String fx:value="maroon-text" />
-                  <String fx:value="title-text" />
-               </styleClass>
-            </Label>
-            <Line endX="390.0" stroke="#eaeaea" strokeWidth="6.0" />
-            <Label layoutX="26.0" layoutY="58.0" styleClass="text" text="Username" />
-            <Label fx:id="userNameLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="58.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
-            <Label layoutX="26.0" layoutY="75.0" styleClass="text" text="Contact #" />
-            <Label fx:id="contactNumLabel" alignment="CENTER_RIGHT" layoutX="173.0" layoutY="75.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
-         </children>
-      </AnchorPane>
+      <Label layoutX="24.0" layoutY="135.0" styleClass="text" text="Name" />
+      <Label fx:id="fullNameLabel" alignment="CENTER_RIGHT" layoutX="171.0" layoutY="135.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
+      <Label layoutX="24.0" layoutY="186.0" styleClass="text" text="Order #" />
+      <Label fx:id="orderNumLabel" alignment="CENTER_RIGHT" layoutX="171.0" layoutY="186.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="#ccms-order14" textAlignment="RIGHT" />
+      <Label layoutX="24.0" layoutY="204.0" styleClass="text" text="Delivery address" />
+      <Label fx:id="deliveryAddressLabel" alignment="TOP_RIGHT" contentDisplay="RIGHT" layoutX="132.0" layoutY="204.0" maxHeight="300.0" prefHeight="66.0" prefWidth="231.0" styleClass="text" text="CCMS Department Building Underground Student Lounge" textAlignment="RIGHT" wrapText="true" />
+      <Label layoutX="23.0" layoutY="110.0" text="Order Details">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+         <styleClass>
+            <String fx:value="maroon-text" />
+            <String fx:value="title-text" />
+         </styleClass>
+      </Label>
+      <Line endX="390.0" layoutX="-2.0" layoutY="95.0" stroke="#eaeaea" strokeWidth="6.0" />
+      <Label layoutX="24.0" layoutY="153.0" styleClass="text" text="Username" />
+      <Label fx:id="userNameLabel" alignment="CENTER_RIGHT" layoutX="171.0" layoutY="153.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
+      <Label layoutX="24.0" layoutY="170.0" styleClass="text" text="Contact #" />
+      <Label fx:id="contactNumLabel" alignment="CENTER_RIGHT" layoutX="171.0" layoutY="170.0" prefHeight="20.0" prefWidth="190.0" styleClass="text" text="Mangyupsal" textAlignment="RIGHT" />
       <ScrollPane fx:id="itemScrollPane" layoutX="18.0" layoutY="260.0" prefHeight="153.0" prefWidth="353.0">
          <content>
             <GridPane fx:id="orderItemGrid" alignment="CENTER_LEFT" maxWidth="347.0" minWidth="347.0" prefWidth="347.0">
@@ -86,7 +82,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <AnchorPane layoutX="1.0" layoutY="622.0" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="228.0" prefWidth="390.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="1.0" layoutY="622.0" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="203.0" prefWidth="390.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label layoutX="27.0" layoutY="46.0" styleClass="text" text="Mode of Payment" />
             <Label layoutX="27.0" layoutY="66.0" text="Subtotal" />
@@ -106,26 +102,14 @@
                   <String fx:value="title-text" />
                </styleClass>
             </Label>
-            <Button fx:id="confirmOrderBtn" layoutX="235.0" layoutY="155.0" mnemonicParsing="false" onAction="#onConfirmOrder" styleClass="button-styled" text="Confirm Order">
+            <Button fx:id="confirmOrderBtn" layoutX="235.0" layoutY="148.0" mnemonicParsing="false" onAction="#onConfirmOrder" styleClass="button-styled" text="Confirm Order">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="denyOrderBtn" layoutX="97.0" layoutY="155.0" mnemonicParsing="false" onAction="#onDenyOrder" styleClass="button-styled-grey" text="Cancel Order">
+            <Button fx:id="denyOrderBtn" layoutX="97.0" layoutY="148.0" mnemonicParsing="false" onAction="#onDenyOrder" styleClass="button-styled-grey" text="Cancel Order">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label fx:id="orderConfirmed" layoutX="214.0" layoutY="156.0" prefHeight="27.0" prefWidth="145.0" text="Order Confirmed" visible="false">
-               <styleClass>
-                  <String fx:value="maroon-text" />
-                  <String fx:value="large-text" />
-               </styleClass>
-            </Label>
-            <Label fx:id="orderCancelled" layoutX="218.0" layoutY="156.0" prefHeight="27.0" prefWidth="145.0" text="Order Cancelled" visible="false">
-               <styleClass>
-                  <String fx:value="maroon-text" />
-                  <String fx:value="large-text" />
-               </styleClass>
-            </Label>
          </children>
       </AnchorPane>
       <Label layoutX="18.0" layoutY="417.0" text="Special Instructions">

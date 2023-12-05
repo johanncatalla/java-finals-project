@@ -3,16 +3,16 @@ import com.canteam.Byte.Models.CuisineModel;
 import com.canteam.Byte.Models.ShopModel;
 import com.canteam.Byte.Models.UserModel;
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -27,9 +27,6 @@ import org.bson.Document;
 import com.canteam.Byte.MongoDB.Connection;
 
 public class HomeController implements Initializable {
-
-    @FXML
-    private Button burgerCloseIcon, burgerOpenIcon;
 
     @FXML
     private Label addressDetails;
@@ -59,7 +56,13 @@ public class HomeController implements Initializable {
     private GridPane cuisinesGridPane, dailyDealsGridPane;
 
     @FXML
-    private Hyperlink logoutLink, ordersLink, profileLink, addressLink;
+    private Hyperlink logoutLink, ordersLink, profileLink, addressLink, historyLink;
+
+    @FXML
+    private ScrollPane dailyDealsScroll;
+
+    @FXML
+    private ScrollPane cuisinesScroll;
 
     private List<CuisineModel> cuisineList = new ArrayList<>();
 
@@ -126,9 +129,76 @@ public class HomeController implements Initializable {
         burgerMenuTransition.play();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // disable horizonatal scrolling motion of trackpad
+        dailyDealsScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaX() != 0) {
+                    event.consume();
+                }
+            }
+        });
+
+        // only scrollable when mouse is hovered
+        dailyDealsScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dailyDealsScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if (event.getDeltaY() > 0)
+                            dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() - 0.1);
+                        else
+                            dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() + 0.1);
+                    }
+                });
+            }
+        });
+
+        dailyDealsScroll.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                dailyDealsScroll.setOnScroll(null);
+            }
+        });
+
+        // disable horizonatal scrolling motion of trackpad
+        cuisinesScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaX() != 0) {
+                    event.consume();
+                }
+            }
+        });
+
+        // only scrollable when mouse is hovered
+        cuisinesScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cuisinesScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if (event.getDeltaY() > 0)
+                            cuisinesScroll.setHvalue(cuisinesScroll.getHvalue() - 0.1);
+                        else
+                            cuisinesScroll.setHvalue(cuisinesScroll.getHvalue() + 0.1);
+                    }
+                });
+            }
+        });
+
+
+        cuisinesScroll.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cuisinesScroll.setOnScroll(null);
+            }
+        });
+
+
         // Set up address details
         landmarkLabel.setText(UserModel.getLandmark());
         addressDetails.setText(UserModel.getAddressDetails());
@@ -235,15 +305,20 @@ public class HomeController implements Initializable {
         }
     }
 
+    @FXML
     public void onMyOrders() {
         pageNavigator.navigateToPage(ordersLink, "UserOrderList");
     }
+    @FXML
     public void onMyDeliveryAddress() {
         pageNavigator.forwardToPage(addressLink, "Home", "Location");
     }
+    @FXML
     public void onMyProfile() {
         pageNavigator.forwardToPage(profileLink, "Home", "UserProfile");
     }
+    @FXML
+    protected void onHistoryLinkClicked() { pageNavigator.forwardToPage(historyLink, "Home", "UserHistoryOrderList");}
 }
 
 

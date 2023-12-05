@@ -29,9 +29,6 @@ import com.canteam.Byte.MongoDB.Connection;
 public class HomeController implements Initializable {
 
     @FXML
-    private Button burgerCloseIcon, burgerOpenIcon;
-
-    @FXML
     private Label addressDetails;
 
     @FXML
@@ -59,7 +56,7 @@ public class HomeController implements Initializable {
     private GridPane cuisinesGridPane, dailyDealsGridPane;
 
     @FXML
-    private Hyperlink logoutLink, ordersLink, profileLink, addressLink;
+    private Hyperlink logoutLink, ordersLink, profileLink, addressLink, historyLink;
 
     @FXML
     private ScrollPane dailyDealsScroll;
@@ -130,6 +127,11 @@ public class HomeController implements Initializable {
         burgerMenuTransition.setToX(0);
         burgerMenuTransition.setDuration(Duration.seconds(.5));
         burgerMenuTransition.play();
+    }
+
+    @FXML
+    protected void onHistoryLinkClicked() {
+        // TODO: Function for this
     }
 
 

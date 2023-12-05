@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -134,25 +135,50 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dailyDealsScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+        dailyDealsScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ScrollEvent event) {
-                if (event.getDeltaY() > 0)
-                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() - 0.1);
-                else
-                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() + 0.1);
+            public void handle(MouseEvent event) {
+                dailyDealsScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if (event.getDeltaY() > 0)
+                            dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() - 0.1);
+                        else
+                            dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() + 0.1);
+                    }
+                });
             }
         });
 
-        cuisinesScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+        dailyDealsScroll.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(ScrollEvent event) {
-                if (event.getDeltaY() > 0)
-                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() - 0.1);
-                else
-                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() + 0.1);
+            public void handle(MouseEvent event) {
+                dailyDealsScroll.setOnScroll(null);
             }
         });
+
+        cuisinesScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cuisinesScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if (event.getDeltaY() > 0)
+                            cuisinesScroll.setHvalue(cuisinesScroll.getHvalue() - 0.1);
+                        else
+                            cuisinesScroll.setHvalue(cuisinesScroll.getHvalue() + 0.1);
+                    }
+                });
+            }
+        });
+
+        cuisinesScroll.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                cuisinesScroll.setOnScroll(null);
+            }
+        });
+
 
         // Set up address details
         landmarkLabel.setText(UserModel.getLandmark());

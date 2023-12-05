@@ -8,12 +8,15 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -35,6 +38,9 @@ public class RestaurantMenuController {
 
     @FXML
     private Button subtractQtyBtn;
+
+    @FXML
+    private ScrollPane tagScrollPane;
     @FXML
     private Label qtyLabel;
 
@@ -415,6 +421,27 @@ public class RestaurantMenuController {
 
     @FXML
     void initialize() {
+        tagScrollPane.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                tagScrollPane.setOnScroll(new EventHandler<ScrollEvent>() {
+                    @Override
+                    public void handle(ScrollEvent event) {
+                        if (event.getDeltaY() > 0)
+                            tagScrollPane.setHvalue(tagScrollPane.getHvalue() - 0.1);
+                        else
+                            tagScrollPane.setHvalue(tagScrollPane.getHvalue() + 0.1);
+                    }
+                });
+            }
+        });
+
+        tagScrollPane.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                tagScrollPane.setOnScroll(null);
+            }
+        });
         // if CartController.addItemClicked is true, disable the add to cart button
         if (CartController.addItemClicked){
             cartIcon.setVisible(false);

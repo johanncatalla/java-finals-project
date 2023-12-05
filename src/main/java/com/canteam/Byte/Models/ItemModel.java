@@ -7,6 +7,28 @@ import java.util.HashMap;
 public class ItemModel extends ItemModelAbstract {
     public static HashMap<String, String> selectedItemInfo;
 
+    /**
+     * Constructor that Sets data for the item using a HashMap.
+     *
+     * @param item A HashMap containing item information.
+     */
+    public ItemModel(HashMap<String, String> item) {
+        // Set the overall item information
+        this.setItemInfo(item);
+
+        // Set specific item attributes using the provided keys from the HashMap
+        this.setItemName(item.get("Item_Name"));
+        this.setItemPrice(item.get("Item_Price"));
+        this.setItemImageSrc(item.get("Item_Image"));
+        this.setItemStore(item.get("Item_Store"));
+        this.setItemShopTags(item.get("Item_Shop_Tag"));
+        this.setItemCuisineTags(item.get("Item_Cuisine_Tag"));
+
+        // Parse and set boolean values for item popularity and availability
+        this.setItemPopular(Boolean.parseBoolean(item.get("Item_Popular")));
+        this.setItemAvailable(Boolean.parseBoolean(item.get("Item_Available")));
+    }
+
     @Override
     public void setItemInfo(HashMap<String, String> itemInfo) {
         this.itemInfo = itemInfo;
@@ -127,7 +149,6 @@ public class ItemModel extends ItemModelAbstract {
         this.setItemPopular(Boolean.parseBoolean(item.get("Item_Popular")));
         this.setItemAvailable(Boolean.parseBoolean(item.get("Item_Available")));
     }
-
 
     /**
      * Converts a string formatted as "Document{{key=value}}" to a HashMap with String keys and Integer values.

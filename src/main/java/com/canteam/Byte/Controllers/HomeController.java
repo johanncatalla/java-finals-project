@@ -129,14 +129,19 @@ public class HomeController implements Initializable {
         burgerMenuTransition.play();
     }
 
-    @FXML
-    protected void onHistoryLinkClicked() {
-        // TODO: Function for this
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // disable horizonatal scrolling motion of trackpad
+        dailyDealsScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaX() != 0) {
+                    event.consume();
+                }
+            }
+        });
+
+        // only scrollable when mouse is hovered
         dailyDealsScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -159,6 +164,17 @@ public class HomeController implements Initializable {
             }
         });
 
+        // disable horizonatal scrolling motion of trackpad
+        cuisinesScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaX() != 0) {
+                    event.consume();
+                }
+            }
+        });
+
+        // only scrollable when mouse is hovered
         cuisinesScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -173,6 +189,7 @@ public class HomeController implements Initializable {
                 });
             }
         });
+
 
         cuisinesScroll.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
@@ -288,15 +305,20 @@ public class HomeController implements Initializable {
         }
     }
 
+    @FXML
     public void onMyOrders() {
         pageNavigator.navigateToPage(ordersLink, "UserOrderList");
     }
+    @FXML
     public void onMyDeliveryAddress() {
         pageNavigator.forwardToPage(addressLink, "Home", "Location");
     }
+    @FXML
     public void onMyProfile() {
         pageNavigator.forwardToPage(profileLink, "Home", "UserProfile");
     }
+    @FXML
+    protected void onHistoryLinkClicked() { pageNavigator.forwardToPage(historyLink, "Home", "UserHistoryOrderList");}
 }
 
 

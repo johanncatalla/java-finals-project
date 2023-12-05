@@ -411,8 +411,7 @@ public class RestaurantMenuController {
 
         // Iterate through the finalArray
         for (int i = 0; i < finalArray.size(); i++){
-            item = new ItemModel();
-            item.setData(finalArray.get(i));
+            item = new ItemModel(finalArray.get(i));
             itemList.add(item);
         }
         return itemList;

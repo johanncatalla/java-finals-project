@@ -8,6 +8,7 @@ public abstract class ItemModelAbstract {
     protected String itemShopTags, itemCuisineTags;
     protected boolean itemAvailable, itemPopular;
     protected HashMap<String, String> itemInfo = new HashMap<>();
+    public ItemModelAbstract() {}
 
     public abstract void setItemInfo(HashMap<String, String> itemInfo);
     public abstract HashMap<String, String> getItemInfo();
@@ -27,6 +28,5 @@ public abstract class ItemModelAbstract {
     public abstract void setItemPopular(boolean itemPopular);
     public abstract boolean isItemAvailable();
     public abstract void setItemAvailable(boolean itemAvailable);
-    public abstract void setData(HashMap<String, String> item);
-
+    public void setData(HashMap<String, String> item) {}
 }

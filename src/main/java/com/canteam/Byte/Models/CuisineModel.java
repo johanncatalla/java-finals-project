@@ -1,12 +1,13 @@
 package com.canteam.Byte.Models;
 
-public class CuisineModel {
-    private String cuisineName;
-    private String cuisineImageSrc;
+import com.canteam.Byte.Models.Abstract.CuisineModelAbstract;
 
+public class CuisineModel extends CuisineModelAbstract {
+    @Override
     public String getCuisineName() {
         return cuisineName;
     }
+    @Override
     public void setCuisineName(String cuisineName) {
         this.cuisineName = cuisineName;
     }
@@ -16,9 +17,11 @@ public class CuisineModel {
         System.out.println("No parameter setCuisineName method called");
     }
 
+    @Override
     public String getCuisineImageSrc() {
         return cuisineImageSrc;
     }
+    @Override
     public void setCuisineImageSrc(String cuisineImageSrc) {
         this.cuisineImageSrc = cuisineImageSrc;
     }

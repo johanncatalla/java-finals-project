@@ -31,6 +31,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
+            <Button fx:id="reloadBtn" layoutX="325.0" layoutY="58.0" mnemonicParsing="false" onAction="#onReload" prefHeight="27.0" prefWidth="34.0" styleClass="reload-icon" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="statusBar">

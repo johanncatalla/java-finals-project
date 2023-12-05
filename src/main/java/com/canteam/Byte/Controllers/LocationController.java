@@ -69,8 +69,9 @@ public class LocationController implements Initializable {
         newUserAlert.setVisible(true);
 
         if (UserModel.isNewUser()){
+            pageNavigator.navigateToPage(saveChangesButton, "Ads");
             UserModel.setNewOldUser(false);
-            pageNavigator.navigateToPage(saveChangesButton, "Home");
+
         }
     }
 

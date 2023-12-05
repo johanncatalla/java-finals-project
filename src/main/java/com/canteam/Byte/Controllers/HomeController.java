@@ -137,6 +137,14 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        dailyDealsScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaX() != 0) {
+                    event.consume();
+                }
+            }
+        });
         dailyDealsScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -159,6 +167,14 @@ public class HomeController implements Initializable {
             }
         });
 
+        cuisinesScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaX() != 0) {
+                    event.consume();
+                }
+            }
+        });
         cuisinesScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -173,6 +189,7 @@ public class HomeController implements Initializable {
                 });
             }
         });
+
 
         cuisinesScroll.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override

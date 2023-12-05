@@ -56,12 +56,6 @@ public class ShopOrderViewController implements Initializable {
     private Label totalLabel;
 
     @FXML
-    private Label orderConfirmed;
-
-    @FXML
-    private Label orderCancelled;
-
-    @FXML
     private Label contactNumLabel;
 
     @FXML
@@ -86,18 +80,18 @@ public class ShopOrderViewController implements Initializable {
 
     @FXML
     void onConfirmOrder(ActionEvent event) {
-        denyOrderBtn.setVisible(false);
-        confirmOrderBtn.setVisible(false);
-        orderConfirmed.setVisible(true);
+        denyOrderBtn.setDisable(true);
+        confirmOrderBtn.setDisable(true);
+        confirmOrderBtn.setText("Confirmed");
         OrderModel.updateOrderStatus(orderNumber, "Confirmed");
 
     }
 
     @FXML
     void onDenyOrder(ActionEvent event) {
-        denyOrderBtn.setVisible(false);
-        confirmOrderBtn.setVisible(false);
-        orderCancelled.setVisible(true);
+        denyOrderBtn.setDisable(true);
+        confirmOrderBtn.setDisable(true);
+        denyOrderBtn.setText("Cancelled");
         OrderModel.updateOrderStatus(orderNumber, "Cancelled");
         OrderModel.completeOrder(orderNumber);
     }
@@ -105,9 +99,13 @@ public class ShopOrderViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (Objects.equals(OrderModel.getOrderStatus(orderNumber), "Confirmed")) {
-            confirmOrderBtn.setVisible(false);
-            denyOrderBtn.setVisible(false);
-            orderConfirmed.setVisible(true);
+            denyOrderBtn.setDisable(true);
+            confirmOrderBtn.setDisable(true);
+            confirmOrderBtn.setText("Confirmed");
+        } else if (Objects.equals(OrderModel.getOrderStatus(orderNumber), "Cancelled")) {
+            denyOrderBtn.setDisable(true);
+            confirmOrderBtn.setDisable(true);
+            denyOrderBtn.setText("Cancelled");
         }
         ArrayList<Document> shopOrderList = OrderModel.getStoreOrders(UserModel.getUserName());
         Document order = new Document();

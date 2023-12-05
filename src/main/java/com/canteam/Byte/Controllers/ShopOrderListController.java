@@ -55,7 +55,7 @@ public class ShopOrderListController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         draggable.makeScrollableY(scrollAnchor);
         draggable.makeWindowDraggable(statusBar);
-        shopName.setText("Byte Shop: "+UserModel.getUserName());
+        shopName.setText("Byte Shop:\n"+UserModel.getUserName());
         ArrayList<Document> shopOrderList = OrderModel.getStoreOrders(UserModel.getUserName());
 
         int column = 0;
@@ -78,7 +78,7 @@ public class ShopOrderListController implements Initializable {
 
                 gridOrders.add(orderContainer, column, row++);
 
-                GridPane.setMargin(orderContainer, new Insets(10));
+                GridPane.setMargin(orderContainer, new Insets(0, 0, 20, 0));
             }
         } catch (IOException e) {
             throw  new RuntimeException(e);

@@ -129,12 +129,6 @@ public class HomeController implements Initializable {
         burgerMenuTransition.play();
     }
 
-    @FXML
-    protected void onHistoryLinkClicked() {
-        // TODO: Function for this
-    }
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // disable horizonatal scrolling motion of trackpad
@@ -311,15 +305,20 @@ public class HomeController implements Initializable {
         }
     }
 
+    @FXML
     public void onMyOrders() {
         pageNavigator.navigateToPage(ordersLink, "UserOrderList");
     }
+    @FXML
     public void onMyDeliveryAddress() {
         pageNavigator.forwardToPage(addressLink, "Home", "Location");
     }
+    @FXML
     public void onMyProfile() {
         pageNavigator.forwardToPage(profileLink, "Home", "UserProfile");
     }
+    @FXML
+    protected void onHistoryLinkClicked() { pageNavigator.forwardToPage(historyLink, "Home", "UserHistoryOrderList");}
 }
 
 

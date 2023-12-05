@@ -137,6 +137,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // disable horizonatal scrolling motion of trackpad
         dailyDealsScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
@@ -145,6 +146,8 @@ public class HomeController implements Initializable {
                 }
             }
         });
+
+        // only scrollable when mouse is hovered
         dailyDealsScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -167,6 +170,7 @@ public class HomeController implements Initializable {
             }
         });
 
+        // disable horizonatal scrolling motion of trackpad
         cuisinesScroll.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
             @Override
             public void handle(ScrollEvent event) {
@@ -175,6 +179,8 @@ public class HomeController implements Initializable {
                 }
             }
         });
+
+        // only scrollable when mouse is hovered
         cuisinesScroll.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane fx:id="orderContainer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;" styleClass="anchorStyle" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderQueueController">
+<AnchorPane fx:id="orderContainer" minHeight="-Infinity" minWidth="-Infinity" prefHeight="143.0" prefWidth="330.0" style="-fx-background-color: white; -fx-background-radius: 20;" styleClass="anchorStyle" stylesheets="@../styles/OrdersQueue.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.canteam.Byte.Controllers.RiderOrderQueueController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -23,13 +23,13 @@
             <Label fx:id="txtAddress" layoutX="69.0" layoutY="33.0" prefHeight="17.0" prefWidth="240.0" styleClass="right" text="address" />
             <Label fx:id="txtOrderNum" layoutX="69.0" layoutY="50.0" prefHeight="17.0" prefWidth="126.0" styleClass="right" text="1" />
             <Label layoutY="50.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Order #" />
-            <Button fx:id="btnDeliverOrder" layoutX="206.0" layoutY="65.0" mnemonicParsing="false" onAction="#onDeliver" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="Deliver">
+            <Button fx:id="btnDeliverOrder" layoutX="204.0" layoutY="86.0" mnemonicParsing="false" onAction="#onDeliver" prefHeight="27.0" prefWidth="94.0" styleClass="button-styled-view-orders" text="Deliver">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label fx:id="txtShopName" layoutX="69.0" layoutY="66.0" prefHeight="17.0" prefWidth="126.0" styleClass="right" text="Shopname" />
+            <Label fx:id="txtShopName" layoutX="69.0" layoutY="66.0" prefHeight="18.0" prefWidth="219.0" styleClass="right" text="Shopname" />
             <Label layoutY="66.0" styleClass="left" stylesheets="@../styles/OrdersQueue.css" text="Shop" />
-            <Label fx:id="pickedUpTxt" layoutX="206.0" layoutY="2.0" styleClass="confirmed-text" stylesheets="@../styles/OrdersQueue.css" text=" PICKED-UP " visible="false" />
+            <Label fx:id="pickedUpTxt" layoutX="-1.0" layoutY="89.0" styleClass="confirmed-text" stylesheets="@../styles/OrdersQueue.css" text=" PICKED-UP " visible="false" />
          </children>
       </AnchorPane>
    </children>

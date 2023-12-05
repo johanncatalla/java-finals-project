@@ -25,6 +25,8 @@ public class UserOrderListController implements Initializable {
 
     @FXML
     private GridPane gridOrders;
+    @FXML
+    private Button reloadBtn;
 
     @FXML
     private AnchorPane scrollAnchor, statusBar;
@@ -88,5 +90,9 @@ public class UserOrderListController implements Initializable {
     @FXML
     public void onCloseOrdersButtonClick(ActionEvent event) {
         pageNavigator.navigateToPage(closeOrdersButton, "Home");
+    }
+    @FXML
+    void onReload(ActionEvent event) {
+        pageNavigator.navigateToPage(reloadBtn, "UserOrderList");
     }
 }

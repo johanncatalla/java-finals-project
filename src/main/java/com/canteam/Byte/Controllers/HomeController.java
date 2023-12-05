@@ -3,16 +3,15 @@ import com.canteam.Byte.Models.CuisineModel;
 import com.canteam.Byte.Models.ShopModel;
 import com.canteam.Byte.Models.UserModel;
 import javafx.animation.TranslateTransition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -60,6 +59,12 @@ public class HomeController implements Initializable {
 
     @FXML
     private Hyperlink logoutLink, ordersLink, profileLink, addressLink;
+
+    @FXML
+    private ScrollPane dailyDealsScroll;
+
+    @FXML
+    private ScrollPane cuisinesScroll;
 
     private List<CuisineModel> cuisineList = new ArrayList<>();
 
@@ -129,6 +134,26 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        dailyDealsScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaY() > 0)
+                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() - 0.1);
+                else
+                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() + 0.1);
+            }
+        });
+
+        cuisinesScroll.setOnScroll(new EventHandler<ScrollEvent>() {
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaY() > 0)
+                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() - 0.1);
+                else
+                    dailyDealsScroll.setHvalue(dailyDealsScroll.getHvalue() + 0.1);
+            }
+        });
+
         // Set up address details
         landmarkLabel.setText(UserModel.getLandmark());
         addressDetails.setText(UserModel.getAddressDetails());

@@ -97,7 +97,7 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="27.0" layoutY="9.0" styleClass="h2-text" text="Your Daily Deals" />
-                        <ScrollPane hbarPolicy="NEVER" layoutX="19.0" layoutY="35.33333206176758" prefHeight="163.0" prefWidth="377.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles/Home.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="2.0" AnchorPane.topAnchor="35.0">
+                        <ScrollPane hbarPolicy="NEVER" layoutX="19.0" layoutY="35.33333206176758" pannable="true" prefHeight="169.0" prefWidth="377.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles/Home.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="-4.0" AnchorPane.topAnchor="35.0">
                            <content>
                               <GridPane fx:id="dailyDealsGridPane" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="162.0" prefWidth="375.0" styleClass="scroll-pane">
                                 <rowConstraints>
@@ -111,7 +111,7 @@
                   <AnchorPane prefHeight="240.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="27.0" layoutY="9.0" styleClass="h2-text" text="Cuisines" />
-                        <ScrollPane hbarPolicy="NEVER" layoutY="37.0" prefHeight="212.0" prefWidth="390.0" vbarPolicy="NEVER">
+                        <ScrollPane hbarPolicy="NEVER" layoutY="37.0" pannable="true" prefHeight="212.0" prefWidth="390.0" vbarPolicy="NEVER">
                            <content>
                               <GridPane fx:id="cuisinesGridPane" prefHeight="208.0" prefWidth="400.0" styleClass="scroll-pane">
                                 <columnConstraints>

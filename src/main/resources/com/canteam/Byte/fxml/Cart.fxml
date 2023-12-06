@@ -191,7 +191,7 @@
                         <TextField fx:id="payField" layoutX="140.0" layoutY="96.0" onKeyTyped="#payFieldListener" prefHeight="32.0" prefWidth="206.0" promptText="PHP 0.00" />
                         <Label fx:id="payUserName" layoutX="214.0" layoutY="23.0" prefHeight="18.0" prefWidth="126.0" text="User Name" />
                         <Label fx:id="payTotal" layoutX="226.0" layoutY="43.0" prefHeight="18.0" prefWidth="119.0" style="-fx-font-weight: bold;" text="PHP 1000.00" />
-                        <Label fx:id="payAlert" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="106.0" text="Insufficient" visible="false" />
+                        <Label fx:id="payAlert" alignment="CENTER_RIGHT" layoutX="237.0" layoutY="74.0" prefHeight="18.0" prefWidth="106.0" text="Insufficient" visible="false" />
                      </children>
                   </AnchorPane>
                </children>

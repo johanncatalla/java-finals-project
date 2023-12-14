@@ -23,6 +23,7 @@ public class CartModel {
     private CartModel() {}
     private static HashMap<String, HashMap<String, String>> cart;
     private static int subtotal;
+    //
     private static int totalPriceOfOrder;
     private static String modeOfPayment;
     private static String store;
